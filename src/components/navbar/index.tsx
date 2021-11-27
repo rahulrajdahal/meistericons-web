@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { MarketingIcon } from "meistericons";
 
 import { LogoIcon } from "../../assets/icons/LogoIcon";
-import { Body1 } from "../texts";
+import { Body1, Body3 } from "../texts";
 import Button from "../buttons/button";
 import { GithubIcon } from "../../assets/icons";
 
@@ -24,16 +24,27 @@ const LinksContainer = styled.ul`
   width: 40%;
 `;
 
+const InlineContainer = styled.div`
+  display: inline-flex;
+  align-items: center;
+`;
+
 function Navbar() {
   return (
     <Container>
-      <LogoIcon />
+      <InlineContainer>
+        <LogoIcon />
+        <div style={{ marginLeft: 8 }}>
+          <Body1>MeisterIcons</Body1>
+          <Body3>v 1.0.0</Body3>
+        </div>
+      </InlineContainer>
 
       <LinksContainer>
-        <div style={{ display: "inline-flex", alignItems: "center" }}>
+        <InlineContainer>
           <MarketingIcon />
           <Body1 marginLeft={8}>Icons</Body1>
-        </div>
+        </InlineContainer>
         <Body1>How to Use?</Body1>
         <Body1>Sponsor</Body1>
         <Button text="Start Here" icon={<GithubIcon />} />
