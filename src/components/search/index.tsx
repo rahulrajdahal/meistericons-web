@@ -38,10 +38,10 @@ const SearchOptions = styled.option`
 function Search() {
   const options = [
     { id: 1, option: "All Icons" },
-    { id: 1, option: "Office" },
-    { id: 1, option: "Developer" },
-    { id: 1, option: "Pack" },
-    { id: 1, option: "Icon Pack" },
+    { id: 2, option: "Office" },
+    { id: 3, option: "Developer" },
+    { id: 4, option: "Pack" },
+    { id: 5, option: "Icon Pack" },
   ];
 
   return (
