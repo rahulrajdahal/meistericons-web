@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Container = styled.button`
+const Container = styled.button`
   padding: 0.5rem 1rem;
   outline: none;
   border: none;
