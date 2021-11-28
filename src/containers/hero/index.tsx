@@ -53,7 +53,14 @@ function HeroContainer() {
       </NewIconsContainer>
 
       <LargeText marginTop={32} marginBottom={47}>
-        Over 2000+ Open-Source Icons for your next BIG project
+        Over{" "}
+        <LargeText
+          color="#3e64ff"
+          style={{ display: "initial", fontWeight: "900" }}
+        >
+          2000+
+        </LargeText>{" "}
+        Open-Source Icons for your next BIG project
       </LargeText>
 
       <IllustrationsContainer>
