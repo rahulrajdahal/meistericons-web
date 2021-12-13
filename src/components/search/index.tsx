@@ -1,4 +1,4 @@
-import { BugIcon } from "meistericons";
+import { AddressBookIcon } from "meistericons/react/esm";
 import React from "react";
 import styled from "styled-components";
 import Dropdown from "../dropdown";
@@ -47,7 +47,7 @@ function Search() {
   return (
     <Container>
       <SearchInputContainer>
-        <BugIcon />
+        <AddressBookIcon />
         <Input type="text" placeholder="Search for..." />
         <Dropdown>
           {options.map((item) => (

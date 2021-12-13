@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { MarketingIcon } from "meistericons";
+import { MarketingIcon } from "meistericons/react/esm";
 
 import { LogoIcon } from "../../assets/icons/LogoIcon";
 import { Body1, Body3 } from "../texts";

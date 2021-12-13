@@ -7,7 +7,7 @@ import SearchContainer from "./containers/search";
 function App() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <HeroContainer />
       <SearchContainer />
       <IconsContainer />

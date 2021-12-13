@@ -6,7 +6,6 @@ import {
   NpmIllustration,
   SvgIllustration,
 } from "../../assets/illustrations";
-import Flex from "../../components/flex";
 import { Body1, LargeText } from "../../components/texts";
 
 const NewIconsContainer = styled.div`
@@ -35,7 +34,15 @@ const IllustrationsContainer = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  width: 30%;
+  width: 80%;
+
+  @media (min-width: 768px) {
+    width: 40%;
+  }
+
+  @media (min-width: 1080px) {
+    width: 30%;
+  }
 `;
 
 function HeroContainer() {
@@ -54,12 +61,16 @@ function HeroContainer() {
 
       <LargeText marginTop={32} marginBottom={47}>
         Over{" "}
-        <LargeText
-          color="#3e64ff"
-          style={{ display: "initial", fontWeight: "900" }}
+        <Body1
+          style={{
+            display: "initial",
+            fontWeight: "900",
+            color: "#3e64ff",
+            fontSize: 80,
+          }}
         >
           2000+
-        </LargeText>{" "}
+        </Body1>{" "}
         Open-Source Icons for your next BIG project
       </LargeText>
 
