@@ -8,21 +8,25 @@ import Button from "../buttons/button";
 import { GithubIcon } from "../../assets/icons";
 
 const Container = styled.nav`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  margin: 1.62rem auto;
+  display: none;
 
   @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1.62rem auto;
     width: 80%;
   }
 `;
 
 const LinksContainer = styled.ul`
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
+  display: none;
+
+  @media (min-width: 1100px) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 const InlineContainer = styled.div`
