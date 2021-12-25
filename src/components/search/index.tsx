@@ -1,4 +1,4 @@
-import { AddressBookIcon } from "meistericons/react/esm";
+import { ArrowBreakLeftIcon } from "meistericons/react/esm";
 import React from "react";
 import styled from "styled-components";
 import Dropdown from "../dropdown";
@@ -47,7 +47,7 @@ function Search() {
   return (
     <Container>
       <SearchInputContainer>
-        <AddressBookIcon />
+        <ArrowBreakLeftIcon />
         <Input type="text" placeholder="Search for..." />
         <Dropdown>
           {options.map((item) => (

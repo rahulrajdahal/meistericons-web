@@ -1,6 +1,7 @@
-import React from "react";
+import React, { ChangeEvent, createElement } from "react";
 import styled from "styled-components";
 import * as icons from "meistericons/react/esm";
+import IconButton from "../../components/buttons/icon";
 
 export const Container = styled.section`
   width: 100%;
@@ -46,7 +47,11 @@ function IconsContainer() {
   return (
     <Container>
       {values.map((item: any, i) => (
-        <IconContainer key={i}> {React.createElement(item)}</IconContainer>
+        <IconButton
+          key={item}
+          name={item}
+          component={() => React.createElement(item)}
+        />
       ))}
     </Container>
   );

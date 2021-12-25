@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { MarketingIcon } from "meistericons/react/esm";
+import { ArrowBreakDownIcon} from "meistericons/react/esm";
 
 import { LogoIcon } from "../../assets/icons/LogoIcon";
 import { Body1, Body3 } from "../texts";
@@ -49,7 +49,7 @@ function Navbar() {
 
       <LinksContainer>
         <InlineContainer>
-          <MarketingIcon />
+          <ArrowBreakDownIcon />
           <Body1 marginLeft={8}>Icons</Body1>
         </InlineContainer>
         <Body1 marginRight={80} style={{ cursor: "pointer" }}>

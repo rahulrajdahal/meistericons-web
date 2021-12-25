@@ -7411,10 +7411,10 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
-meistericons@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/meistericons/-/meistericons-0.1.3.tgz#91b9772d339e3045948e546a1269a4a23d289722"
-  integrity sha512-jPxFkn9Q7LBSc1DhR0pqxYy70PLIUfNG8OxUcxNFCwjlu2/SP2gNlf12SHTsAcSZUIdJTIpEwKM19SqwPUR5Cg==
+meistericons@^0.1.33:
+  version "0.1.33"
+  resolved "https://registry.yarnpkg.com/meistericons/-/meistericons-0.1.33.tgz#ff9252250c1f5a8a73565f9a858d4f8c50e924dd"
+  integrity sha512-ykLQK9hdD1ruPUYqJ295K1a5x2uP+8kcip5upgJM+ST6czkxjc5Ac2TBazja5O1PkC715kg1gePTkaZUQa6DWA==
 
 memory-fs@^0.4.1:
   version "0.4.1"
