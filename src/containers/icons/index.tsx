@@ -1,7 +1,9 @@
-import React, { ChangeEvent, createElement } from "react";
+import React from "react";
 import styled from "styled-components";
 import * as icons from "meistericons/react/esm";
 import IconButton from "../../components/buttons/icon";
+import useSearch from "../../hooks/useSearch";
+import createReactComponent from "../../helpers/createReactComponent";
 
 export const Container = styled.section`
   width: 100%;
@@ -30,27 +32,18 @@ export const Container = styled.section`
   }
 `;
 
-const IconContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+type IIconsContainerProps = { icons: any; tags: any; query: any };
 
-  width: 26px;
-  height: auto;
-
-  cursor: pointer;
-`;
-
-function IconsContainer() {
-  const values = Object.values(icons);
+function IconsContainer({ icons, tags, query }: IIconsContainerProps) {
+  const searchResults = useSearch(icons, tags, query);
 
   return (
     <Container>
-      {values.map((item: any, i) => (
+      {searchResults.map(([name, iconNode]: any) => (
         <IconButton
-          key={item}
-          name={item}
-          component={() => React.createElement(item)}
+          key={name}
+          name={name}
+          component={createReactComponent(name, iconNode)}
         />
       ))}
     </Container>

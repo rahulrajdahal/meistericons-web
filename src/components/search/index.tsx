@@ -1,5 +1,5 @@
 import { ArrowBreakLeftIcon } from "meistericons/react/esm";
-import React from "react";
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 import Dropdown from "../dropdown";
 import { Body2, Body3 } from "../texts";
@@ -35,7 +35,12 @@ const SearchOptions = styled.option`
   color: #445668;
 `;
 
-function Search() {
+type ISearchProps = {
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+};
+
+function Search({ value, onChange }: ISearchProps) {
   const options = [
     { id: 1, option: "All Icons" },
     { id: 2, option: "Office" },
@@ -48,7 +53,12 @@ function Search() {
     <Container>
       <SearchInputContainer>
         <ArrowBreakLeftIcon />
-        <Input type="text" placeholder="Search for..." />
+        <Input
+          type="text"
+          placeholder="Search for..."
+          value={value}
+          onChange={onChange}
+        />
         <Dropdown>
           {options.map((item) => (
             <SearchOptions key={item.id}>{item.option}</SearchOptions>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 import Search from "../../components/search";
 
@@ -13,10 +13,14 @@ const Container = styled.div`
   }
 `;
 
-function SearchContainer() {
+type ISearchContainerProps = {
+  value: string;
+  onChange: (e: ChangeEvent) => void;
+};
+function SearchContainer({ value, onChange }: ISearchContainerProps) {
   return (
     <Container>
-      <Search />
+      <Search value={value} onChange={onChange} />
     </Container>
   );
 }
