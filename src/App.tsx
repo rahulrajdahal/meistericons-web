@@ -8,6 +8,7 @@ import useSearch, { Icon } from "./hooks/useSearch";
 
 function App() {
   const [query, setQuery] = useState<string>("");
+  const [version, setVersion] = useState<string>("");
   const [icons, setIcons] = useState<Icon[]>([]);
   const [tags, setTags] = useState({});
 
@@ -16,6 +17,7 @@ function App() {
 
     setIcons(Object.entries(meisterIcons.iconNodes));
     setTags(meisterIcons.tags);
+    setVersion(meisterIcons.version);
   };
 
   useEffect(() => {
@@ -28,7 +30,7 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar version={version} />
       <HeroContainer />
       <SearchContainer
         value={query}

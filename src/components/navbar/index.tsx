@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ArrowBreakDownIcon} from "meistericons/react/esm";
+import { ArrowBreakDownIcon } from "meistericons/react/esm";
 
 import { LogoIcon } from "../../assets/icons/LogoIcon";
 import { Body1, Body3 } from "../texts";
@@ -36,14 +36,15 @@ const InlineContainer = styled.div`
   cursor: pointer;
 `;
 
-function Navbar() {
+type INavbarProps = { version: string };
+function Navbar({ version }: INavbarProps) {
   return (
     <Container>
       <InlineContainer>
         <LogoIcon />
         <div style={{ marginLeft: 8 }}>
           <Body1>MeisterIcons</Body1>
-          <Body3>v 1.0.0</Body3>
+          <Body3>{version}</Body3>
         </div>
       </InlineContainer>
 
