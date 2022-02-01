@@ -5,6 +5,7 @@ import HeroContainer from "./containers/hero";
 import IconsContainer from "./containers/icons";
 import SearchContainer from "./containers/search";
 import useSearch, { Icon } from "./hooks/useSearch";
+import styled from "styled-components";
 
 function App() {
   const [query, setQuery] = useState<string>("");

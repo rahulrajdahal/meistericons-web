@@ -21,7 +21,9 @@ export default (iconName: any, iconNode: IconNode) => {
           className: `mni mni-${toKebabCase(iconName)}`,
           ...rest,
         },
-        iconNode.map(([tag, attrs]) => createElement(tag, attrs))
+        iconNode.map(([tag, attrs], i) =>
+          createElement(tag, { key: i, ...attrs })
+        )
       )
   );
 

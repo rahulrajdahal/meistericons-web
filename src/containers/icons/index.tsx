@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import * as icons from "meistericons/react/esm";
 import IconButton from "../../components/buttons/icon";
 import useSearch from "../../hooks/useSearch";
 import createReactComponent from "../../helpers/createReactComponent";
+import Modal from "../../components/modal";
 
 export const Container = styled.section`
   width: 100%;
@@ -32,11 +33,16 @@ export const Container = styled.section`
   }
 `;
 
-type IIconsContainerProps = { icons: any; tags: any; query: any };
+type IIconsContainerProps = {
+  icons: any;
+  tags: any;
+  query: any;
+};
 
 function IconsContainer({ icons, tags, query }: IIconsContainerProps) {
   const searchResults = useSearch(icons, tags, query);
 
+  const [showModal, setShowModal] = useState<boolean>(false);
   return (
     <Container>
       {searchResults.map(([name, iconNode]: any) => (
@@ -44,8 +50,11 @@ function IconsContainer({ icons, tags, query }: IIconsContainerProps) {
           key={name}
           name={name}
           component={createReactComponent(name, iconNode)}
+          onClick={() => setShowModal(true)}
         />
       ))}
+
+      <Modal showModal={showModal} handleClose={() => setShowModal(false)} />
     </Container>
   );
 }

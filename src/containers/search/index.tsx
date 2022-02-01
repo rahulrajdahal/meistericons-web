@@ -7,6 +7,9 @@ const Container = styled.div`
   background: #f0f5f9;
   border-radius: 8px;
   padding: 1.75rem 2rem;
+  position: sticky;
+  top: 1rem;
+  z-index: 99;
 
   @media (min-width: 768px) {
     width: 80%;

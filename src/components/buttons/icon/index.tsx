@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { renderToString } from "react-dom/server";
 import styled from "styled-components";
+import Modal from "../../modal";
 
-const Container = styled.button`
+const Container = styled.div`
   border: none;
   outline: none;
   background: transparent;
@@ -30,7 +31,6 @@ const Tooltip = styled.span`
   white-space: nowrap;
 
   position: absolute;
-  z-index: 2;
   bottom: 125%;
   left: 50%;
   margin-left: -3rem;
@@ -47,29 +47,45 @@ const Tooltip = styled.span`
   }
 `;
 
-type IconButtonProps = { name: string; component: React.FC };
+type IconButtonProps = {
+  name: string;
+  component: React.FC;
+  onClick?(): any;
+  // showModal: boolean;
+  // setShowModal: any;
+};
 
-function IconButton({ name, component: IconComponent }: IconButtonProps) {
+function IconButton({
+  name,
+  component: IconComponent,
+  onClick,
+}: // showModal,
+// setShowModal,
+IconButtonProps) {
   const [showTooltip, setShowTooltip] = React.useState<boolean>(false);
 
-  const handleOnclick = () => {
-    const svg = renderToString(<IconComponent key={name} />);
+  // const handleOnClick = () => {
+  //   const svg = renderToString(<IconComponent key={name} />);
 
-    navigator.clipboard.writeText(svg);
-  };
+  //   navigator.clipboard.writeText(svg);
+  // };
+
+  // const handleonClick = () => setShowModal((prev: boolean) => !prev);
 
   return (
-    <Container
-      key={name}
-      aria-label={name}
-      onClick={handleOnclick}
-      onMouseEnter={() => setShowTooltip(true)}
-      onMouseLeave={() => setShowTooltip(false)}
-    >
-      {showTooltip && <Tooltip>{name}</Tooltip>}
+    <>
+      <Container
+        key={name}
+        aria-label={name}
+        onClick={onClick}
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
+      >
+        {showTooltip && <Tooltip>{name}</Tooltip>}
 
-      <IconComponent key={name} />
-    </Container>
+        <IconComponent key={name} />
+      </Container>
+    </>
   );
 }
 
