@@ -54,7 +54,7 @@ function Navbar({ version }: INavbarProps) {
           <Body1 marginLeft={8}>Icons</Body1>
         </InlineContainer>
         <Body1 marginRight={80} style={{ cursor: "pointer" }}>
-          How to Use?
+          How to Use ?
         </Body1>
         <Body1 marginRight={80} style={{ cursor: "pointer" }}>
           Sponsor
