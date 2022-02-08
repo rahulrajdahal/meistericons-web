@@ -28,7 +28,6 @@ function App() {
   if (!icons.length) {
     return null;
   }
-
   return (
     <>
       <Navbar version={version} />

@@ -35,6 +35,7 @@ const IllustrationsContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 80%;
+  filter: grayscale(100%);
 
   @media (min-width: 768px) {
     width: 40%;
