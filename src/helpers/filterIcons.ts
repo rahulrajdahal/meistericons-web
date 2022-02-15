@@ -1,4 +1,4 @@
-import { Tags } from "../api/fetchIcons";
+import { Categories, Tags } from "../api/fetchIcons";
 import { Icon } from "../hooks/useSearch";
 
 export default (icons: Icon[], tags: Tags, query: string) =>

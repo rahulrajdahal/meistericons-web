@@ -12,12 +12,15 @@ function App() {
   const [version, setVersion] = useState<string>("");
   const [icons, setIcons] = useState<Icon[]>([]);
   const [tags, setTags] = useState({});
+  const [categories, setCategories] = useState({});
+  const [category, setCategory] = useState<string>("All Icons");
 
   const getLatestIcons = async () => {
     const meisterIcons = await getIcons();
 
     setIcons(Object.entries(meisterIcons.iconNodes));
     setTags(meisterIcons.tags);
+    setCategories(meisterIcons.categories);
     setVersion(meisterIcons.version);
   };
 
@@ -35,9 +38,17 @@ function App() {
       <HeroContainer />
       <SearchContainer
         value={query}
+        setQuery={setQuery}
+        setCategory={setCategory}
         onChange={(e: any) => setQuery(e.target.value)}
       />
-      <IconsContainer icons={icons} tags={tags} query={query} />
+      <IconsContainer
+        icons={icons}
+        categories={categories}
+        tags={tags}
+        category={category}
+        query={query}
+      />
     </>
   );
 }
