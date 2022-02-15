@@ -86,17 +86,14 @@ function Search({ value, onChange, setCategory, setQuery }: ISearchProps) {
           value={value}
           onChange={onChange}
         />
-        <Dropdown>
+        <Dropdown
+          onChange={(e: any) => {
+            setQuery("");
+            setCategory(e.target.value);
+          }}
+        >
           {options.map((item) => (
-            <SearchOptions
-              key={item.id}
-              onClick={() => {
-                setQuery("");
-                setCategory(item.option);
-              }}
-            >
-              {item.option}
-            </SearchOptions>
+            <SearchOptions key={item.id}>{item.option}</SearchOptions>
           ))}
         </Dropdown>
       </SearchInputContainer>
