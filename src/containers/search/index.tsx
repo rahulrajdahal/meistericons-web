@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 import Search from "../../components/search";
 
@@ -8,7 +8,7 @@ const Container = styled.div`
   border-radius: 8px;
   padding: 1.75rem 2rem;
   position: sticky;
-  top: 1rem;
+  top: 0;
   z-index: 99;
 
   @media (min-width: 768px) {
@@ -18,12 +18,24 @@ const Container = styled.div`
 
 type ISearchContainerProps = {
   value: string;
+  setCategory: any;
+  setQuery: any;
   onChange: (e: ChangeEvent) => void;
 };
-function SearchContainer({ value, onChange }: ISearchContainerProps) {
+function SearchContainer({
+  value,
+  onChange,
+  setCategory,
+  setQuery,
+}: ISearchContainerProps) {
   return (
     <Container>
-      <Search value={value} onChange={onChange} />
+      <Search
+        setQuery={setQuery}
+        value={value}
+        onChange={onChange}
+        setCategory={setCategory}
+      />
     </Container>
   );
 }

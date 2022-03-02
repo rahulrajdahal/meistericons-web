@@ -14,12 +14,12 @@ const Container = styled.select`
   color: #445668;
 `;
 
-type IDropdownProps = { children: any };
+type IDropdownProps = { children: any; onChange?(e: any): any };
 
 function Dropdown(props: IDropdownProps) {
-  const { children } = props;
+  const { children, onChange } = props;
 
-  return <Container>{children}</Container>;
+  return <Container onChange={onChange}>{children}</Container>;
 }
 
 export default Dropdown;

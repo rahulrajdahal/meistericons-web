@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import * as icons from "meistericons/react/esm";
 import IconButton from "../../components/buttons/icon";
 import useSearch from "../../hooks/useSearch";
 import createReactComponent from "../../helpers/createReactComponent";
 import Modal from "../../components/modal";
+import useCategory from "../../hooks/useCategory";
 
 export const Container = styled.section`
   width: 100%;
@@ -36,23 +37,44 @@ export const Container = styled.section`
 type IIconsContainerProps = {
   icons: any;
   tags: any;
+  categories: any;
   query: any;
+  category: any;
 };
 
-function IconsContainer({ icons, tags, query }: IIconsContainerProps) {
+function IconsContainer({
+  icons,
+  tags,
+  categories,
+  query,
+  category = "developer",
+}: IIconsContainerProps) {
   const searchResults = useSearch(icons, tags, query);
+  const categoriesResults = useCategory(icons, categories, category);
+
+  const [result, setResult] = useState<any>(searchResults);
 
   const [showModal, setShowModal] = useState<boolean>(false);
+
   return (
     <Container>
-      {searchResults.map(([name, iconNode]: any) => (
-        <IconButton
-          key={name}
-          name={name}
-          component={createReactComponent(name, iconNode)}
-          onClick={() => setShowModal(true)}
-        />
-      ))}
+      {query.length > 0
+        ? searchResults.map(([name, iconNode]: any) => (
+            <IconButton
+              key={name}
+              name={name}
+              component={createReactComponent(name, iconNode)}
+              // onClick={() => setShowModal(true)}
+            />
+          ))
+        : categoriesResults.map(([name, iconNode]: any) => (
+            <IconButton
+              key={name}
+              name={name}
+              component={createReactComponent(name, iconNode)}
+              // onClick={() => setShowModal(true)}
+            />
+          ))}
 
       <Modal showModal={showModal} handleClose={() => setShowModal(false)} />
     </Container>
