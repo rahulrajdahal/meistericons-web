@@ -29,10 +29,12 @@ const Input = styled.input`
 const SearchOptions = styled.option`
   font-family: Gellix;
   font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 16px;
-  color: #445668;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  color: #fff;
+  background:#212121;
+  marginLeft:1rem;
 `;
 
 type ISearchProps = {
@@ -90,10 +92,10 @@ function Search({ value, onChange, setCategory, setQuery }: ISearchProps) {
           onChange={(e: any) => {
             setQuery("");
             setCategory(e.target.value);
-          }}
+          }}         
         >
           {options.map((item) => (
-            <SearchOptions key={item.id}>{item.option}</SearchOptions>
+            <SearchOptions key={item.id}>{item.option}(12)</SearchOptions>
           ))}
         </Dropdown>
       </SearchInputContainer>

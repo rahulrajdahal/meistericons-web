@@ -15,7 +15,7 @@ const NewIconsContainer = styled.div`
   padding: 0.75rem 1.5rem;
   width: 189px;
   margin: 0 auto;
-
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,7 +57,7 @@ function HeroContainer() {
   return (
     <Container>
       <NewIconsContainer>
-        <Body1>🎁 +60 icons added</Body1>
+        <Body1>🎁 +500 icons added</Body1>
       </NewIconsContainer>
 
       <LargeText marginTop={32} marginBottom={47}>

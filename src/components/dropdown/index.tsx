@@ -12,6 +12,7 @@ const Container = styled.select`
   font-size: 16px;
   line-height: 16px;
   color: #445668;
+  paddingLeft:1rem;
 `;
 
 type IDropdownProps = { children: any; onChange?(e: any): any };
