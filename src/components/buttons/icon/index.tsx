@@ -22,19 +22,18 @@ const Container = styled.div`
 `;
 
 const Tooltip = styled.span`
-  background-color: #000;
+  background-color: black;
   color: #fff;
   text-align: center;
   border-radius: 4px;
   padding: 0.375rem 0.75rem;
-
   white-space: nowrap;
-
   position: absolute;
   bottom: 125%;
   left: 50%;
-  margin-left: -3rem;
-
+  right:0;
+  margin-left: -1.8rem;
+  width:100%;
   &::after {
     content: " ";
     position: absolute;

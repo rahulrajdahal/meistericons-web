@@ -15,7 +15,6 @@ const NewIconsContainer = styled.div`
   padding: 0.75rem 1.5rem;
   width: 189px;
   margin: 0 auto;
-  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,6 +79,7 @@ function HeroContainer() {
           <img key={item.id} src={item.illustration} alt={item.illustration} />
         ))}
       </IllustrationsContainer>
+ 
     </Container>
   );
 }
