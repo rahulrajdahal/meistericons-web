@@ -40,6 +40,7 @@ function App() {
         value={query}
         setQuery={setQuery}
         setCategory={setCategory}
+        category={category}
         onChange={(e: any) => setQuery(e.target.value)}
       />
       <IconsContainer

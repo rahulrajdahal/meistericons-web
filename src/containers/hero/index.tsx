@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {
   Css3Illustration,
   FigmaIllustration,
+  GithubIllustration,
   NpmIllustration,
   SvgIllustration,
 } from "../../assets/illustrations";
@@ -15,7 +16,6 @@ const NewIconsContainer = styled.div`
   padding: 0.75rem 1.5rem;
   width: 189px;
   margin: 0 auto;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,9 +32,11 @@ const Container = styled.section`
 
 const IllustrationsContainer = styled.div`
   display: inline-flex;
+  gap: 3.125rem;
   align-items: center;
   justify-content: space-between;
   width: 80%;
+  filter: grayscale(100%);
 
   @media (min-width: 768px) {
     width: 40%;
@@ -47,16 +49,37 @@ const IllustrationsContainer = styled.div`
 
 function HeroContainer() {
   const illustrations = [
-    { id: 1, illustration: FigmaIllustration },
-    { id: 2, illustration: SvgIllustration },
-    { id: 3, illustration: Css3Illustration },
-    { id: 4, illustration: NpmIllustration },
+    {
+      id: 1,
+      illustration: FigmaIllustration,
+      to: "https://www.figma.com/community/plugin/1065974489689844727/MeisterIcons",
+    },
+    {
+      id: 2,
+      illustration: SvgIllustration,
+      to: "https://github.com/rahulrajdahal/meistericons",
+    },
+    {
+      id: 3,
+      illustration: Css3Illustration,
+      to: "https://github.com/rahulrajdahal/meistericons",
+    },
+    {
+      id: 4,
+      illustration: NpmIllustration,
+      to: "https://www.npmjs.com/package/meistericons",
+    },
+    {
+      id: 5,
+      illustration: GithubIllustration,
+      to: "https://github.com/rahulrajdahal/meistericons",
+    },
   ];
 
   return (
     <Container>
       <NewIconsContainer>
-        <Body1>🎁 +60 icons added</Body1>
+        <Body1>🎁 +500 icons added</Body1>
       </NewIconsContainer>
 
       <LargeText marginTop={32} marginBottom={47}>
@@ -76,7 +99,9 @@ function HeroContainer() {
 
       <IllustrationsContainer>
         {illustrations.map((item) => (
-          <img key={item.id} src={item.illustration} alt={item.illustration} />
+          <a key={item.id} href={item.to} target="_blank" rel="noreferrer">
+            <img src={item.illustration} alt={item.illustration} />
+          </a>
         ))}
       </IllustrationsContainer>
     </Container>

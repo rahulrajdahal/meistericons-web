@@ -52,8 +52,6 @@ function IconsContainer({
   const searchResults = useSearch(icons, tags, query);
   const categoriesResults = useCategory(icons, categories, category);
 
-  const [result, setResult] = useState<any>(searchResults);
-
   const [showModal, setShowModal] = useState<boolean>(false);
 
   return (

@@ -19,12 +19,14 @@ const Container = styled.div`
 type ISearchContainerProps = {
   value: string;
   setCategory: any;
+  category: string;
   setQuery: any;
   onChange: (e: ChangeEvent) => void;
 };
 function SearchContainer({
   value,
   onChange,
+  category,
   setCategory,
   setQuery,
 }: ISearchContainerProps) {
@@ -33,6 +35,7 @@ function SearchContainer({
       <Search
         setQuery={setQuery}
         value={value}
+        category={category}
         onChange={onChange}
         setCategory={setCategory}
       />

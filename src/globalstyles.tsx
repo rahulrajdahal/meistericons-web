@@ -13,6 +13,4 @@ export const GlobalStyles = createGlobalStyle`
         font-family:Gellix; 
         src:url(${Gellix});
         }
-
-        
 `;

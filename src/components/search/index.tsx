@@ -1,7 +1,7 @@
 import { ArrowBreakLeftIcon } from "meistericons/react/esm";
 import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
-import Dropdown from "../dropdown";
+import CustomDropdown from "../customDropdown";
 import { Body2, Body3 } from "../texts";
 
 const Container = styled.div`
@@ -28,15 +28,13 @@ const Input = styled.input`
 
 const SearchOptions = styled.option`
   font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 11px;
-  line-height: 14px;
 
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  color: #fff;
+  background: #212121;
   letter-spacing: 0.01em;
-
-  color: #ffffff;
-
   width: 210px;
 
   background: #212121;
@@ -45,12 +43,19 @@ const SearchOptions = styled.option`
 
 type ISearchProps = {
   value: string;
+  category: string;
   setCategory: any;
   setQuery: any;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-function Search({ value, onChange, setCategory, setQuery }: ISearchProps) {
+function Search({
+  value,
+  setCategory,
+  setQuery,
+  onChange,
+  category,
+}: ISearchProps) {
   const options = [
     { id: 1, option: "All Icons" },
     { id: 2, option: "Arrows" },
@@ -94,16 +99,13 @@ function Search({ value, onChange, setCategory, setQuery }: ISearchProps) {
           value={value}
           onChange={onChange}
         />
-        <Dropdown
-          onChange={(e: any) => {
-            setQuery("");
-            setCategory(e.target.value);
-          }}
-        >
-          {options.map((item) => (
-            <SearchOptions key={item.id}>{item.option}</SearchOptions>
-          ))}
-        </Dropdown>
+
+        <CustomDropdown
+          options={options}
+          category={category}
+          setQuery={setQuery}
+          setCategory={setCategory}
+        />
       </SearchInputContainer>
     </Container>
   );
