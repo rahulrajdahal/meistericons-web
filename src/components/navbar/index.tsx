@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { ArrowBreakDownIcon } from "meistericons/react/esm";
 
-import { LogoIcon } from "../../assets/icons/LogoIcon";
+import { LogoIcon } from "../../assets/icons";
 import { Body1, Body3 } from "../texts";
 import Button from "../buttons/button";
+import SearchIcon from "meistericons/react/esm/SearchIcon";
+
 import { GithubIcon } from "../../assets/icons";
 
 const Container = styled.nav`
@@ -50,7 +51,7 @@ function Navbar({ version }: INavbarProps) {
 
       <LinksContainer>
         <InlineContainer>
-          <ArrowBreakDownIcon />
+          <SearchIcon />
           <Body1 marginLeft={8}>Icons</Body1>
         </InlineContainer>
         <Body1 marginRight={80} style={{ cursor: "pointer" }}>

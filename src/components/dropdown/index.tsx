@@ -5,6 +5,7 @@ const Container = styled.select`
   border: none;
   outline: none;
   cursor: pointer;
+  background: transparent;
 
   font-family: Gellix;
   font-style: normal;

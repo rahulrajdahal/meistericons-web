@@ -27,12 +27,20 @@ const Input = styled.input`
 `;
 
 const SearchOptions = styled.option`
-  font-family: Gellix;
+  font-family: Inter;
   font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 16px;
-  color: #445668;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 14px;
+
+  letter-spacing: 0.01em;
+
+  color: #ffffff;
+
+  width: 210px;
+
+  background: #212121;
+  box-shadow: 0px 5px 17px rgba(0, 0, 0, 0.2), 0px 2px 7px rgba(0, 0, 0, 0.15);
 `;
 
 type ISearchProps = {

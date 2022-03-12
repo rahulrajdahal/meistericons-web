@@ -7411,10 +7411,10 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
-meistericons@^0.1.34:
-  version "0.1.34"
-  resolved "https://registry.yarnpkg.com/meistericons/-/meistericons-0.1.34.tgz#7007723768083c71bd4bbfb95c7a11dfc88bcf5d"
-  integrity sha512-edCocU0m09qjTDuxVpvCbJqKRB4PVO2ra0Ck1U24Z3ju4vOeHvi25CKdED5cjCPMpEy9zqOEEJf80b4b5x71Lw==
+meistericons@^0.1.41:
+  version "0.1.41"
+  resolved "https://registry.yarnpkg.com/meistericons/-/meistericons-0.1.41.tgz#fe26ce91f1d47cf4811ba5e78236ea5f7c436572"
+  integrity sha512-K4sZFxxWcrX6cxDf6FX5wvRJbQjmcjXRWvffeYoQh0Zy+BcU/fX8Ydv5C9PubUwHV1JZuO2HzJKnQAe7diYvyQ==
 
 memory-fs@^0.4.1:
   version "0.4.1"
@@ -11393,8 +11393,10 @@ watchpack@^1.7.4:
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.7.5.tgz#1267e6c55e0b9b5be44c2023aed5437a2c26c453"
   integrity sha512-9P3MWk6SrKjHsGkLT2KHXdQ/9SNkyoJbabxnKOoJepsvJjJG8uYTR3yTPxPQvNDI3w4Nz1xnE0TLHK4RIVe/MQ==
   dependencies:
+    chokidar "^3.4.1"
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
+    watchpack-chokidar2 "^2.0.1"
   optionalDependencies:
     chokidar "^3.4.1"
     watchpack-chokidar2 "^2.0.1"
