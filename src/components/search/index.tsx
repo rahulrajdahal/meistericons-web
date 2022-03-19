@@ -1,3 +1,4 @@
+import { SearchIcon } from "meistericons";
 import { ArrowBreakLeftIcon } from "meistericons/react/esm";
 import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
@@ -8,15 +9,26 @@ const Container = styled.div`
   display: inline-flex;
   width: 100%;
   justify-content: center;
+  max-height: 3.75rem;
+  overflow: hidden;
+
+  border: 1px solid #cad5e0;
+  border-radius: 8px;
 `;
 
 const SearchInputContainer = styled.div`
   display: inline-flex;
   align-items: center;
-  width: 60%;
+  width: 100%;
+  margin: 0 15.1875rem;
+
   background: #ffffff;
-  border-radius: 8px;
+
   padding: 0.8rem 1rem;
+  border-left: 1px solid #cad5e0;
+  border-right: 1px solid #cad5e0;
+
+  position: relative;
 `;
 
 const Input = styled.input`
@@ -24,21 +36,6 @@ const Input = styled.input`
   border: none;
   outline: none;
   margin-left: 0.75rem;
-`;
-
-const SearchOptions = styled.option`
-  font-family: Inter;
-
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 16px;
-  color: #fff;
-  background: #212121;
-  letter-spacing: 0.01em;
-  width: 210px;
-
-  background: #212121;
-  box-shadow: 0px 5px 17px rgba(0, 0, 0, 0.2), 0px 2px 7px rgba(0, 0, 0, 0.15);
 `;
 
 type ISearchProps = {
@@ -92,7 +89,7 @@ function Search({
   return (
     <Container>
       <SearchInputContainer>
-        <ArrowBreakLeftIcon />
+        <SearchIcon />
         <Input
           type="text"
           placeholder="Search for..."

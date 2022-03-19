@@ -3,17 +3,10 @@ import styled from "styled-components";
 import Search from "../../components/search";
 
 const Container = styled.div`
-  margin: 0 auto;
-  background: #f0f5f9;
-  border-radius: 8px;
-  padding: 1.75rem 2rem;
   position: sticky;
   top: 0;
-  z-index: 99;
-
-  @media (min-width: 768px) {
-    width: 80%;
-  }
+  z-index: 1;
+  overflow-x: hidden;
 `;
 
 type ISearchContainerProps = {

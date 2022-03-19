@@ -20,12 +20,17 @@ const Container = styled.button`
   cursor: pointer;
 `;
 
-type IButtonProps = { text: string; icon?: JSX.Element; onClick?(): any };
+type IButtonProps = {
+  text: string;
+  icon?: JSX.Element;
+  onClick?(): any;
+  rest?: any;
+};
 function Button(props: IButtonProps) {
-  const { text, icon, onClick } = props;
+  const { text, icon, onClick, ...rest } = props;
 
   return (
-    <Container onClick={onClick}>
+    <Container onClick={onClick} {...rest}>
       {icon}&nbsp; {text}
     </Container>
   );

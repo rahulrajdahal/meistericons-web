@@ -3,7 +3,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const MDropdown = styled("div")`
-  position: relative;
+  position: absolute;
+  right: 0;
+
+  border-left: 1px solid #cad5e0;
+  padding: 1.25rem 1.3125rem;
+
+  z-index: 33;
 `;
 const MDropdownBtn = styled("div")`
   font-weight: 500;
@@ -31,7 +37,8 @@ const MDropdownTitle = styled("div")`
 
 const MDropdownContent = styled("div")`
   position: absolute;
-  top: 120%;
+
+  // top: 2rem;
   right: 0;
   padding: 1rem;
 
@@ -46,6 +53,7 @@ const MDropdownUl = styled("ul")`
   padding: 0;
   height: 255px;
   overflow-y: scroll;
+
   &::-webkit-scrollbar {
     width: 4px;
     background-color: trasparent;
@@ -83,34 +91,33 @@ function CustomDropdown({
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <>
-      <MDropdown>
-        <MDropdownBtn onClick={() => setIsActive((prev) => !prev)}>
-          {category}
+    <MDropdown>
+      <MDropdownBtn onClick={() => setIsActive((prev) => !prev)}>
+        {category}
 
-          <ChevronDownIcon />
-        </MDropdownBtn>
-        {isActive && (
-          <MDropdownContent>
-            <MDropdownTitle>ICONS</MDropdownTitle>
-            <MDropdownUl>
-              {options.map((item: any) => (
-                <MDropdownItem
-                  key={item.id}
-                  onClick={() => {
-                    setQuery("");
-                    setCategory(item.option);
-                    setIsActive(false);
-                  }}
-                >
-                  {item.option}
-                </MDropdownItem>
-              ))}
-            </MDropdownUl>
-          </MDropdownContent>
-        )}
-      </MDropdown>
-    </>
+        <ChevronDownIcon />
+      </MDropdownBtn>
+
+      {isActive && (
+        <MDropdownContent>
+          <MDropdownTitle>ICONS</MDropdownTitle>
+          <MDropdownUl>
+            {options.map((item: any) => (
+              <MDropdownItem
+                key={item.id}
+                onClick={() => {
+                  setQuery("");
+                  setCategory(item.option);
+                  setIsActive(false);
+                }}
+              >
+                {item.option}
+              </MDropdownItem>
+            ))}
+          </MDropdownUl>
+        </MDropdownContent>
+      )}
+    </MDropdown>
   );
 }
 

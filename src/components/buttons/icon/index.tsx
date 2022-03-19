@@ -31,9 +31,9 @@ const Tooltip = styled.span`
   position: absolute;
   bottom: 125%;
   left: 50%;
-  right:0;
+  right: 0;
   margin-left: -2.4rem;
-  width:150%;
+  width: 150%;
   &::after {
     content: " ";
     position: absolute;

@@ -23,14 +23,14 @@ export const Container = styled.section`
   }
 
   @media (min-width: 1368px) {
-    width: 60%;
+    width: 72%;
     margin: 4.3rem auto;
-    grid-template-columns: repeat(8, minmax(1.6rem, 1fr));
+    grid-template-columns: repeat(11, minmax(1.6rem, 1fr));
   }
 
   @media (min-width: 1440px) {
-    width: 50%;
-    margin: 4.3rem auto;
+    width: auto;
+    margin: 4.3rem 17.75rem;
   }
 `;
 

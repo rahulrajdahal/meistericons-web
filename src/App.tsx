@@ -6,6 +6,7 @@ import IconsContainer from "./containers/icons";
 import SearchContainer from "./containers/search";
 import useSearch, { Icon } from "./hooks/useSearch";
 import styled from "styled-components";
+import { FooterContainer, SponsorContainer } from "./containers";
 
 function App() {
   const [query, setQuery] = useState<string>("");
@@ -50,6 +51,8 @@ function App() {
         category={category}
         query={query}
       />
+      <SponsorContainer />
+      <FooterContainer />
     </>
   );
 }
