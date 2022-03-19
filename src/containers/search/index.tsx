@@ -4,7 +4,9 @@ import Search from "../../components/search";
 
 const Container = styled.div`
   position: sticky;
-  top: 0;
+
+  top: 6.25rem;
+  background: #fff;
   z-index: 1;
   overflow-x: hidden;
 `;

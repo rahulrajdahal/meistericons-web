@@ -10,12 +10,17 @@ import { GithubIcon } from "../../assets/icons";
 
 const Container = styled.nav`
   display: none;
+  position: sticky;
+  top: 0;
+  height: 6.25rem;
+  background: #fff;
+  z-index: 1;
+  margin: 0 auto;
 
   @media (min-width: 768px) {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 1.62rem auto;
     width: 80%;
   }
 `;
