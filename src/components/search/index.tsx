@@ -10,7 +10,6 @@ const Container = styled.div`
   width: 100%;
   justify-content: center;
   max-height: 3.75rem;
-  overflow: hidden;
 
   border: 1px solid #cad5e0;
   border-radius: 8px;

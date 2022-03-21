@@ -1,15 +1,20 @@
 import { ChevronDownIcon } from "meistericons";
 import React, { useState } from "react";
 import styled from "styled-components";
+import tw from "twin.macro";
 
 const MDropdown = styled("div")`
   position: absolute;
   right: 0;
 
   border-left: 1px solid #cad5e0;
-  padding: 1.25rem 1.3125rem;
-
+  padding: 0 1.3125rem;
+  height: 100%;
   z-index: 33;
+  ${tw`
+    flex
+    items-center
+  `}
 `;
 const MDropdownBtn = styled("div")`
   font-weight: 500;
@@ -38,7 +43,8 @@ const MDropdownTitle = styled("div")`
 const MDropdownContent = styled("div")`
   position: absolute;
 
-  // top: 2rem;
+  top: 3.5rem;
+
   right: 0;
   padding: 1rem;
 

@@ -64,7 +64,13 @@ function Navbar({ version }: INavbarProps) {
         <Body1 marginRight={80} style={{ cursor: "pointer" }}>
           Sponsor
         </Body1>
-        <Button text="Start Here" icon={<GithubIcon />} />
+        <a
+          href="https://github.com/rahulrajdahal/meistericons"
+          target="_blank"
+          style={{ textDecoration: "none" }}
+        >
+          <Button text="Start Here" icon={<GithubIcon />} />
+        </a>
       </LinksContainer>
     </Container>
   );

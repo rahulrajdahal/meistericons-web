@@ -8,7 +8,6 @@ const Container = styled.div`
   top: 6.25rem;
   background: #fff;
   z-index: 1;
-  overflow-x: hidden;
 `;
 
 type ISearchContainerProps = {
