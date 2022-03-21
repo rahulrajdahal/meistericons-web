@@ -11,7 +11,6 @@ const Container = styled.div`
   background: rgba(0, 0, 0, 0.6);
   display: block;
 
-  // z-index: 99;
 `;
 
 const ContentContainer = styled.section`
@@ -25,7 +24,7 @@ const ContentContainer = styled.section`
   padding: 2rem;
 
   display: flex;
-  // z-index: 999;
+  
 `;
 
 const IconContainer = styled.div`

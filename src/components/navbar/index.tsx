@@ -15,13 +15,12 @@ const Container = styled.nav`
   height: 6.25rem;
   background: #fff;
   z-index: 1;
-  margin: 0 auto;
+  margin: 0 15.1875rem;
 
   @media (min-width: 768px) {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
   }
 `;
 

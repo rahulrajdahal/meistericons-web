@@ -74,7 +74,7 @@ function IconsContainer({
             />
           ))}
 
-      <Modal showModal={showModal} handleClose={() => setShowModal(false)} />
+      {/* <Modal showModal={showModal} handleClose={() => setShowModal(false)} /> */}
     </Container>
   );
 }

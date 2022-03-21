@@ -47,6 +47,10 @@ const IllustrationsContainer = styled.div`
   }
 `;
 
+const AddedIcons = styled(Body1)`
+  white-space: nowrap;
+`;
+
 function HeroContainer() {
   const illustrations = [
     {
@@ -79,7 +83,7 @@ function HeroContainer() {
   return (
     <Container>
       <NewIconsContainer>
-        <Body1>🎁 +500 icons added</Body1>
+        <AddedIcons>🎁 +500 icons added</AddedIcons>
       </NewIconsContainer>
 
       <LargeText marginTop={32} marginBottom={47}>

@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import tw from "twin.macro";
 
-const Container = styled.button`
+interface IContainerProps {
+  bg: string;
+}
+const Container = styled.button<IContainerProps>`
   padding: 0.5rem 1rem;
   outline: none;
   border: none;
-  background: #0d1829;
+  background: ${(p) => p.bg};
   border-radius: 8px;
 
   font-family: Gellix;
@@ -13,10 +17,13 @@ const Container = styled.button`
   font-weight: 500;
   font-size: 18px;
   line-height: 28px;
-  color: #f0f5f9;
+  color: ${(p) => p.color};
 
-  display: inline-flex;
-  align-items: center;
+  ${tw`
+  flex
+  items-center
+  justify-center
+`}
   cursor: pointer;
 `;
 
@@ -25,12 +32,21 @@ type IButtonProps = {
   icon?: JSX.Element;
   onClick?(): any;
   rest?: any;
+  bg?: string;
+  color?: string;
 };
 function Button(props: IButtonProps) {
-  const { text, icon, onClick, ...rest } = props;
+  const {
+    text,
+    icon,
+    onClick,
+    bg = "#0d1829",
+    color = "#f0f5f9",
+    ...rest
+  } = props;
 
   return (
-    <Container onClick={onClick} {...rest}>
+    <Container bg={bg} color={color} onClick={onClick} {...rest}>
       {icon}&nbsp; {text}
     </Container>
   );
