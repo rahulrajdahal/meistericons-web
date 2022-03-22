@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { LogoIcon } from "../../assets/icons";
@@ -7,6 +8,7 @@ import Button from "../buttons/button";
 import SearchIcon from "meistericons/react/esm/SearchIcon";
 
 import { GithubIcon } from "../../assets/icons";
+import { routes } from "utils/routes";
 
 const Container = styled.nav`
   display: none;
@@ -43,9 +45,11 @@ const InlineContainer = styled.div`
 
 type INavbarProps = { version: string };
 function Navbar({ version }: INavbarProps) {
+  const navigate = useNavigate();
+
   return (
     <Container>
-      <InlineContainer>
+      <InlineContainer onClick={() => navigate(routes.HOME)}>
         <LogoIcon />
         <div style={{ marginLeft: 8 }}>
           <Body1>MeisterIcons</Body1>
@@ -58,7 +62,11 @@ function Navbar({ version }: INavbarProps) {
           <SearchIcon />
           <Body1 marginLeft={8}>Icons</Body1>
         </InlineContainer>
-        <Body1 marginRight={80} style={{ cursor: "pointer" }}>
+        <Body1
+          onClick={() => navigate(routes.HOWTOUSE)}
+          marginRight={80}
+          style={{ cursor: "pointer" }}
+        >
           How to Use ?
         </Body1>
         <Body1 marginRight={80} style={{ cursor: "pointer" }}>

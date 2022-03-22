@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { getIcons } from "./api/fetchIcons";
-import Navbar from "./components/navbar";
-import HeroContainer from "./containers/hero";
-import IconsContainer from "./containers/icons";
-import SearchContainer from "./containers/search";
-import useSearch, { Icon } from "./hooks/useSearch";
-import styled from "styled-components";
-import { FooterContainer, SponsorContainer } from "./containers";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { HomePage, HowToUsePage } from "pages";
+import { routes } from "utils/routes";
+import { getIcons } from "api/fetchIcons";
+import { Icon } from "hooks/useSearch";
+import Navbar from "components/navbar";
 
 function App() {
-  const [query, setQuery] = useState<string>("");
   const [version, setVersion] = useState<string>("");
   const [icons, setIcons] = useState<Icon[]>([]);
-  const [tags, setTags] = useState({});
-  const [categories, setCategories] = useState({});
-  const [category, setCategory] = useState<string>("All Icons");
 
   const getLatestIcons = async () => {
     const meisterIcons = await getIcons();
 
     setIcons(Object.entries(meisterIcons.iconNodes));
-    setTags(meisterIcons.tags);
-    setCategories(meisterIcons.categories);
     setVersion(meisterIcons.version);
   };
 
@@ -34,26 +27,13 @@ function App() {
   }
 
   return (
-    <>
+    <BrowserRouter>
       <Navbar version={version} />
-      <HeroContainer />
-      <SearchContainer
-        value={query}
-        setQuery={setQuery}
-        setCategory={setCategory}
-        category={category}
-        onChange={(e: any) => setQuery(e.target.value)}
-      />
-      <IconsContainer
-        icons={icons}
-        categories={categories}
-        tags={tags}
-        category={category}
-        query={query}
-      />
-      <SponsorContainer />
-      <FooterContainer />
-    </>
+      <Routes>
+        <Route path={routes.HOME} element={<HomePage />} />
+        <Route path={routes.HOWTOUSE} element={<HowToUsePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
