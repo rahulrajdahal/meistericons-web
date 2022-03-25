@@ -13,7 +13,6 @@ const Container = styled.div`
   border: none;
   outline: none;
   background: transparent;
-
   position: relative;
   display: flex;
   align-items: center;
@@ -92,7 +91,7 @@ const DownloadButtonContainer = styled.div`
 const IconName = styled.p`
   font-family: PlusJakartaSans;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 20px;
   line-height: 32px;
   color: #1c2a3a;
