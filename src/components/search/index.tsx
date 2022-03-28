@@ -10,7 +10,6 @@ const Container = styled.div`
   ${tw`
     inline-flex
     w-full
-    
   `}
   max-height: 3.75rem;
   border: 1px solid #cad5e0;
@@ -18,19 +17,19 @@ const Container = styled.div`
 `;
 
 const SearchInputContainer = styled.div`
-  display: inline-flex;
-  align-items: center;
-  width: 100%;
-
+  ${tw`
+    inline-flex 
+    items-center
+    w-full
+  `}
   background: #ffffff;
-
   padding: 0.8rem 1rem;
   border-left: 1px solid #cad5e0;
   border-right: 1px solid #cad5e0;
 
   position: relative;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1100px) {
     margin: 0 15.1875rem;
   }
 `;

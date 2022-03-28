@@ -11,13 +11,15 @@ import {
 import { Body1, LargeText } from "../../components/texts";
 
 const Container = styled.section`
+  ${tw`
+    flex
+    flex-col
+    items-center
+    justify-center
+    `};
   margin: 5rem auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1368px) {
     width: 60%;
   }
 `;
@@ -49,13 +51,8 @@ const IllustrationsContainer = styled.div`
     ${tw`
       flex-nowrap
     `}
-
-    width: 40%;
+    width: 50%;
     gap: 3.125rem;
-  }
-
-  @media (min-width: 1080px) {
-    width: 30%;
   }
 `;
 

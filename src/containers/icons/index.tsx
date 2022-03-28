@@ -19,21 +19,20 @@ export const Container = styled.section`
   gap: 4.1rem;
   justify-items: center;
 
+  @media (min-width: 635px) {
+    grid-template-columns: repeat(6, minmax(1.6rem, 1fr));
+  }
+
   @media (min-width: 768px) {
     width: 60%;
     margin: 4.3rem auto;
     grid-template-columns: repeat(6, minmax(1.6rem, 1fr));
   }
 
-  @media (min-width: 1368px) {
-    width: 72%;
-    margin: 4.3rem auto;
-    grid-template-columns: repeat(11, minmax(1.6rem, 1fr));
-  }
-
   @media (min-width: 1440px) {
     width: auto;
     margin: 4.3rem 17.75rem;
+    grid-template-columns: repeat(11, minmax(1.6rem, 1fr));
   }
 `;
 
