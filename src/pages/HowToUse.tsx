@@ -1,33 +1,39 @@
+import { FigmaIllustration } from "assets/illustrations";
 import Navbar from "components/navbar";
 import { Body2, Body3, Title } from "components/texts";
-import React from "react";
-import styled from "styled-components";
+import { ViewContainer } from "containers";
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
 import tw from "twin.macro";
 
 const Container = styled.div`
   ${tw`
     mx-60
     mt-11
+    
     grid
-    grid-cols-3
-    w-full
+    grid-flow-col
+    justify-between  
+    gap-36
   `}
 `;
 
 const Sidebar = styled.div`
   ${tw`
-  
+    col-span-2
   `}
 `;
-const View = styled.div`
+
+const AppIconContainer = styled.div`
   ${tw`
-    w-1/2
-  `}
-`;
-const PageLinks = styled.div`
-  ${tw`
-    w-1/4
-  `}
+    w-36
+    h-36
+    rounded-3xl
+    flex
+    items-center
+    justify-center
+    `};
+  border: 1px solid #cad5e0;
 `;
 
 const LinksContainer = styled.ul`
@@ -38,28 +44,70 @@ const LinksContainer = styled.ul`
 `}
 `;
 
+interface ILinkProps {
+  active: boolean;
+}
+const Link = styled(Body2)<ILinkProps>`
+  ${tw`
+    hover:cursor-pointer
+  `}
+  ${(p) =>
+    p.active &&
+    css`
+      font-weight: bold;
+    `}
+`;
+
 function HowToUsePage() {
+  const designerLinks = [
+    { id: 1, link: "Figma" },
+    { id: 2, link: "Adobe XD / Sketch" },
+    { id: 3, link: "Adobe Illustrator" },
+  ];
+
+  const developerLinks = [
+    { id: 1, link: "Github" },
+    { id: 2, link: "npm" },
+    { id: 3, link: "React" },
+    { id: 4, link: "Android" },
+    { id: 5, link: "iOS" },
+  ];
+
+  const [activeLink, setActiveLink] = useState<string>("Figma");
+
   return (
     <Container>
       <Sidebar>
         <Title marginBottom={32}>How to Use</Title>
         <LinksContainer style={{ marginBottom: 32 }}>
           <Body3 marginBottom={4}>FOR DESIGNERS</Body3>
-          <Body2>Figma</Body2>
-          <Body2>Adobe XD / Sketch</Body2>
-          <Body2>Adobe Illustrator</Body2>
+          {designerLinks.map((item) => (
+            <Link
+              onClick={() => setActiveLink(item.link)}
+              active={activeLink === item.link ? true : false}
+            >
+              {item.link}
+            </Link>
+          ))}
         </LinksContainer>
         <LinksContainer>
           <Body3 marginBottom={4}>FOR DEVELOPERS</Body3>
-          <Body2>Github</Body2>
-          <Body2>npm</Body2>
-          <Body2>React</Body2>
-          <Body2>Android</Body2>
-          <Body2>iOS</Body2>
+          {developerLinks.map((item) => (
+            <Link
+              onClick={() => setActiveLink(item.link)}
+              active={activeLink === item.link ? true : false}
+            >
+              {item.link}
+            </Link>
+          ))}
         </LinksContainer>
       </Sidebar>
-      <View>HowToUsePage</View>
-      <PageLinks>Otherlinks</PageLinks>
+
+      <ViewContainer activeLink={activeLink} />
+
+      <AppIconContainer>
+        <img src={FigmaIllustration} alt="figma" width={40} height={60} />
+      </AppIconContainer>
     </Container>
   );
 }

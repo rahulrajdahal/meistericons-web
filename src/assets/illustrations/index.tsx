@@ -4,3 +4,4 @@ export { default as SvgIllustration } from "./svg.svg";
 export { default as Css3Illustration } from "./css3.svg";
 export { default as GithubIllustration } from "./github.svg";
 export { default as SponsorIllustration } from "./sponsor.svg";
+export { default as PluginIllustration } from "./plugin.svg";

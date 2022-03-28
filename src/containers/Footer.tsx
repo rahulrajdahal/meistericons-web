@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import tw from "twin.macro";
+import { routes } from "utils/routes";
 import {
   DribbbleIcon,
   InstagramIcon,
@@ -15,50 +17,168 @@ import Flex from "../components/flex";
 import { Leading, Body2, Title, Body3 } from "../components/texts";
 
 const Container = styled.div`
+  ${tw`
+  px-6
+  py-4
+  w-full
+  `};
   background: #0d1829;
-  padding: 5rem 15rem 2.5rem 15rem;
+
+  @media (min-width: 768px) {
+    padding: 5rem 15rem 2.5rem 15rem;
+  }
 `;
 
 const InnerContainer = styled.div`
   ${tw`
     w-full
     flex
+    gap-8
     justify-between`}
 `;
 
-const LeftContainer = styled.div``;
+const LeftContainer = styled.div`
+  ${tw`
+    flex
+    gap-3
+    flex-wrap
+  `}
+
+  @media (min-width: 768px) {
+    ${tw`
+    flex
+    flex-col
+    gap-0
+  `}
+  }
+`;
 
 const RightContainer = styled.div`
   ${tw`
     flex
-    gap-16
+    flex-col
+    gap-4
 `};
+
+  @media (min-width: 768px) {
+    ${tw`
+      flex
+      flex-row
+      gap-16
+    `};
+  }
 `;
 
 const LinksContainer = styled.div`
   ${tw`
     flex
     flex-col
-    gap-4
-`}
+    gap-6
+  `}
+
+  @media (min-width: 768px) {
+    ${tw`
+       gap-4
+    `}
+  }
 `;
 
 const Link = styled(Body2)`
   ${tw`
     hover:cursor-pointer
+    whitespace-nowrap
 `};
   color: #f0f5f9;
+
+  @media (min-width: 768px) {
+    &:last-child {
+      ${tw`
+        mt-28
+    `}
+    }
+  }
 `;
 
 function FooterContainer() {
+  const navigate = useNavigate();
+
+  const links = [
+    {
+      id: 1,
+      link: "All Icons",
+      onClick: () => {
+        navigate(routes.HOME);
+        window.scrollTo({ top: 500, behavior: "smooth" });
+      },
+    },
+    {
+      id: 2,
+      link: "How to Use",
+      onClick: () => {
+        navigate(routes.HOWTOUSE);
+        window.scrollTo({ top: 500, behavior: "smooth" });
+      },
+    },
+    {
+      id: 3,
+      link: "Sponsor",
+      onClick: () => {
+        navigate(routes.HOWTOUSE);
+        window.scrollTo({ top: 500, behavior: "smooth" });
+      },
+    },
+    {
+      id: 4,
+      link: "Terms of Use",
+      onClick: () => {
+        navigate(routes.HOWTOUSE);
+        window.scrollTo({ top: 500, behavior: "smooth" });
+      },
+    },
+    {
+      id: 5,
+      link: "Github",
+      onClick: () => {
+        navigate(routes.HOWTOUSE);
+        window.scrollTo({ top: 500, behavior: "smooth" });
+      },
+    },
+    {
+      id: 6,
+      link: "Figma Plugin",
+      onClick: () => {
+        navigate(routes.HOWTOUSE);
+        window.scrollTo({ top: 500, behavior: "smooth" });
+      },
+    },
+    {
+      id: 7,
+      link: "SVG Pack",
+      onClick: () => {
+        navigate(routes.HOWTOUSE);
+        window.scrollTo({ top: 500, behavior: "smooth" });
+      },
+    },
+    {
+      id: 8,
+      link: "Privacy Policy",
+      onClick: () => {
+        navigate(routes.HOWTOUSE);
+        window.scrollTo({ top: 500, behavior: "smooth" });
+      },
+    },
+  ];
+
   return (
     <Container>
       <LogoIcon />
 
       <InnerContainer>
         <LeftContainer>
-          <Leading color="#fff">meistericons</Leading>
-          <Body3 color="#E1E8F0">by MEISTERNATOR</Body3>
+          <div>
+            <Leading color="#fff">meistericons</Leading>
+            <Body3 color="#E1E8F0">by MEISTERNATOR</Body3>
+          </div>
 
           <div style={{ marginTop: 40, display: "flex", gap: 22 }}>
             <InstagramIcon />
@@ -74,22 +194,19 @@ function FooterContainer() {
 
         <RightContainer>
           <LinksContainer>
-            <Link
-              onClick={() => window.scrollTo({ top: 500, behavior: "smooth" })}
-            >
-              All Icons
-            </Link>
-            <Link>How to Use</Link>
-            <Link>Sponsor</Link>
-
-            <Link marginTop={103}>Terms of Use</Link>
+            {links.slice(0, 4).map((item) => (
+              <Link key={item.id} onClick={item.onClick}>
+                {item.link}
+              </Link>
+            ))}
           </LinksContainer>
-          <LinksContainer>
-            <Link>Github</Link>
-            <Link>Figma Plugin</Link>
-            <Link>SVG Pack</Link>
 
-            <Link marginTop={103}>Privacy Policy</Link>
+          <LinksContainer>
+            {links.slice(4).map((item) => (
+              <Link key={item.id} onClick={item.onClick}>
+                {item.link}
+              </Link>
+            ))}
           </LinksContainer>
         </RightContainer>
       </InnerContainer>

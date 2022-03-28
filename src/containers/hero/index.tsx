@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import tw from "twin.macro";
 import {
   Css3Illustration,
   FigmaIllustration,
@@ -8,6 +9,18 @@ import {
   SvgIllustration,
 } from "../../assets/illustrations";
 import { Body1, LargeText } from "../../components/texts";
+
+const Container = styled.section`
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    width: 60%;
+  }
+`;
 
 const NewIconsContainer = styled.div`
   background: #ffffff;
@@ -21,25 +34,24 @@ const NewIconsContainer = styled.div`
   justify-content: center;
 `;
 
-const Container = styled.section`
-  width: 60%;
-  margin: 5rem auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
 const IllustrationsContainer = styled.div`
-  display: inline-flex;
-  gap: 3.125rem;
-  align-items: center;
-  justify-content: space-between;
-  width: 80%;
+  ${tw`
+    inline-flex
+    flex-wrap
+    items-center
+    justify-between
+    w-full
+    px-4
+  `}
   filter: grayscale(100%);
 
   @media (min-width: 768px) {
+    ${tw`
+      flex-nowrap
+    `}
+
     width: 40%;
+    gap: 3.125rem;
   }
 
   @media (min-width: 1080px) {
@@ -49,6 +61,19 @@ const IllustrationsContainer = styled.div`
 
 const AddedIcons = styled(Body1)`
   white-space: nowrap;
+`;
+
+const IconNumber = styled(Body1)`
+  display: initial;
+  font-weight: 900;
+  color: #3e64ff;
+
+  font-size: 32px;
+  text-align: flex-start;
+
+  @media (min-width: 768px) {
+    font-size: 80px;
+  }
 `;
 
 function HeroContainer() {
@@ -87,18 +112,8 @@ function HeroContainer() {
       </NewIconsContainer>
 
       <LargeText marginTop={32} marginBottom={47}>
-        Over{" "}
-        <Body1
-          style={{
-            display: "initial",
-            fontWeight: "900",
-            color: "#3e64ff",
-            fontSize: 80,
-          }}
-        >
-          2000+
-        </Body1>{" "}
-        Open-Source Icons for your next BIG project
+        Over <IconNumber>2000+</IconNumber> Open-Source Icons for your next BIG
+        project
       </LargeText>
 
       <IllustrationsContainer>

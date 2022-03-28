@@ -2,15 +2,17 @@ import { SearchIcon } from "meistericons";
 import { ArrowBreakLeftIcon } from "meistericons/react/esm";
 import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
+import tw from "twin.macro";
 import CustomDropdown from "../customDropdown";
 import { Body2, Body3 } from "../texts";
 
 const Container = styled.div`
-  display: inline-flex;
-  width: 100%;
-  justify-content: center;
+  ${tw`
+    inline-flex
+    w-full
+    
+  `}
   max-height: 3.75rem;
-
   border: 1px solid #cad5e0;
   border-radius: 8px;
 `;
@@ -19,7 +21,6 @@ const SearchInputContainer = styled.div`
   display: inline-flex;
   align-items: center;
   width: 100%;
-  margin: 0 15.1875rem;
 
   background: #ffffff;
 
@@ -28,6 +29,10 @@ const SearchInputContainer = styled.div`
   border-right: 1px solid #cad5e0;
 
   position: relative;
+
+  @media (min-width: 768px) {
+    margin: 0 15.1875rem;
+  }
 `;
 
 const Input = styled.input`

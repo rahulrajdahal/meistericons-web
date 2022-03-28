@@ -5,7 +5,7 @@ import IconsContainer from "containers/icons";
 import SearchContainer from "containers/search";
 import { getIcons } from "api/fetchIcons";
 import { Icon } from "hooks/useSearch";
-import { FooterContainer, SponsorContainer } from "containers";
+import { SponsorContainer } from "containers";
 
 function HomePage() {
   const [query, setQuery] = useState<string>("");
@@ -40,6 +40,7 @@ function HomePage() {
         category={category}
         onChange={(e: any) => setQuery(e.target.value)}
       />
+
       <IconsContainer
         icons={icons}
         categories={categories}
@@ -47,8 +48,7 @@ function HomePage() {
         category={category}
         query={query}
       />
-      <SponsorContainer />
-      <FooterContainer />
+      {/* <SponsorContainer /> */}
     </>
   );
 }

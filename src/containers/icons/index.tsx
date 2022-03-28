@@ -6,14 +6,17 @@ import useSearch from "../../hooks/useSearch";
 import createReactComponent from "../../helpers/createReactComponent";
 import Modal from "../../components/modal";
 import useCategory from "../../hooks/useCategory";
+import tw from "twin.macro";
 
 export const Container = styled.section`
-  width: 100%;
+  ${tw`
+    w-full
+    grid
+  `};
   margin: 4.3rem auto;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(1.6rem, 1fr));
-  gap: 4.1rem;
 
+  grid-template-columns: repeat(3, minmax(1.6rem, 1fr));
+  gap: 4.1rem;
   justify-items: center;
 
   @media (min-width: 768px) {
