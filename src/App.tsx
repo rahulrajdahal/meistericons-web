@@ -39,7 +39,8 @@ function App() {
           <Route path={routes.HOWTOUSE} element={<HowToUsePage />} />
         </Routes>
       </Suspense>
-      <FooterContainer /> */}
+    */}
+      <FooterContainer />
     </BrowserRouter>
   );
 }
