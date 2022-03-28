@@ -8,20 +8,40 @@ import tw from "twin.macro";
 
 const Container = styled.div`
   ${tw`
-    mx-60
-    mt-11
-    
-    grid
-    grid-flow-col
-    justify-between  
-    gap-36
+      mx-4
+      mt-11
+  `};
+
+  @media (min-width: 1100px) {
+    ${tw`
+      mx-10     
+      grid
+      grid-flow-col
+      justify-between  
+      gap-36
   `}
+  }
+
+  @media (min-width: 1200px) {
+    ${tw`
+      mx-40
+    `}
+  }
+
+  @media (min-width: 1440px) {
+    ${tw`
+    mx-60     
+    `}
+  }
 `;
 
 const Sidebar = styled.div`
   ${tw`
     col-span-2
   `}
+
+  @media(min-width:1100px) {
+  }
 `;
 
 const AppIconContainer = styled.div`
@@ -32,8 +52,11 @@ const AppIconContainer = styled.div`
     flex
     items-center
     justify-center
-    `};
+    mb-5
+`};
   border: 1px solid #cad5e0;
+  @media (min-width: 768px) {
+  }
 `;
 
 const LinksContainer = styled.ul`
@@ -42,6 +65,18 @@ const LinksContainer = styled.ul`
   flex-col
   gap-2
 `}
+`;
+
+const Links = styled.div`
+  ${tw`
+    flex
+    justify-between
+  `};
+  @media (min-width: 1100px) {
+    ${tw`
+    flex-col
+  `}
+  }
 `;
 
 interface ILinkProps {
@@ -78,29 +113,33 @@ function HowToUsePage() {
   return (
     <Container>
       <Sidebar>
-        <Title marginBottom={32}>How to Use</Title>
-        <LinksContainer style={{ marginBottom: 32 }}>
-          <Body3 marginBottom={4}>FOR DESIGNERS</Body3>
-          {designerLinks.map((item) => (
-            <Link
-              onClick={() => setActiveLink(item.link)}
-              active={activeLink === item.link ? true : false}
-            >
-              {item.link}
-            </Link>
-          ))}
-        </LinksContainer>
-        <LinksContainer>
-          <Body3 marginBottom={4}>FOR DEVELOPERS</Body3>
-          {developerLinks.map((item) => (
-            <Link
-              onClick={() => setActiveLink(item.link)}
-              active={activeLink === item.link ? true : false}
-            >
-              {item.link}
-            </Link>
-          ))}
-        </LinksContainer>
+        <Title marginBottom={32} style={{ whiteSpace: "nowrap" }}>
+          How to Use
+        </Title>
+        <Links>
+          <LinksContainer style={{ marginBottom: 32 }}>
+            <Body3 marginBottom={4}>FOR DESIGNERS</Body3>
+            {designerLinks.map((item) => (
+              <Link
+                onClick={() => setActiveLink(item.link)}
+                active={activeLink === item.link ? true : false}
+              >
+                {item.link}
+              </Link>
+            ))}
+          </LinksContainer>
+          <LinksContainer>
+            <Body3 marginBottom={4}>FOR DEVELOPERS</Body3>
+            {developerLinks.map((item) => (
+              <Link
+                onClick={() => setActiveLink(item.link)}
+                active={activeLink === item.link ? true : false}
+              >
+                {item.link}
+              </Link>
+            ))}
+          </LinksContainer>
+        </Links>
       </Sidebar>
 
       <ViewContainer activeLink={activeLink} />

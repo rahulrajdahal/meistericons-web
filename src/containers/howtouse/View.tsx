@@ -27,6 +27,13 @@ const SS = styled.img`
     mt-3
     mb-11
 `}
+
+  width: 100%;
+
+  @media (min-width: 1920px) {
+    width: initial;
+    height: initial;
+  }
 `;
 
 const StepTitle = styled(Body3)`
@@ -111,6 +118,7 @@ function ViewContainer({ activeLink }: IViewContainerProps) {
       </Info>
 
       <SS src={PluginIllustration} alt="figma" />
+
       <StepsContainer>
         {steps.map((item) => (
           <div key={item.id}>

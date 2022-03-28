@@ -48,7 +48,7 @@ function HomePage() {
         category={category}
         query={query}
       />
-      {/* <SponsorContainer /> */}
+      <SponsorContainer />
     </>
   );
 }

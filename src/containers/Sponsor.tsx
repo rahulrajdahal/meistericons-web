@@ -8,15 +8,24 @@ import Flex from "../components/flex";
 import { Body1, Title } from "../components/texts";
 
 const Container = styled.div`
-  ${tw`w-full flex flex-col gap-5 py-4 items-center justify-center relative`};
+  ${tw`
+    w-full
+    flex
+    flex-col
+    gap-5
+    py-4
+    items-center
+    justify-center
+    relative`};
+  background: rgba(235, 88, 111, 0.1);
+  height: 22.75rem;
 
-  @media (min-width: 768px) {
-    ${tw` flex-row`}
-    background: rgba(235, 88, 111, 0.1);
-    height: 22.75rem;
-
-    margin-top: 8.75rem;
+  @media (min-width: 1200px) {
+    ${tw`
+      flex-row
+    `};
     gap: 7.5rem;
+    margin-top: 8.75rem;
   }
 `;
 
@@ -24,13 +33,21 @@ const SponsorImage = styled.img`
   width: 60px;
   height: 60px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     display: inline-block;
     position: absolute;
     bottom: 0;
-    left: 28.875rem;
+    left: 5rem;
     width: initial;
     height: initial;
+  }
+
+  @media (min-width: 1368px) {
+    left: 10rem;
+  }
+
+  @media (min-width: 1920px) {
+    left: 28.875rem;
   }
 `;
 
@@ -45,10 +62,25 @@ const SponsorInfoContainer = styled.div`
   items-center
 `};
 
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     ${tw`
     
       absolute
+      right-5
+  `}
+  }
+  @media (min-width: 1368px) {
+    ${tw`
+    
+    
+      right-40
+  `}
+  }
+
+  @media (min-width: 1440px) {
+    ${tw`
+    
+    
       right-60
   `}
   }

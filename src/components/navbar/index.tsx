@@ -25,6 +25,10 @@ const Container = styled.nav`
   justify-content: space-between;
 
   @media (min-width: 1368px) {
+    padding: 0 10rem;
+  }
+
+  @media (min-width: 1440px) {
     padding: 0 15.1875rem;
   }
 `;
