@@ -33,7 +33,7 @@ function HomePage() {
   return (
     <>
       <HeroContainer />
-      <SearchContainer
+      {/* <SearchContainer
         value={query}
         setQuery={setQuery}
         setCategory={setCategory}
@@ -48,7 +48,7 @@ function HomePage() {
         category={category}
         query={query}
       />
-      <SponsorContainer />
+      <SponsorContainer /> */}
     </>
   );
 }

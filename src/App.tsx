@@ -33,13 +33,13 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar version={version} />
-      <Suspense fallback={<h1>Loading...</h1>}>
+      {/* <Suspense fallback={<h1>Loading...</h1>}>
         <Routes>
           <Route path={routes.HOME} element={<HomePage />} />
           <Route path={routes.HOWTOUSE} element={<HowToUsePage />} />
         </Routes>
       </Suspense>
-      <FooterContainer />
+      <FooterContainer /> */}
     </BrowserRouter>
   );
 }
