@@ -1,12 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
 import { LogoIcon } from "../../assets/icons";
 import { Body1, Body3 } from "../texts";
 import Button from "../buttons/button";
 import SearchIcon from "meistericons/react/esm/SearchIcon";
-
 import { GithubIcon } from "../../assets/icons";
 import { routes } from "utils/routes";
 
@@ -76,6 +74,7 @@ function Navbar({ version }: INavbarProps) {
           href="https://github.com/rahulrajdahal/meistericons"
           target="_blank"
           style={{ textDecoration: "none" }}
+          rel="noreferrer"
         >
           <Button text="Start Here" icon={<GithubIcon />} />
         </a>

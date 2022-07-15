@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import * as icons from "meistericons/react/esm";
 import IconButton from "../../components/buttons/icon";
 import useSearch from "../../hooks/useSearch";
 import createReactComponent from "../../helpers/createReactComponent";
-import Modal from "../../components/modal";
 import useCategory from "../../hooks/useCategory";
 
 export const Container = styled.section`
@@ -52,27 +49,25 @@ function IconsContainer({
   const searchResults = useSearch(icons, tags, query);
   const categoriesResults = useCategory(icons, categories, category);
 
-  const [showModal, setShowModal] = useState<boolean>(false);
-
   return (
     <Container>
       {query.length > 0
         ? searchResults.map(([name, iconNode]: any) => (
-            <IconButton
-              key={name}
-              name={name}
-              component={createReactComponent(name, iconNode)}
-              // onClick={() => setShowModal(true)}
-            />
-          ))
+          <IconButton
+            key={name}
+            name={name}
+            component={createReactComponent(name, iconNode)}
+          // onClick={() => setShowModal(true)}
+          />
+        ))
         : categoriesResults.map(([name, iconNode]: any) => (
-            <IconButton
-              key={name}
-              name={name}
-              component={createReactComponent(name, iconNode)}
-              // onClick={() => setShowModal(true)}
-            />
-          ))}
+          <IconButton
+            key={name}
+            name={name}
+            component={createReactComponent(name, iconNode)}
+          // onClick={() => setShowModal(true)}
+          />
+        ))}
 
       {/* <Modal showModal={showModal} handleClose={() => setShowModal(false)} /> */}
     </Container>

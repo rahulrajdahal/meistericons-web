@@ -1,12 +1,9 @@
-import createReactComponent from "helpers/createReactComponent";
+
 import { CopyAIcon } from "meistericons";
-import React, { createElement, useEffect, useRef, useState } from "react";
-import { renderToString } from "react-dom/server";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 import { saveSvgAsPng } from "save-svg-as-png";
-
-import Modal from "../../modal";
 import Button from "../button";
 
 const Container = styled.div`
@@ -19,7 +16,6 @@ const Container = styled.div`
   justify-content: center;
   padding: 1rem;
   border-radius: 12px;
-
   &:hover {
     background: #f2f2f2;
     cursor: pointer;
@@ -35,7 +31,6 @@ const Tooltip = styled.span`
   white-space: nowrap;
   position: absolute;
   bottom: 125%;
-
   &::after {
     content: " ";
     position: absolute;
@@ -69,7 +64,6 @@ const ExpandedContainer = styled.div`
 
 const IconContainer = styled.div`
   ${tw`flex items-center justify-center`};
-
   width: 240px;
   height: 240px;
   background: #ffffff;
@@ -113,7 +107,6 @@ const CssCodeContainer = styled.div`
   `};
 
   background: #0d1829;
-
   background: #0d1829;
   border-radius: 12px;
 `;
@@ -124,14 +117,12 @@ const CssCode = styled.p`
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
-
   color: #f8fafc;
   ${tw`w-full `};
 `;
 
 const CopyIcon = styled(CopyAIcon)`
   color: #91a4b7;
-
   &:hover {
     color: #fff;
   }
@@ -150,8 +141,8 @@ function IconButton({
   component: IconComponent,
   onClick,
 }: // showModal,
-// setShowModal,
-IconButtonProps) {
+  // setShowModal,
+  IconButtonProps) {
   const [showTooltip, setShowTooltip] = React.useState<boolean>(false);
 
   // const handleOnClick = () => {
@@ -185,9 +176,7 @@ IconButtonProps) {
 
   const handleDownloadsvg = () => {
     const svg = iconRef.current.childNodes[1].outerHTML;
-
     const blob = new Blob([svg], { type: "image/svg+xml" });
-
     const blobUrl = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = blobUrl;
@@ -217,15 +206,6 @@ IconButtonProps) {
         {showTooltip && <Tooltip>{name}</Tooltip>}
 
         <IconComponent key={name} />
-
-        {/* <div
-          style={{
-            position: "absolute",
-            top: 0,
-            bottom: 0,
-            background: "red",
-          }}
-        > */}
         {expandIcon && (
           <>
             <ExpandedContainer>

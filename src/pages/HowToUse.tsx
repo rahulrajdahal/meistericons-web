@@ -1,6 +1,4 @@
-import Navbar from "components/navbar";
 import { Body2, Body3, Title } from "components/texts";
-import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 

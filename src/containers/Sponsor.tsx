@@ -1,10 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
-
 import { SponsorIllustration } from "../assets/illustrations";
 import Button from "../components/buttons/button";
-import Flex from "../components/flex";
 import { Body1, Title } from "../components/texts";
 
 const Container = styled.div`
@@ -29,7 +26,7 @@ function SponsorContainer() {
     <Container>
       <div>
 
-      <SponsorImage src={SponsorIllustration} alt="sponsor-us" />
+        <SponsorImage src={SponsorIllustration} alt="sponsor-us" />
       </div>
 
       <div >

@@ -1,9 +1,7 @@
+import { ChangeEvent } from "react";
 import { SearchIcon } from "meistericons";
-import { ArrowBreakLeftIcon } from "meistericons/react/esm";
-import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 import CustomDropdown from "../customDropdown";
-import { Body2, Body3 } from "../texts";
 
 const Container = styled.div`
   display: inline-flex;
@@ -20,13 +18,10 @@ const SearchInputContainer = styled.div`
   align-items: center;
   width: 100%;
   margin: 0 15.1875rem;
-
   background: #ffffff;
-
   padding: 0.8rem 1rem;
   border-left: 1px solid #cad5e0;
   border-right: 1px solid #cad5e0;
-
   position: relative;
 `;
 

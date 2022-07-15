@@ -12,7 +12,7 @@ export const LargeText = styled.h1<ITextProps>`
   font-family: Gellix;
   font-style: normal;
   font-weight: normal;
-  font-size: 80px;
+  font-size: 60px;
   line-height: 100px;
   text-align: center;
   color: ${(p) => (p.color ? p.color : "#1c2a3a")};

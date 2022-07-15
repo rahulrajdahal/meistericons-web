@@ -8,11 +8,7 @@ import {
   LogoIcon,
   TwitterIcon,
 } from "../assets/icons";
-
-import { SponsorIllustration } from "../assets/illustrations";
-import Button from "../components/buttons/button";
-import Flex from "../components/flex";
-import { Leading, Body2, Title, Body3 } from "../components/texts";
+import { Leading, Body2, Body3 } from "../components/texts";
 
 const Container = styled.div`
   background: #0d1829;

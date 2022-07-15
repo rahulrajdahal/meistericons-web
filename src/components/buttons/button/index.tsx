@@ -1,7 +1,5 @@
-import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
-
 interface IContainerProps {
   bg: string;
 }
@@ -11,7 +9,6 @@ const Container = styled.button<IContainerProps>`
   border: none;
   background: ${(p) => p.bg};
   border-radius: 8px;
-
   font-family: Gellix;
   font-style: normal;
   font-weight: 500;
@@ -35,6 +32,7 @@ type IButtonProps = {
   bg?: string;
   color?: string;
 };
+
 function Button(props: IButtonProps) {
   const {
     text,

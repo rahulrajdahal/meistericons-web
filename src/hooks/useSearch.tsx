@@ -1,4 +1,4 @@
-import { Categories, IconName, IconNode, Tags } from "../api/fetchIcons";
+import { IconName, IconNode, Tags } from "../api/fetchIcons";
 import filterIcons from "../helpers/filterIcons";
 
 export type Icon = [name: IconName, iconNode: IconNode];

@@ -1,10 +1,9 @@
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import styled from "styled-components";
 import Search from "../../components/search";
 
 const Container = styled.div`
   position: sticky;
-
   top: 6.25rem;
   background: #fff;
   z-index: 1;
