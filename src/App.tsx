@@ -1,5 +1,24 @@
-import React from 'react';
+import * as React from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { HomePage } from '@/pages';
+import { PageLayout } from '@/components/layouts';
 
 export default function App() {
-  return <div>App</div>;
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      children: [
+        {
+          index: true,
+          element: (
+            <PageLayout>
+              <HomePage />
+            </PageLayout>
+          ),
+        },
+      ],
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 }

@@ -1,0 +1,35 @@
+{
+  "v": 3,
+  "stories": {
+    "example-introduction--page": {
+      "id": "example-introduction--page",
+      "title": "Example/Introduction",
+      "name": "Page",
+      "importPath": "./src/Introduction.stories.mdx"
+    },
+    "components-base--default": {
+      "id": "components-base--default",
+      "title": "Components/Base",
+      "name": "Default",
+      "importPath": "./src/components/Base/Base.stories.tsx"
+    },
+    "components-button--default": {
+      "id": "components-button--default",
+      "title": "Components/Button",
+      "name": "Default",
+      "importPath": "./src/components/Button/Button.stories.tsx"
+    },
+    "components-loading--default": {
+      "id": "components-loading--default",
+      "title": "Components/Loading",
+      "name": "Default",
+      "importPath": "./src/components/Loading/Loading.stories.tsx"
+    },
+    "components-logo--default": {
+      "id": "components-logo--default",
+      "title": "Components/Logo",
+      "name": "Default",
+      "importPath": "./src/components/Logo/Logo.stories.tsx"
+    }
+  }
+}
