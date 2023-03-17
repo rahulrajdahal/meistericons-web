@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Navbar } from '@/components';
 import './styles.css';
 import { Css, DownArrow, Figma, Github, Npm, Search, Svg } from '@/assets/icons';
 import { Listbox, Transition } from '@headlessui/react';
+import { Loading } from '@/components';
 
 export default function HomePage() {
   const icons = [
@@ -51,7 +51,7 @@ export default function HomePage() {
           ))}
         </div>
         <div
-          className="w-full border-[1px] border-grey-300 rounded-lg bg-white mt-[101px] min-h-[60px] 
+          className="w-full border-[1px] border-grey-300 rounded-lg bg-white mt-[101px] min-h-[60px]
         md:px-[12.5%]"
         >
           <div
