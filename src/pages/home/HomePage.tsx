@@ -31,8 +31,6 @@ export default function HomePage() {
 
   return (
     <>
-      <Navbar />
-
       <div className="w-full flex flex-col items-center justify-center mt-20">
         <span className="px-6 py-3 bg-white rounded-lg myshadow bounce text-base leading-4 text-grey-800 font-medium">
           🎁 +60 icons added

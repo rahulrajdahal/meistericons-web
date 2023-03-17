@@ -9,3 +9,7 @@ export { default as Npm } from './Npm';
 export { default as DownArrow } from './DownArrow';
 export { default as EllipsisV } from './EllipsisV';
 export { default as Close } from './Close';
+export { default as Dribbble } from './Dribbble';
+export { default as Instagram } from './Instagram';
+export { default as Linkedin } from './Linkedin';
+export { default as Twitter } from './Twitter';
