@@ -26,8 +26,8 @@ export default function Footer() {
         <div className="flex flex-col gap-2 ">
           <Mni className="w-[72px] h-[72px]" />
           <span>
-            <strong className="font-bold text-2xl text-grey-50">meistericons</strong>
-            <p className="font-medium text-sm leading-4 tracking-[0.15em] text-grey-200">by MEISTERNATOR</p>
+            <strong className="font-bold text-lg text-grey-50 md:text-2xl">meistericons</strong>
+            <p className="font-medium text-xs md:text-sm leading-4 tracking-[0.15em] text-grey-200">by MEISTERNATOR</p>
           </span>
         </div>
 
@@ -36,17 +36,23 @@ export default function Footer() {
             <li key={id}>{icon}</li>
           ))}
         </ul>
-        <p className="font-normal text-base text-grey-100 mt-[103px]">Made with 💝 in Kathmandu, Nepal</p>
+        <p
+          className="font-normal text-sm  text-grey-100 mt-[103px]
+        md:text-base"
+        >
+          Made with 💝 in Kathmandu, Nepal
+        </p>
       </section>
 
       <section>
-        <ul className="grid grid-cols-2 gap-y-4 gap-x-[71px]">
+        <ul className="grid gap-y-4 gap-x-[71px] md:grid-cols-2">
           {links.map(({ link }) => (
             <li
               key={link}
               className={`${
-                link == 'Terms of Use' || link == 'Privacy Policy' ? 'mt-[83px]' : ''
-              } font-normal text-base text-grey-100 `}
+                link == 'Terms of Use' || link == 'Privacy Policy' ? 'md:mt-[83px]' : ''
+              } font-normal text-grey-100 text-sm
+              md:text-base`}
             >
               {link}
             </li>
