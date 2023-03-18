@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function Figma(props: any) {
+function Figma(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width="1em" height="1em" viewBox="0 0 27 40" fill="none" {...props}>
       <path fill="url(#prefix__pattern0)" d="M0 0h26.672v40H0z" />

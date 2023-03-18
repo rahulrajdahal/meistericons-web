@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function GithubFill(props: any) {
+function GithubFill(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width="1em" height="1em" viewBox="0 0 18 18" fill="none" {...props}>
       <g clipPath="url(#prefix__clip0_5_27)">

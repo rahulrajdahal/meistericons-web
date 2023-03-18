@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function DownArrow(props: any) {
+function DownArrow(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width="1em" height="1em" viewBox="0 0 18 18" fill="none" {...props}>
       <path

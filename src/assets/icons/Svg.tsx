@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function Svg(props: any) {
+function Svg(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width="1em" height="1em" viewBox="0 0 41 40" fill="none" {...props}>
       <g clipPath="url(#prefix__clip0_5_201)">

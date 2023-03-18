@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function Dribbble(props: any) {
+function Dribbble(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
       <g clipPath="url(#prefix__clip0_232_3373)">

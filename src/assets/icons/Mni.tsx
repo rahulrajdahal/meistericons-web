@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function Mni(props: any): any {
+function Mni(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width="1em" height="1em" viewBox="0 0 48 48" fill="none" {...props}>
       <rect width={48} height={48} rx={12} fill="#3E64FF" />

@@ -1,5 +1,6 @@
-import { Dribbble, Instagram, Linkedin, Mni, Twitter } from '@/assets/icons';
 import * as React from 'react';
+import { Dribbble, Instagram, Linkedin, Mni, Twitter } from '@/assets/icons';
+import { motion } from 'framer-motion';
 
 export default function Footer() {
   const socials = [
@@ -20,8 +21,23 @@ export default function Footer() {
     { id: 8, link: 'Privacy Policy' },
   ];
 
+  const footerVariants = {
+    hidden: { y: 500 },
+    visible: {
+      y: 0,
+      transition: {
+        delay: 0.2,
+      },
+    },
+  };
+
   return (
-    <div className="px-[12.5%] py-10 bg-grey-900 flex justify-between">
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={footerVariants}
+      className="px-[12.5%] py-10 bg-grey-900 flex justify-between"
+    >
       <section>
         <div className="flex flex-col gap-2 ">
           <Mni className="w-[72px] h-[72px]" />
@@ -59,6 +75,6 @@ export default function Footer() {
           ))}
         </ul>
       </section>
-    </div>
+    </motion.div>
   );
 }

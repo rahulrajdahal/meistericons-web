@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function Github(props: any) {
+function Github(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width="1em" height="1em" viewBox="0 0 41 40" fill="none" {...props}>
       <path fill="url(#prefix__pattern3)" d="M.672 0h40v40h-40z" />

@@ -109,11 +109,13 @@ export default function Navbar() {
   const navVariants = {
     hidden: {
       y: -100,
+      scale: 1.5,
     },
     visible: {
       y: 0,
+      scale: 1,
       transition: {
-        delay: 0.1,
+        delay: 0.2,
       },
     },
   };
