@@ -1,8 +1,7 @@
 import * as React from 'react';
 import './styles.css';
-import { Css, DownArrow, Figma, Github, Npm, Search as SearchIcon, Svg } from '@/assets/icons';
-import { Listbox, Transition } from '@headlessui/react';
-import { Loading } from '@/components';
+import { Css, Figma, Github, Npm, Svg } from '@/assets/icons';
+
 import { motion } from 'framer-motion';
 import { Search } from '@/features/home';
 
