@@ -125,7 +125,7 @@ export default function Navbar() {
       animate="visible"
       initial="hidden"
       variants={navVariants}
-      className="w-full inline-flex items-center justify-between px-[4%] py-3 md:py-7 md:px-[12.5%]"
+      className="fixed top-0 bg-white z-50 w-full h-fit inline-flex items-center justify-between px-[4%] py-3 md:py-7 md:px-[12.5%]"
     >
       <Logo />
 
