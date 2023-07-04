@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Categories, Tags, iconNodeToSvg } from '@/utils/helpers';
 import { queries } from '@/utils/queries';
 import { useQueries } from 'react-query';

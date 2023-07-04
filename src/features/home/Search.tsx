@@ -2,7 +2,7 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { Listbox, Transition } from '@headlessui/react';
 import { DownArrow, Search as SearchIcon } from '@/assets/icons';
-import { useFetchIcons } from '@/hooks/useFetchIcons';
+import useFilteredIcons, { IconsContext } from '@/contexts/IconsContext';
 
 const searchVariants = {
   hidden: {
@@ -17,7 +17,13 @@ const searchVariants = {
 };
 
 export default function Search() {
-  const { meisterIcons } = useFetchIcons();
+  const { query, setQuery } = React.useContext(IconsContext);
+
+  const handleSearchOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+
+    setQuery(value);
+  };
 
   const categories = [
     { id: 1, category: 'All Icons' },
@@ -68,7 +74,13 @@ md:px-5"
       >
         <span className="inline-flex items-center gap-2 w-full px-5 md:px-0">
           <SearchIcon className="w-[18px] h-[18px]" />
-          <input type="search" placeholder="Search for..." className=" w-full h-full outline-none" />
+          <input
+            value={query}
+            onChange={handleSearchOnChange}
+            type="search"
+            placeholder="Search for..."
+            className=" w-full h-full outline-none"
+          />
         </span>
 
         <Listbox

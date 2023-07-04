@@ -9,22 +9,7 @@ interface Props {
 }
 export default function IconButton({ component: IconComponent, name }: Props) {
   return (
-    // <Disclosure>
-    //   {({ open }) => (
-    //     <>
-    //       <Disclosure.Button title={name} aria-label={name} className="relative" onClick={toggleShowIconDetail}>
-    //         <Tooltip title={name} position="top">
-    //           <IconComponent />
-    //         </Tooltip>
-    //       </Disclosure.Button>
-    //       <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-    //         HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello
-    //       </Disclosure.Panel>
-    //     </>
-    //   )}
-    // </Disclosure>
-
-    <button title={name} aria-label={name} className="relative">
+    <button title={name} aria-label={name} className="relative p-5 rounded-[20px] hover:bg-grey-100">
       <Tooltip title={name} position="top">
         <IconComponent />
       </Tooltip>
