@@ -18,8 +18,6 @@ export default function HomePage() {
   const { icons, query } = React.useContext(SearchContext);
   const { icons: categoryIcons } = React.useContext(CategoryContext);
 
-  console.log(categoryIcons, 'categoicons');
-
   const containerVariants = {
     hidden: {
       opacity: 0,
@@ -38,9 +36,10 @@ export default function HomePage() {
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="grid grid-cols-4 gap-20 px-[14.79%] my-20 mb-[140px]
-      md:gap-[100px] place-items-center  max-w-min
-      lg:grid-cols-10"
+        className="grid grid-cols-4 gap-20 place-items-center max-w-min my-20 mb-[140px]
+      md:gap-x-[8.75rem] md:gap-y-[3.75rem] md:px-[2%]
+      lg:grid-cols-10
+      2xl:px-[14.79%]"
       >
         {loading
           ? Array(50)

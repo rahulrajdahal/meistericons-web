@@ -23,7 +23,10 @@ export default function Navbar() {
           to="https://github.com/rahulrajdahal/meistericons"
           target="_blank"
           rel="noreferrer"
-          className="text-lg font-medium inline-flex gap-1 items-center px-4 py-2 bg-grey-900 rounded-[10px] text-grey-100"
+          className="text-lg font-medium inline-flex gap-1 items-center px-4 py-2 bg-[#3E64FF] rounded-[10px] text-grey-100"
+          style={{
+            boxShadow: '0px 3px 20px 0px rgba(62, 100, 255, 0.40)',
+          }}
         >
           <GithubFill />
           Start Here
@@ -134,7 +137,7 @@ export default function Navbar() {
       animate="visible"
       initial="hidden"
       variants={navVariants}
-      className="fixed top-0 bg-white z-50 w-full h-fit inline-flex items-center justify-between px-[4%] py-3 md:py-7 md:px-[12.5%]"
+      className="fixed top-0 min-h-[3.75rem] bg-white z-50 w-full h-fit inline-flex items-center justify-between px-[4%] py-3 md:py-7 md:px-[12.5%]"
     >
       <Logo />
 

@@ -9,12 +9,11 @@ interface ISponserBannerProps extends React.ComponentPropsWithoutRef<'div'> {
 export default function SponserBanner({ ...props }: ISponserBannerProps) {
   return (
     <div
-      className="w-full inline-flex items-center gap-[120px] bg-[#EB586F1A] px-[24%] relative h-full pt-[52px] pb-[156px] min-h-[364px]"
+      className="w-full px-[8%] flex items-center justify-center gap-[120px] bg-[#EB586F1A] h-full pt-[52px] pb-[156px] min-h-[364px] 
+      md:px-[24%]"
       {...props}
     >
-      <img src={SponserIllustration} alt="sponser" className="absolute bottom-0 h-[420px]" />
-
-      <span className="absolute top-[52px] right-[18%]">
+      <span className="text-center">
         <strong className="font-bold text-[32px] leading-[48px] text-grey-800">Sponsor our Project</strong>
         <p className="mt-3 mb-8 font-normal text-lg leading-8 text-grey-800 max-w-[465px] break-words">
           You can become a sponsor to support the project and gain access to exclusive perks,

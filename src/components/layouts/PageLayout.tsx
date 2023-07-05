@@ -77,7 +77,7 @@ export default function PageLayout({ children }: Props) {
   return (
     <React.Suspense fallback={<Loading />}>
       <Navbar />
-      <div className="w-full flex flex-col items-center justify-center mt-[180px]">
+      <div className="w-full flex flex-col items-center justify-center mt-[8.75rem]">
         <motion.span
           initial="hidden"
           animate="visible"
@@ -91,7 +91,7 @@ export default function PageLayout({ children }: Props) {
           animate="visible"
           variants={headingVariants}
           className="font-normal text-[36px] leading-[60px] text-center text-grey-800 mt-8 w-[80%]
-        md:text-[80px] md:leading-[100px] md:w-[62%]"
+        md:text-[3.75rem] md:leading-[4.5rem] md:w-[45%]"
         >
           Over
           <span className="text-gradient font-extrabold"> 2000+ </span>
@@ -101,7 +101,7 @@ export default function PageLayout({ children }: Props) {
           initial="hidden"
           animate="visible"
           variants={iconsVariants}
-          className="flex items-center gap-10 mt-12 grayscale md:gap-[50px]"
+          className="flex items-center gap-10 mt-12 md:gap-[50px]"
         >
           {icons?.map(({ icon: Icon, id, to }) => (
             <motion.span
@@ -112,7 +112,7 @@ export default function PageLayout({ children }: Props) {
               className="hover:cursor-pointer"
             >
               <Link to={to} target="_blank" rel="noreferrer">
-                <Icon width={40} height={40} className="w-10 h-10" />
+                <Icon height={32} className="min-w-[2.5rem] h-8" />
               </Link>
             </motion.span>
           ))}
