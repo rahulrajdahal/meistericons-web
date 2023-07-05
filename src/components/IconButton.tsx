@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { Dialog, Transition } from '@headlessui/react';
 import { Copy } from '@/assets/icons';
+import { useWindowSize } from '@/hooks';
 
 interface Props {
   name: string;
@@ -116,6 +117,8 @@ const IconModal = ({
     };
   };
 
+  const { width } = useWindowSize();
+
   return (
     <Transition appear show={isOpen} as={React.Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -143,13 +146,23 @@ const IconModal = ({
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className="transform overflow-hidden rounded-2xl bg-grey-100 p-6 text-left align-middle shadow-xl transition-all">
-                <div className={`py-4 items-center w-full flex justify-center max-w-min gap-4 px-8`}>
-                  <span ref={iconRef} className="w-[240px] h-[240px] bg-white flex items-center justify-center">
-                    <IconComponent size={80} />
+                <div
+                  className={`py-4 px-8 items-center w-full flex flex-col justify-center max-w-min gap-4 
+                md:flex-row`}
+                >
+                  <span
+                    ref={iconRef}
+                    className="w-[240px] h-32 bg-white flex items-center justify-center
+                  md:h-60"
+                  >
+                    <IconComponent size={width < 768 ? 40 : 80} />
                   </span>
                   <div className="flex flex-col gap-5">
                     <p className="font-bold text-xl leading-8 text-grey-800">{name as string}</p>{' '}
-                    <span className="inline-flex gap-3 items-center">
+                    <span
+                      className="flex flex-wrap gap-3 items-center
+                    md:flex-nowrap"
+                    >
                       <button
                         onClick={handleDownloadsvg}
                         className="px-6 py-3 bg-primary-600 rounded-lg font-medium text-base text-grey-50 whitespace-nowrap"
