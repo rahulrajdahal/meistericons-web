@@ -9,7 +9,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { motion } from 'framer-motion';
 import { Disclosure, Transition } from '@headlessui/react';
 import SponserBanner from '@/components/SponserBanner/SponserBanner.tsx';
-import useFilteredIcons, { IconsContext } from '@/contexts/IconsContext';
+import { IconsContext } from '@/contexts/IconsContext';
 
 export default function HomePage() {
   const { loading } = useFetchIcons();
@@ -46,12 +46,16 @@ export default function HomePage() {
                   <Skeleton className="w-full h-full rounded-[40px]" />
                 </div>
               ))
-          : icons?.map(([name, iconNode]: [string, IconNode]) => (
-              <Disclosure key={name} as={'div'} className={'flex  flex-col items-center max-w-min w-full'}>
+          : icons?.map(([name, iconNode]) => (
+              <Disclosure key={name as string} as={'div'} className={'flex  flex-col items-center max-w-min w-full'}>
                 {({ open }) => (
                   <>
-                    <Disclosure.Button title={name} aria-label={name}>
-                      <IconButton key={name} name={name} component={createReactComponent(name, iconNode)} />
+                    <Disclosure.Button title={name as string} aria-label={name as string}>
+                      <IconButton
+                        key={name as string}
+                        name={name as string}
+                        component={createReactComponent(name as string, iconNode as IconNode[])}
+                      />
                     </Disclosure.Button>
                     <Transition
                       enter="transition duration-100 ease-out"
@@ -65,9 +69,9 @@ export default function HomePage() {
                         <div className={`py-4 items-center w-full flex flex-col justify-center max-w-min`}>
                           {open ? (
                             <div className="flex justify-center items-center px-[296px] rounded-xl gap-16 bg-grey-100 h-full py-12 w-full max-w-min mt-10">
-                              <Icon component={createReactComponent(name, iconNode)} />
+                              <Icon component={createReactComponent(name as string, iconNode as IconNode[])} />
                               <div className="flex flex-col gap-5">
-                                <p className="font-bold text-xl leading-8 text-grey-800">{name}</p>
+                                <p className="font-bold text-xl leading-8 text-grey-800">{name as string}</p>
                                 <span className="inline-flex gap-3 items-center">
                                   <button className="px-6 py-3 bg-primary-600 rounded-lg font-medium text-base text-grey-50 whitespace-nowrap">
                                     Download SVG
@@ -82,7 +86,7 @@ export default function HomePage() {
                                 <span className="bg-grey-900 rounded-xl p-5 font-bold text-sm text-grey-50">
                                   {'<i'} <span className="text-[#8BA2FF]">class</span> {'=“'}{' '}
                                   <span className="text-[#FFA83F]">mni</span>{' '}
-                                  <span className="text-[#77B876]">mni-{name}</span> {'”></i>'}
+                                  <span className="text-[#77B876]">mni-{name as string}</span> {'”></i>'}
                                 </span>
                               </div>
                             </div>
@@ -101,7 +105,7 @@ export default function HomePage() {
   );
 }
 
-const Icon = ({ component: IconComponent }: any) => {
+const Icon = ({ component: IconComponent }: { component: any }) => {
   return (
     <div className="w-[240px] h-[240px] bg-white flex items-center justify-center">
       <IconComponent />
