@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { Dialog, Transition } from '@headlessui/react';
-import { saveSvgAsPng } from 'save-svg-as-png';
 import { Copy } from '@/assets/icons';
 
 interface Props {
@@ -21,7 +20,6 @@ export default function IconButton({ component: IconComponent, name }: Props) {
   }
 
   return (
-    // <span title={name} aria-label={name} className="flex items-center justify-center p-5 hover:bg-grey-100">
     <Tooltip.Provider>
       <Tooltip.Root>
         <Tooltip.Trigger asChild>
@@ -47,7 +45,6 @@ export default function IconButton({ component: IconComponent, name }: Props) {
         </Tooltip.Portal>
       </Tooltip.Root>
     </Tooltip.Provider>
-    // </span>
   );
 }
 
@@ -86,8 +83,37 @@ const IconModal = ({
   };
 
   const handleDownloadpng = () => {
-    const svg = iconRef.current.childNodes[0];
-    saveSvgAsPng(svg, `${name}.png`);
+    const svg = iconRef.current.childNodes[0].outerHTML;
+    const blob = new Blob([svg], { type: 'image/svg+xml' });
+    const blobUrl = URL.createObjectURL(blob);
+
+    const image = new Image();
+    const canvas: HTMLCanvasElement = document.createElement('canvas');
+
+    const svgChild = iconRef.current.childNodes[0];
+    document.body.appendChild(canvas);
+
+    image.width = svgChild.width.baseVal.value;
+    image.height = svgChild.height.baseVal.value;
+    image.src = blobUrl;
+
+    image.onload = function () {
+      canvas.style.width = String(image.width);
+      canvas.style.height = String(image.height);
+
+      const ctx = canvas.getContext('2d');
+      ctx?.drawImage(image, 0, 0);
+      URL.revokeObjectURL(blobUrl);
+
+      const imgURI = canvas.toDataURL();
+
+      const a = document.createElement('a');
+      a.download = `${name}.png`;
+      a.target = '_blank';
+      a.href = imgURI;
+
+      a.click();
+    };
   };
 
   return (
@@ -146,7 +172,7 @@ const IconModal = ({
                     <span className="flex items-center justify-between bg-grey-900 rounded-xl p-5 font-bold text-sm text-grey-50">
                       <span>
                         {'<i'} <span className="text-[#8BA2FF]">class</span> {'=“'}
-                        <span className="text-[#FFA83F]">mni</span>
+                        <span className="text-[#FFA83F]">mni&nbsp;</span>
                         <span className="text-[#77B876]">mni-{name as string}</span> {'”></i>'}
                       </span>
                       <button title="Copy to clipboard">
