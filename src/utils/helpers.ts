@@ -45,7 +45,7 @@ export const filterCategories = (icons: Icon[], categories: Categories, category
 export const toKebabCase = (string: string) => string.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 
 export const createReactComponent = (iconName: string, iconNode: IconNode) => {
-  const Component = React.forwardRef(({ color = 'currentColor', size = 24, ...rest }: any, ref) =>
+  const Component = React.forwardRef(({ color = 'currentColor', size = 32, ...rest }: any, ref) =>
     React.createElement(
       'svg',
       {

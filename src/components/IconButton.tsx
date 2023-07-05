@@ -31,7 +31,7 @@ export default function IconButton({ component: IconComponent, name }: Props) {
             className="p-5 rounded-[20px]
           hover:bg-grey-100 hover:cursor-pointer"
           >
-            <IconComponent size={32} />
+            <IconComponent />
             <IconModal isOpen={isOpen} closeModal={closeModal} name={name} component={IconComponent} />
           </button>
         </Tooltip.Trigger>
