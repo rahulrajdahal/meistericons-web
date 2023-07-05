@@ -3,16 +3,18 @@ import * as ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 import { QueryClientProvider, QueryClient } from 'react-query';
-import IconsContextProvider from './contexts/IconsContext';
+import { SearchContextProvider, CategoryContextProvider } from './contexts';
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <IconsContextProvider>
-        <App />
-      </IconsContextProvider>
+      <SearchContextProvider>
+        <CategoryContextProvider>
+          <App />
+        </CategoryContextProvider>
+      </SearchContextProvider>
     </QueryClientProvider>
   </React.StrictMode>,
 );

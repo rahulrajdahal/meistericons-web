@@ -10,9 +10,9 @@ const defaultValue: { icons: IconNode[]; query: string; setQuery: React.Dispatch
   setQuery: () => {},
 };
 
-export const IconsContext = React.createContext(defaultValue);
+export const SearchContext = React.createContext(defaultValue);
 
-export default function IconsContextProvider({ children }: { children: React.ReactNode }) {
+export default function SearchContextProvider({ children }: { children: React.ReactNode }) {
   const { meisterIcons } = useFetchIcons();
   const [query, setQuery] = React.useState('');
 
@@ -39,5 +39,5 @@ export default function IconsContextProvider({ children }: { children: React.Rea
     return { icons: icons, query, setQuery };
   }, [filteredIcons, icons, query, setQuery]);
 
-  return <IconsContext.Provider value={value}>{children}</IconsContext.Provider>;
+  return <SearchContext.Provider value={value}>{children}</SearchContext.Provider>;
 }

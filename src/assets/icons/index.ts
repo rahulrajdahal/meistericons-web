@@ -13,3 +13,4 @@ export { default as Dribbble } from './Dribbble';
 export { default as Instagram } from './Instagram';
 export { default as Linkedin } from './Linkedin';
 export { default as Twitter } from './Twitter';
+export { default as Copy } from './Copy';

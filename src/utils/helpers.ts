@@ -56,8 +56,9 @@ export const createReactComponent = (iconName: string, iconNode: IconNode) => {
         height: size,
         fill: color,
         className: `mni mni-${toKebabCase(iconName)}`,
+        ...rest,
       },
-      iconNode.map(([tag, attrs], i) => React.createElement(tag, { key: `${iconName}-${i}`, ...attrs })),
+      (iconNode as any).map(([tag, attrs]: [any, any], i: number) => React.createElement(tag, { key: i, ...attrs })),
     ),
   );
 

@@ -2,7 +2,8 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { Listbox, Transition } from '@headlessui/react';
 import { DownArrow, Search as SearchIcon } from '@/assets/icons';
-import useFilteredIcons, { IconsContext } from '@/contexts/IconsContext';
+import { SearchContext } from '@/contexts/SearchContext';
+import { CategoryContext } from '@/contexts/CategoryContext';
 
 const searchVariants = {
   hidden: {
@@ -17,7 +18,8 @@ const searchVariants = {
 };
 
 export default function Search() {
-  const { query, setQuery } = React.useContext(IconsContext);
+  const { query, setQuery } = React.useContext(SearchContext);
+  const { category, setCategory } = React.useContext(CategoryContext);
 
   const handleSearchOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -104,6 +106,7 @@ md:px-5"
               {categories.map((category, id) => (
                 <Listbox.Option
                   key={id}
+                  onClick={() => setCategory(category.category)}
                   className={({ active }) =>
                     `font-medium text-lg  px-6 relative cursor-default select-none mb-3
             ${active ? 'bg-grey-50 text-grey-900 hover:cursor-pointer' : 'text-grey-50'}
