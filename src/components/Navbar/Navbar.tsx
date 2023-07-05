@@ -19,10 +19,15 @@ export default function Navbar() {
     { link: 'Sponsor', id: 3 },
     {
       link: (
-        <span className="text-lg font-medium inline-flex gap-1 items-center px-4 py-2 bg-grey-900 rounded-[10px] text-grey-100">
+        <Link
+          to="https://github.com/rahulrajdahal/meistericons"
+          target="_blank"
+          rel="noreferrer"
+          className="text-lg font-medium inline-flex gap-1 items-center px-4 py-2 bg-grey-900 rounded-[10px] text-grey-100"
+        >
           <GithubFill />
           Start Here
-        </span>
+        </Link>
       ),
       id: 4,
     },
@@ -34,9 +39,11 @@ export default function Navbar() {
     <ul className="inline-flex items-center gap-[74px]">
       {links.map(({ link, id }) => (
         <li key={id}>
-          <Link to={'/icons'} className="font-medium inline-flex items-center gap-[5px] text-lg text-grey-700">
-            {link}
-          </Link>
+          {id !== 4 ? (
+            <p className="font-medium inline-flex items-center gap-[5px] text-lg text-grey-700">{link}</p>
+          ) : (
+            link
+          )}
         </li>
       ))}
     </ul>
@@ -94,9 +101,11 @@ export default function Navbar() {
             >
               {links.map(({ link, id }) => (
                 <motion.li key={id} variants={linkVariants}>
-                  <Link to={'/icons'} className="font-medium inline-flex items-center gap-[5px] text-lg text-grey-700">
-                    {link}
-                  </Link>
+                  {id !== 4 ? (
+                    <p className="font-medium inline-flex items-center gap-[5px] text-lg text-grey-700">{link}</p>
+                  ) : (
+                    link
+                  )}
                 </motion.li>
               ))}
             </motion.ul>

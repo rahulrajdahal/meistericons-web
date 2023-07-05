@@ -6,6 +6,7 @@ import { Css, Figma, Github, Npm, Svg } from '@/assets/icons';
 
 import { motion } from 'framer-motion';
 import { Search } from '@/features/home';
+import { Link } from 'react-router-dom';
 
 interface Props {
   children: React.ReactNode;
@@ -66,11 +67,11 @@ export default function PageLayout({ children }: Props) {
   };
 
   const icons = [
-    { id: 1, icon: Figma },
-    { id: 2, icon: Svg },
-    { id: 3, icon: Css },
-    { id: 4, icon: Npm },
-    { id: 5, icon: Github },
+    { id: 1, icon: Figma, to: 'https://www.figma.com/community/plugin/1065974489689844727/MeisterIcons' },
+    { id: 2, icon: Svg, to: 'https://github.com/rahulrajdahal/meistericons' },
+    { id: 3, icon: Css, to: 'https://github.com/rahulrajdahal/meistericons' },
+    { id: 4, icon: Npm, to: 'https://www.npmjs.com/package/meistericons' },
+    { id: 5, icon: Github, to: 'https://github.com/rahulrajdahal/meistericons' },
   ];
 
   return (
@@ -102,7 +103,7 @@ export default function PageLayout({ children }: Props) {
           variants={iconsVariants}
           className="flex items-center gap-10 mt-12 grayscale md:gap-[50px]"
         >
-          {icons?.map(({ icon: Icon, id }) => (
+          {icons?.map(({ icon: Icon, id, to }) => (
             <motion.span
               initial="hidden"
               animate="visible"
@@ -110,7 +111,9 @@ export default function PageLayout({ children }: Props) {
               key={id}
               className="hover:cursor-pointer"
             >
-              <Icon width={40} height={40} className="w-10 h-10" />
+              <Link to={to} target="_blank" rel="noreferrer">
+                <Icon width={40} height={40} className="w-10 h-10" />
+              </Link>
             </motion.span>
           ))}
         </motion.div>

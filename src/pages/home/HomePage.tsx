@@ -40,7 +40,7 @@ export default function HomePage() {
         variants={containerVariants}
         className="grid grid-cols-4 gap-20 px-[14.79%] my-20 mb-[140px]
       md:gap-[100px] place-items-center  max-w-min
-      lg:grid-cols-11"
+      lg:grid-cols-10"
       >
         {loading
           ? Array(50)
