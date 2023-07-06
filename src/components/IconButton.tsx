@@ -114,6 +114,8 @@ const IconModal = ({
       a.href = imgURI;
 
       a.click();
+
+      document.body.removeChild(canvas);
     };
   };
 

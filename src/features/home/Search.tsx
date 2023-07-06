@@ -19,7 +19,7 @@ const searchVariants = {
 
 export default function Search() {
   const { query, setQuery } = React.useContext(SearchContext);
-  const { category, setCategory } = React.useContext(CategoryContext);
+  const { setCategory } = React.useContext(CategoryContext);
 
   const handleSearchOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
