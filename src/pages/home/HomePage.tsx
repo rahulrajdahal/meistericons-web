@@ -1,22 +1,20 @@
 import * as React from 'react';
-import './styles.css';
-
 import { useFetchIcons } from '@/hooks/useFetchIcons';
 import { IconNode, createReactComponent } from '@/utils/helpers';
 import IconButton from '@/components/IconButton';
 import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 import { motion } from 'framer-motion';
-import { Disclosure, Transition } from '@headlessui/react';
 import SponserBanner from '@/components/SponserBanner/SponserBanner.tsx';
 import { SearchContext } from '@/contexts/SearchContext';
 import { CategoryContext } from '@/contexts/CategoryContext';
+import { IconTypeContext } from '@/contexts/IconTypeContext';
 
 export default function HomePage() {
   const { loading } = useFetchIcons();
 
-  const { icons, query } = React.useContext(SearchContext);
-  const { icons: categoryIcons } = React.useContext(CategoryContext);
+  const { icons: iconTypeIcons, iconType, loading: iconTypeLoading } = React.useContext(IconTypeContext);
+  const { icons: searchIcons, query } = React.useContext(SearchContext);
+  const { icons: categoryIcons, category } = React.useContext(CategoryContext);
 
   const containerVariants = {
     hidden: {
@@ -30,6 +28,70 @@ export default function HomePage() {
     },
   };
 
+  const icons = React.useMemo(() => {
+    if (query.length > 0 && iconType !== 'all') {
+      if (iconType === 'linear') {
+        return searchIcons.filter(([name, iconNode]) => {
+          if (name) {
+            const lastString = (name as string).toLowerCase().split('').at(-1);
+
+            if (lastString !== 'b') {
+              return [name, iconNode];
+            }
+          }
+        });
+      }
+
+      if (iconType === 'bold') {
+        return searchIcons.filter(([name, iconNode]) => {
+          if (name) {
+            const lastString = (name as string).toLowerCase().split('').at(-1);
+
+            if (lastString === 'b') {
+              return [name, iconNode];
+            }
+          }
+        });
+      }
+
+      return [...searchIcons, ...iconTypeIcons];
+    }
+
+    if (category !== 'all icons' && iconType !== 'all') {
+      if (iconType === 'linear') {
+        return categoryIcons.filter(([name, iconNode]) => {
+          if (name) {
+            const lastString = (name as string).toLowerCase().split('').at(-1);
+
+            if (lastString !== 'b') {
+              return [name, iconNode];
+            }
+          }
+        });
+      }
+
+      if (iconType === 'bold') {
+        return categoryIcons.filter(([name, iconNode]) => {
+          if (name) {
+            const lastString = (name as string).toLowerCase().split('').at(-1);
+
+            if (lastString === 'b') {
+              return [name, iconNode];
+            }
+          }
+        });
+      }
+
+      return [...categoryIcons, ...iconTypeIcons];
+    }
+
+    if (category !== 'all icons') {
+      return categoryIcons;
+    }
+
+    return searchIcons;
+  }, [iconType, query, category]);
+
   return (
     <>
       <motion.div
@@ -41,29 +103,47 @@ export default function HomePage() {
       lg:grid-cols-10
       2xl:px-[14.79%]"
       >
-        {loading
-          ? Array(50)
-              .fill(null)
-              .map((_, i) => (
-                <div key={i} className="w-12 h-12">
-                  <Skeleton className="w-full h-full rounded-[40px]" />
-                </div>
+        {
+          loading || iconTypeLoading
+            ? Array(50)
+                .fill(null)
+                .map((_, i) => (
+                  <div key={i} className="w-12 h-12">
+                    <Skeleton className="w-full h-full rounded-[40px]" />
+                  </div>
+                ))
+            : icons?.map(([name, iconNode]) => (
+                <IconButton
+                  key={name as string}
+                  name={name as string}
+                  component={createReactComponent(name as string, iconNode as IconNode[])}
+                />
               ))
-          : query.length > 0
-          ? icons?.map(([name, iconNode]) => (
-              <IconButton
-                key={name as string}
-                name={name as string}
-                component={createReactComponent(name as string, iconNode as IconNode[])}
-              />
-            ))
-          : categoryIcons?.map(([name, iconNode]) => (
-              <IconButton
-                key={name as string}
-                name={name as string}
-                component={createReactComponent(name as string, iconNode as IconNode[])}
-              />
-            ))}
+
+          // : iconType !== 'all'
+          // ? iconTypeIcons?.map(([name, iconNode]) => (
+          //     <IconButton
+          //       key={name as string}
+          //       name={name as string}
+          //       component={createReactComponent(name as string, iconNode as IconNode[])}
+          //     />
+          //   ))
+          // : query.length > 0
+          // ? icons?.map(([name, iconNode]) => (
+          //     <IconButton
+          //       key={name as string}
+          //       name={name as string}
+          //       component={createReactComponent(name as string, iconNode as IconNode[])}
+          //     />
+          //   ))
+          // : categoryIcons?.map(([name, iconNode]) => (
+          //     <IconButton
+          //       key={name as string}
+          //       name={name as string}
+          //       component={createReactComponent(name as string, iconNode as IconNode[])}
+          //     />
+          //   ))
+        }
       </motion.div>
 
       <SponserBanner />

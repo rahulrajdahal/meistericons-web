@@ -7,6 +7,7 @@ type IconName = string;
 type Tag = string[];
 export type IconNode = unknown[];
 export type Category = string;
+export type IconType = 'all' | 'linear' | 'bold';
 
 export type Icon = [name: IconName, icon: IconNode];
 
@@ -26,6 +27,31 @@ export const filterIcons = (icons: Icon[], tags: Tags, query: string) => {
 
         return [name, ...iconTags].some((tag: string) => tag.toLowerCase().includes(query));
       }
+    });
+  }
+};
+export const filterIconTypes = (icons: Icon[], iconType = 'all') => {
+  if (icons.length > 0) {
+    return icons.filter(([name]: Icon) => {
+      const lastString = name.toLowerCase().split('').at(-1);
+
+      if (iconType === 'linear') {
+        return [name].some((name: string) => {
+          if (lastString !== 'b') {
+            return name;
+          }
+        });
+      }
+
+      if (iconType === 'bold') {
+        return [name].some((name: string) => {
+          if (lastString === 'b') {
+            return name;
+          }
+        });
+      }
+
+      return [name];
     });
   }
 };
@@ -58,7 +84,9 @@ export const createReactComponent = (iconName: string, iconNode: IconNode) => {
         className: `mni mni-${toKebabCase(iconName)}`,
         ...rest,
       },
-      (iconNode as any).map(([tag, attrs]: [any, any], i: number) => React.createElement(tag, { key: i, ...attrs })),
+      (iconNode as any).map(([tag, attrs]: [any, any], i: number) =>
+        React.createElement(tag, { key: i, ...attrs, className: `${attrs.fill === '#fff' ? '' : 'fill-[#1c2a3a]'}` }),
+      ),
     ),
   );
 

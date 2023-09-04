@@ -84,7 +84,7 @@ export default function PageLayout({ children }: Props) {
           variants={iconsAddedVariants}
           className="px-6 py-3 bg-white rounded-lg myshadow bounce text-base leading-4 text-grey-800 font-medium"
         >
-          🎁 +60 icons added
+          🎁 +1000 icons added
         </motion.span>
         <motion.h1
           initial="hidden"
@@ -94,7 +94,7 @@ export default function PageLayout({ children }: Props) {
         md:text-[3.75rem] md:leading-[4.5rem] md:w-[45%]"
         >
           Over
-          <span className="text-gradient font-extrabold"> 2000+ </span>
+          <span className="text-gradient font-extrabold"> 1500+ </span>
           Open-Source Icons for your next BIG project
         </motion.h1>
         <motion.div

@@ -4,6 +4,7 @@ export default {
   height: 24,
   viewBox: '0 0 24 24',
   fill: 'currentColor',
+  // fill: '#030913',
   fillRule: 'evenodd',
   clipRule: 'evenodd',
 };

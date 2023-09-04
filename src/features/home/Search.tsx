@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { motion } from 'framer-motion';
 import { Listbox, Transition } from '@headlessui/react';
+import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { DownArrow, Search as SearchIcon } from '@/assets/icons';
 import { SearchContext } from '@/contexts/SearchContext';
 import { CategoryContext } from '@/contexts/CategoryContext';
+import { IconTypeContext } from '@/contexts/IconTypeContext';
 
 const searchVariants = {
   hidden: {
@@ -18,6 +20,7 @@ const searchVariants = {
 };
 
 export default function Search() {
+  const { setIconType, iconType, setLoading } = React.useContext(IconTypeContext);
   const { query, setQuery } = React.useContext(SearchContext);
   const { setCategory } = React.useContext(CategoryContext);
 
@@ -25,6 +28,7 @@ export default function Search() {
     const { value } = e.target;
 
     setQuery(value);
+    setCategory('all icons');
   };
 
   const categories = [
@@ -85,9 +89,64 @@ md:px-5"
           />
         </span>
 
+        <ToggleGroup.Root
+          type="single"
+          defaultValue="all"
+          aria-label="Icon Type"
+          className="flex flex-row gap-3 mr-[1.88rem] "
+        >
+          <ToggleGroup.Item
+            className={`${
+              iconType === 'all' ? 'bg-grey-800 px-3 py-2 rounded-xl text-grey-50' : 'text-grey-600'
+            }  text-base font-medium `}
+            value="all"
+            aria-label="All"
+            onClick={() => {
+              setLoading(true);
+              setIconType('all');
+              setLoading(false);
+            }}
+          >
+            All
+          </ToggleGroup.Item>
+          <ToggleGroup.Item
+            className={`${
+              iconType === 'linear' ? 'bg-grey-800 px-3 py-2 rounded-xl text-grey-50' : 'text-grey-600'
+            }  text-base font-medium `}
+            value="linear"
+            aria-label="Linear"
+            onClick={() => {
+              setLoading(true);
+              setIconType('linear');
+              setLoading(false);
+            }}
+          >
+            Linear
+          </ToggleGroup.Item>
+          <ToggleGroup.Item
+            className={`${
+              iconType === 'bold' ? 'bg-grey-800 px-3 py-2 rounded-xl text-grey-50' : 'text-grey-600'
+            }  text-base font-medium `}
+            value="bold"
+            aria-label="Bold aligned"
+            onClick={() => {
+              setLoading(true);
+              setIconType('bold');
+              setLoading(false);
+            }}
+          >
+            Bold
+          </ToggleGroup.Item>
+        </ToggleGroup.Root>
+
         <Listbox
           value={selected}
-          onChange={setSelected}
+          onChange={(value) => {
+            setSelected(value);
+            setQuery('');
+
+            // setSelected();
+          }}
           as={'div'}
           className="relative border-[1px] border-grey-300 min-h-[60px] flex items-center border-y-0"
         >
