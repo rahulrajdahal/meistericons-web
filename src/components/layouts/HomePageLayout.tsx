@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Search } from '@/features/home';
 import { Link } from 'react-router-dom';
 import PageLayout from './PageLayout';
+import './styles.css';
 
 interface Props {
   children: React.ReactNode;
