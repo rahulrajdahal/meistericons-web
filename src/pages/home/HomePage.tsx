@@ -85,12 +85,20 @@ export default function HomePage() {
       return [...categoryIcons, ...iconTypeIcons];
     }
 
+    if (query.length > 0) {
+      return searchIcons;
+    }
+
     if (category !== 'all icons') {
       return categoryIcons;
     }
 
+    if (iconType !== 'all') {
+      return iconTypeIcons;
+    }
+
     return searchIcons;
-  }, [iconType, query, category]);
+  }, [iconType, query, category, searchIcons]);
 
   return (
     <>
@@ -117,6 +125,7 @@ export default function HomePage() {
                   key={name as string}
                   name={name as string}
                   component={createReactComponent(name as string, iconNode as IconNode[])}
+                  icons={icons}
                 />
               ))
 

@@ -1,7 +1,6 @@
 import { useCategory } from '@/hooks';
 import { useFetchIcons } from '@/hooks/useFetchIcons';
-import { useSearch } from '@/hooks/useSearch';
-import { Tags, IconNode, Categories } from '@/utils/helpers';
+import { IconNode, Categories } from '@/utils/helpers';
 import * as React from 'react';
 
 const defaultValue: { icons: IconNode[]; category: string; setCategory: React.Dispatch<React.SetStateAction<string>> } =

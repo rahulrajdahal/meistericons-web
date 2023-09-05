@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { PageLayout } from '@/components/layouts';
-import { HomePage } from '@/pages';
+import { HomePageLayout } from '@/components/layouts';
+import { FigmaPage, HomePage, NpmPage, ReactPage } from '@/pages';
+import HowtoUsePageLayout from './components/layouts/HowtoUsePageLayout';
 
 export default function App() {
   const router = createBrowserRouter([
@@ -11,10 +12,40 @@ export default function App() {
         {
           index: true,
           element: (
-            <PageLayout>
+            <HomePageLayout>
               <HomePage />
-            </PageLayout>
+            </HomePageLayout>
           ),
+        },
+        {
+          path: 'how-to-use',
+          children: [
+            {
+              index: true,
+              path: 'figma',
+              element: (
+                <HowtoUsePageLayout>
+                  <FigmaPage />
+                </HowtoUsePageLayout>
+              ),
+            },
+            {
+              path: 'react',
+              element: (
+                <HowtoUsePageLayout>
+                  <ReactPage />
+                </HowtoUsePageLayout>
+              ),
+            },
+            {
+              path: 'npm',
+              element: (
+                <HowtoUsePageLayout>
+                  <NpmPage />
+                </HowtoUsePageLayout>
+              ),
+            },
+          ],
         },
       ],
     },

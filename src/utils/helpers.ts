@@ -71,29 +71,29 @@ export const filterCategories = (icons: Icon[], categories: Categories, category
 export const toKebabCase = (string: string) => string.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 
 export const createReactComponent = (iconName: string, iconNode: IconNode) => {
-  const Component = React.forwardRef(({ color = 'currentColor', size = 32, ...rest }: any, ref) =>
-    React.createElement(
-      'svg',
-      {
-        key: iconName,
-        ref,
-        ...defaultAttributes,
-        width: size,
-        height: size,
-        fill: color,
-        className: `mni mni-${toKebabCase(iconName)}`,
-        ...rest,
-      },
-      (iconNode as any).map(([tag, attrs]: [any, any], i: number) =>
-        React.createElement(tag, { key: i, ...attrs, className: `${attrs.fill === '#fff' ? '' : 'fill-[#1c2a3a]'}` }),
+  const Component = React.forwardRef(
+    ({ color = 'currentColor', size = 32, ...rest }: { color?: string; size?: number | string }, ref) =>
+      React.createElement(
+        'svg',
+        {
+          key: iconName,
+          ref,
+          ...defaultAttributes,
+          width: size,
+          height: size,
+          fill: color,
+          className: `mni mni-${toKebabCase(iconName)}`,
+          ...rest,
+        },
+        (iconNode as any).map(([tag, attrs]: [string, any], i: number) =>
+          React.createElement(tag, { key: i, ...attrs, className: `${attrs.fill === '#fff' ? '' : 'fill-[#1c2a3a]'}` }),
+        ),
       ),
-    ),
   );
 
   Component.propTypes = {
     color: PropTypes.string,
     size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    strokeWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
   Component.displayName = `${iconName}`;

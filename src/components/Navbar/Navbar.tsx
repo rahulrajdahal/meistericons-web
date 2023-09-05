@@ -4,19 +4,20 @@ import { Link } from 'react-router-dom';
 import { Close, EllipsisV, GithubFill, Search } from '@/assets/icons';
 import { useWindowSize } from '@/hooks';
 import { motion } from 'framer-motion';
+import { routes } from '@/utils/routes';
 
 export default function Navbar() {
   const links = [
     {
       link: (
-        <>
+        <Link to={routes.landing} className="flex items-center gap-[0.31rem">
           <Search /> Icons
-        </>
+        </Link>
       ),
       id: 1,
     },
-    { link: 'How to Use?', id: 2 },
-    { link: 'Sponsor', id: 3 },
+    { link: <Link to={`${routes.howToUse}/${routes.figma}`}>How to Use?</Link>, id: 2 },
+    { link: <Link to={routes.landing}>Sponsor</Link>, id: 3 },
     {
       link: (
         <Link
@@ -137,7 +138,7 @@ export default function Navbar() {
       animate="visible"
       initial="hidden"
       variants={navVariants}
-      className="fixed top-0 min-h-[3.75rem] bg-white z-50 w-full h-fit inline-flex items-center justify-between px-[4%] py-3 md:py-7 md:px-[12.5%]"
+      className="fixed top-0 min-h-[3.75rem] bg-white z-10 w-full h-fit inline-flex items-center justify-between px-[4%] py-3 md:py-7 md:px-[12.5%]"
     >
       <Logo />
 

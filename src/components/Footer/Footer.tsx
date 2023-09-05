@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Dribbble, Instagram, Linkedin, Mni, Twitter } from '@/assets/icons';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { routes } from '@/utils/routes';
 
 export default function Footer() {
   const socials = [
@@ -11,14 +13,29 @@ export default function Footer() {
   ];
 
   const links = [
-    { id: 1, link: 'All Icons' },
-    { id: 2, link: 'Github' },
-    { id: 3, link: 'How to Use' },
-    { id: 4, link: 'Figma Plugin' },
-    { id: 5, link: 'Sponsor' },
-    { id: 6, link: 'SVG Pack' },
-    { id: 7, link: 'Terms of Use' },
-    { id: 8, link: 'Privacy Policy' },
+    { id: 1, link: <Link to={routes.landing}>All Icons</Link> },
+    {
+      id: 2,
+      link: (
+        <Link to="https://github.com/rahulrajdahal/meistericons" target="_blank">
+          Github{' '}
+        </Link>
+      ),
+    },
+
+    { id: 3, link: <Link to={`${routes.howToUse}/${routes.figma}`}>How to Use</Link> },
+    {
+      id: 4,
+      link: (
+        <Link to="https://www.figma.com/community/plugin/1065974489689844727/MeisterIcons" target="_blank">
+          Figma Plugin
+        </Link>
+      ),
+    },
+    { id: 5, link: <Link to={routes.landing}>Sponsor</Link> },
+    { id: 6, link: <Link to={routes.landing}>SVG Pack</Link> },
+    { id: 7, link: <Link to={routes.landing}>Terms of Use</Link> },
+    { id: 8, link: <Link to={routes.landing}>Privacy Policy</Link> },
   ];
 
   const footerVariants = {
@@ -62,12 +79,10 @@ export default function Footer() {
 
       <section>
         <ul className="grid gap-y-4 gap-x-[71px] md:grid-cols-2">
-          {links.map(({ link }) => (
+          {links.map(({ id, link }) => (
             <li
-              key={link}
-              className={`${
-                link == 'Terms of Use' || link == 'Privacy Policy' ? 'md:mt-[83px]' : ''
-              } font-normal text-grey-100 text-sm
+              key={id}
+              className={`${id === 7 || id === 8 ? 'md:mt-[83px]' : ''} font-normal text-grey-100 text-sm
               md:text-base`}
             >
               {link}

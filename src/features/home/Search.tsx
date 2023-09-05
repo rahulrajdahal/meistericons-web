@@ -104,7 +104,7 @@ md:px-5"
             onClick={() => {
               setLoading(true);
               setIconType('all');
-              setLoading(false);
+              setTimeout(() => setLoading(false), 2000);
             }}
           >
             All
@@ -118,7 +118,7 @@ md:px-5"
             onClick={() => {
               setLoading(true);
               setIconType('linear');
-              setLoading(false);
+              setTimeout(() => setLoading(false), 2000);
             }}
           >
             Linear
@@ -132,7 +132,7 @@ md:px-5"
             onClick={() => {
               setLoading(true);
               setIconType('bold');
-              setLoading(false);
+              setTimeout(() => setLoading(false), 2000);
             }}
           >
             Bold

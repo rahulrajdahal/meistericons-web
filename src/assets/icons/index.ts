@@ -14,3 +14,5 @@ export { default as Instagram } from './Instagram';
 export { default as Linkedin } from './Linkedin';
 export { default as Twitter } from './Twitter';
 export { default as Copy } from './Copy';
+export { default as download } from './download.svg';
+export { default as addSquare } from './add-square.svg';
