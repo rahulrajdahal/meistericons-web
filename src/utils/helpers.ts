@@ -24,6 +24,7 @@ export const filterIcons = (icons: Icon[], tags: Tags, query: string) => {
     return icons.filter(([name]: Icon) => {
       if (tags) {
         const iconTags = tags[name] ? tags[name] : [];
+       
 
         return [name, ...iconTags].some((tag: string) => tag.toLowerCase().includes(query));
       }

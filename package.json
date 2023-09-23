@@ -30,7 +30,7 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
     "framer-motion": "^10.6.0",
-    "meistericons-react": "^1.0.0",
+    "meistericons-react": "^1.0.7",
     "netlify-cli": "^15.8.0",
     "prettier": "^2.8.4",
     "prop-types": "^15.8.1",

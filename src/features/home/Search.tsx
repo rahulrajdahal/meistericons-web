@@ -3,9 +3,7 @@ import { motion } from 'framer-motion';
 import { Listbox, Transition } from '@headlessui/react';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { DownArrow, Search as SearchIcon } from '@/assets/icons';
-import { SearchContext } from '@/contexts/SearchContext';
-import { CategoryContext } from '@/contexts/CategoryContext';
-import { IconTypeContext } from '@/contexts/IconTypeContext';
+import { IconContext } from '@/contexts/IconContext';
 
 const searchVariants = {
   hidden: {
@@ -20,14 +18,13 @@ const searchVariants = {
 };
 
 export default function Search() {
-  const { setIconType, iconType, setLoading } = React.useContext(IconTypeContext);
-  const { query, setQuery } = React.useContext(SearchContext);
-  const { setCategory } = React.useContext(CategoryContext);
+  const { query, setQuery, setIconType, iconType, setCategory } = React.useContext(IconContext);
 
   const handleSearchOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
     setQuery(value);
+
     setCategory('all icons');
   };
 
@@ -102,9 +99,7 @@ md:px-5"
             value="all"
             aria-label="All"
             onClick={() => {
-              setLoading(true);
               setIconType('all');
-              setTimeout(() => setLoading(false), 2000);
             }}
           >
             All
@@ -116,9 +111,7 @@ md:px-5"
             value="linear"
             aria-label="Linear"
             onClick={() => {
-              setLoading(true);
               setIconType('linear');
-              setTimeout(() => setLoading(false), 2000);
             }}
           >
             Linear
@@ -130,9 +123,7 @@ md:px-5"
             value="bold"
             aria-label="Bold aligned"
             onClick={() => {
-              setLoading(true);
               setIconType('bold');
-              setTimeout(() => setLoading(false), 2000);
             }}
           >
             Bold

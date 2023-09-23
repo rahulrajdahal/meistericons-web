@@ -116,9 +116,11 @@ export default function HomePageLayout({ children }: Props) {
             </motion.span>
           ))}
         </motion.div>
-        <Search />
 
-        <React.Suspense fallback={<Loading />}>{children}</React.Suspense>
+        <React.Suspense fallback={<Loading />}>
+          <Search />
+          {children}
+        </React.Suspense>
       </div>
     </PageLayout>
   );
