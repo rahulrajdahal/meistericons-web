@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Categories, Icon, filterCategories } from '@/utils/helpers';
+import { Categories, filterCategories } from '@/utils/helpers';
 import { useFetchIcons } from './useFetchIcons';
 
 export const useCategory = (category: string) => {

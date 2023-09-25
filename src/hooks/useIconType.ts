@@ -1,4 +1,4 @@
-import { Icon, IconType, filterIconTypes } from '@/utils/helpers';
+import { IconType, filterIconTypes } from '@/utils/helpers';
 import { useFetchIcons } from './useFetchIcons';
 import * as React from 'react';
 

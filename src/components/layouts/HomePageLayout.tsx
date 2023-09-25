@@ -7,6 +7,7 @@ import { Search } from '@/features/home';
 import { Link } from 'react-router-dom';
 import PageLayout from './PageLayout';
 import './styles.css';
+import { useNavPosition } from '@/hooks/useNavPosition';
 
 interface Props {
   children: React.ReactNode;
@@ -74,6 +75,10 @@ export default function HomePageLayout({ children }: Props) {
     { id: 5, icon: Github, to: 'https://github.com/rahulrajdahal/meistericons' },
   ];
 
+  const stickyRef = React.useRef<HTMLSpanElement>(null);
+
+  useNavPosition(stickyRef);
+
   return (
     <PageLayout>
       <div className="w-full flex flex-col items-center justify-center mt-[8.75rem]">
@@ -116,9 +121,9 @@ export default function HomePageLayout({ children }: Props) {
             </motion.span>
           ))}
         </motion.div>
-
         <React.Suspense fallback={<Loading />}>
           <Search />
+          <span ref={stickyRef} />
           {children}
         </React.Suspense>
       </div>

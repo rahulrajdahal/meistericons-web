@@ -3,12 +3,11 @@ import { useFetchIcons } from '@/hooks/useFetchIcons';
 import { Icon, IconNode, createReactComponent, filterIconTypes } from '@/utils/helpers';
 import IconButton from '@/components/IconButton';
 import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import { motion } from 'framer-motion';
 import SponserBanner from '@/components/SponserBanner/SponserBanner.tsx';
 import { IconContext } from '@/contexts/IconContext';
-import { useIconType } from '@/hooks/useIconType';
-import { useCategory } from '@/hooks';
-import { useSearch } from '@/hooks/useSearch';
+import { useCategory, useIconType, useSearch } from '@/hooks';
 
 export default function HomePage() {
   const { loading } = useFetchIcons();
@@ -35,16 +34,14 @@ export default function HomePage() {
       if (iconType !== 'all') {
         return filterIconTypes(searchIcons as Icon[], iconType);
       }
-
-      return [...(searchIcons as Icon[]), ...iconTypeIcons];
+      return searchIcons;
     }
 
     if (category !== 'all icons') {
       if (iconType !== 'all') {
         return filterIconTypes(categoryIcons as Icon[], iconType);
       }
-
-      return [...(categoryIcons as Icon[]), ...iconTypeIcons];
+      return categoryIcons;
     }
 
     if (query.length > 0) {
@@ -61,7 +58,6 @@ export default function HomePage() {
 
     return searchIcons;
   }, [iconType, query, category, searchIcons, iconTypeIcons, categoryIcons, searchIcons]);
-
   return (
     <>
       <motion.div
