@@ -87,7 +87,11 @@ export const createReactComponent = (iconName: string, iconNode: IconNode) => {
           rest,
         },
         (iconNode as any).map(([tag, attrs]: [string, any], i: number) =>
-          React.createElement(tag, { key: i, ...attrs, className: `${attrs.fill === '#fff' ? '' : 'fill-[#1c2a3a]'}` }),
+          React.createElement(tag, {
+            key: i.toPrecision(),
+            ...attrs,
+            className: `${attrs.fill === '#fff' ? '' : 'fill-[#1c2a3a]'}`,
+          }),
         ),
       ),
   );
