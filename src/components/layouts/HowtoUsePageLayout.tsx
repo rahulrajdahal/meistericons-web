@@ -2,10 +2,16 @@ import * as React from 'react';
 import { Figma } from '@/assets/icons';
 import Loading from '../Loading/Loading';
 import { routes } from '@/utils/routes';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PageLayout from './PageLayout';
 
 export default function HowtoUsePageLayout({ children }: { children: React.ReactNode }) {
+  const { pathname } = useLocation();
+
+  const activeMenu = React.useMemo(() => {
+    return pathname.split('/').at(-1);
+  }, [pathname]);
+
   const menus = [
     {
       id: 1,
@@ -35,7 +41,12 @@ export default function HowtoUsePageLayout({ children }: { children: React.React
                 <ul className="flex flex-col gap-3 mt-3">
                   {links.map(({ id, link, to }) => (
                     <li key={id}>
-                      <Link to={to} className="w-full">
+                      <Link
+                        to={to}
+                        className={`w-full ${
+                          activeMenu === link.toLowerCase() ? 'text-grey- ' : 'text-grey-700'
+                        } text-lg font-medium -tracking-[0.0225rem]`}
+                      >
                         {link}
                       </Link>
                     </li>

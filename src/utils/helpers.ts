@@ -38,7 +38,7 @@ export const filterIconTypes = (icons: Icon[], iconType = 'all') => {
       if (iconType === 'linear') {
         return [name].some((name: string) => {
           if (lastString !== 'b') {
-            return name;
+            return toKebabCase(name);
           }
         });
       }
@@ -46,12 +46,12 @@ export const filterIconTypes = (icons: Icon[], iconType = 'all') => {
       if (iconType === 'bold') {
         return [name].some((name: string) => {
           if (lastString === 'b') {
-            return name;
+            return toKebabCase(name);
           }
         });
       }
 
-      return [name];
+      return [toKebabCase(name)];
     });
   }
 };
@@ -83,7 +83,7 @@ export const createReactComponent = (iconName: string, iconNode: IconNode) => {
           height: size,
           fill: color,
           className: `mni mni-${toKebabCase(iconName)}`,
-          ...rest,
+          rest,
         },
         (iconNode as any).map(([tag, attrs]: [string, any], i: number) =>
           React.createElement(tag, { key: i, ...attrs, className: `${attrs.fill === '#fff' ? '' : 'fill-[#1c2a3a]'}` }),

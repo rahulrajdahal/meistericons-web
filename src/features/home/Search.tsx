@@ -3,9 +3,8 @@ import { motion } from 'framer-motion';
 import { Listbox, Transition } from '@headlessui/react';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { DownArrow, Search as SearchIcon } from '@/assets/icons';
-import { SearchContext } from '@/contexts/SearchContext';
-import { CategoryContext } from '@/contexts/CategoryContext';
-import { IconTypeContext } from '@/contexts/IconTypeContext';
+import { IconContext } from '@/contexts/IconContext';
+import { StyleContext } from '@/contexts/StyleContext';
 
 const searchVariants = {
   hidden: {
@@ -20,9 +19,8 @@ const searchVariants = {
 };
 
 export default function Search() {
-  const { setIconType, iconType, setLoading } = React.useContext(IconTypeContext);
-  const { query, setQuery } = React.useContext(SearchContext);
-  const { setCategory } = React.useContext(CategoryContext);
+  const { iconType, setQuery, setCategory, setIconType, query } = React.useContext(IconContext);
+  const { navProps, setNavStyles, setNavProps } = React.useContext(StyleContext);
 
   const handleSearchOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -66,17 +64,44 @@ export default function Search() {
 
   const [selected, setSelected] = React.useState(categories[0]);
 
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (containerRef.current) {
+        const containerOffsetTop = containerRef.current?.offsetTop;
+
+        if (containerOffsetTop >= window.scrollY) {
+          setNavStyles(`relative`);
+          setNavProps((prev) => ({ ...prev, searchOffset: true }));
+        }
+
+        if (window.scrollY >= containerOffsetTop) {
+          setNavProps((prev) => ({ ...prev, searchOffset: false }));
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { capture: true });
+
+    return () => window.removeEventListener('scroll', handleScroll, { capture: true });
+  }, []);
+
   return (
     <motion.div
       initial="hidden"
       animate="visible"
       variants={searchVariants}
-      className="w-full sticky top-[72px] border-[1px] border-grey-300 rounded-lg bg-white z-10 mt-[101px] min-h-[60px]
-md:px-[12.5%] md:top-[104px]"
+      className={`${
+        navProps.hamburgerOpen ? 'hidden' : 'sticky top-0'
+      } w-full border-[1px] border-grey-300 rounded-lg bg-white z-10 min-h-[60px]
+       mt-[101px]
+       md:px-[12.5%]`}
     >
       <div
         className="border-[1px] border-grey-300 border-r-0 border-y-0 w-full min-h-[60px] flex items-center
 md:px-5"
+        ref={containerRef}
       >
         <span className="inline-flex items-center gap-2 w-full px-5 md:px-0">
           <SearchIcon className="w-[18px] h-[18px]" />
@@ -102,9 +127,7 @@ md:px-5"
             value="all"
             aria-label="All"
             onClick={() => {
-              setLoading(true);
               setIconType('all');
-              setTimeout(() => setLoading(false), 2000);
             }}
           >
             All
@@ -116,9 +139,7 @@ md:px-5"
             value="linear"
             aria-label="Linear"
             onClick={() => {
-              setLoading(true);
               setIconType('linear');
-              setTimeout(() => setLoading(false), 2000);
             }}
           >
             Linear
@@ -130,9 +151,7 @@ md:px-5"
             value="bold"
             aria-label="Bold aligned"
             onClick={() => {
-              setLoading(true);
               setIconType('bold');
-              setTimeout(() => setLoading(false), 2000);
             }}
           >
             Bold

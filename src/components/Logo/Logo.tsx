@@ -3,12 +3,15 @@ import { Mni, addSquare } from '@/assets/icons';
 import { Dialog, Transition } from '@headlessui/react';
 import { Link } from 'react-router-dom';
 import { routes } from '@/utils/routes';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type ILogoProps = React.ComponentPropsWithoutRef<'div'>;
 
 export default function Logo() {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isFirstLoad, setIsFirstLoad] = useLocalStorage('isFirstLoad', 'y');
+
+  const [isOpen, setIsOpen] = React.useState(isFirstLoad === 'y' ? true : false);
 
   const version03 = [
     { id: 1, update: 'We’ve added over 999 icons to MeisterIcons for all the categories available.' },
@@ -27,6 +30,13 @@ export default function Logo() {
     { id: 5, update: 'Made with ❤️ in Kathmandu, Nepal.' },
   ];
 
+  const handleChangelogClose = () => {
+    if (isFirstLoad === 'y') {
+      setIsFirstLoad('n');
+    }
+    setIsOpen(false);
+  };
+
   return (
     <Link to={routes.landing} data-testid="logo" className="inline-flex items-center gap-2">
       <Mni className="w-12 h-12" width={48} height={48} />
@@ -40,7 +50,7 @@ export default function Logo() {
         </button>
 
         <Transition appear show={isOpen} as={React.Fragment}>
-          <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
+          <Dialog open={isOpen} onClose={handleChangelogClose} className="relative z-50">
             <Transition.Child
               as={React.Fragment}
               enter="ease-out duration-300"
@@ -56,18 +66,18 @@ export default function Logo() {
             {/* Full-screen scrollable container */}
             <div className="fixed inset-0 w-screen overflow-y-auto">
               {/* Container to center the panel */}
-              <div className="flex min-h-full items-center justify-center p-4 mt-40">
+              <div className="flex items-center justify-center p-4 mt-40 overflow-y-hidden">
                 {/* The actual dialog panel  */}
                 <Transition.Child
                   as={React.Fragment}
                   enter="ease-out duration-300"
-                  enterFrom="opacity-0 scale-95 translate-y-[60%]"
-                  enterTo="opacity-100 scale-100 translate-y-0"
+                  enterFrom="translate-y-full"
+                  enterTo="translate-y-0"
                   leave="ease-in duration-200"
-                  leaveFrom="opacity-100 scale-100 translate-y-0"
-                  leaveTo="opacity-0 scale-95 translate-y-[100%]"
+                  leaveFrom="translate-y-0"
+                  leaveTo="translate-y-full"
                 >
-                  <Dialog.Panel className="mx-auto rounded-[2.5rem] max-w-[62.5rem] w-full h-full min-h-screen bg-white p-10">
+                  <Dialog.Panel className="mx-auto rounded-[2.5rem] max-w-[62.5rem] w-full h-full min-h-[59.75rem] bg-white p-10">
                     <div className="flex justify-between items-center mb-6 ">
                       <Dialog.Title
                         className={`text-grey-900 text-[2rem] font-semibold leading-10 -tracking-[0.04rem]`}
@@ -75,7 +85,7 @@ export default function Logo() {
                         Changelog
                       </Dialog.Title>
 
-                      <button title="close" className="text-2xl" onClick={() => setIsOpen(false)}>
+                      <button title="close" className="text-2xl" onClick={handleChangelogClose}>
                         &#x2715;
                       </button>
                     </div>

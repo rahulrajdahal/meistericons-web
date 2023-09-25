@@ -5,12 +5,18 @@ import { Close, EllipsisV, GithubFill, Search } from '@/assets/icons';
 import { useWindowSize } from '@/hooks';
 import { motion } from 'framer-motion';
 import { routes } from '@/utils/routes';
+import { useHamburgerOpen } from '@/hooks/useHamburgerOpen';
+import { StyleContext } from '@/contexts/StyleContext';
 
-export default function Navbar() {
+interface INavbarProps extends React.ComponentPropsWithoutRef<'div'> {
+  position?: string;
+}
+
+export default function Navbar({ position, ...props }: INavbarProps) {
   const links = [
     {
       link: (
-        <Link to={routes.landing} className="flex items-center gap-[0.31rem">
+        <Link to={routes.landing} className="flex items-center gap-[0.31rem]">
           <Search /> Icons
         </Link>
       ),
@@ -54,6 +60,8 @@ export default function Navbar() {
   );
 
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const { setNavProps, navProps } = React.useContext(StyleContext);
+
   const renderHamburgerMenu = () => {
     const linkVariants = {
       hidden: { y: 20, opacity: 0 },
@@ -85,14 +93,26 @@ export default function Navbar() {
 
     return (
       <>
-        <EllipsisV className="hover:cursor-pointer" onClick={() => setIsOpen(() => true)} />
+        <EllipsisV
+          className="hover:cursor-pointer"
+          onClick={() => {
+            setIsOpen(() => true);
+            setNavProps(() => ({ hamburgerOpen: true }));
+          }}
+        />
 
         {isOpen ? (
-          <div className="px-4 py-3 z-50 animate_hamburger_menu fixed top-0 bottom-0 left-0 right-0 bg-white">
+          <div className="px-4 py-3 z-10 animate_hamburger_menu fixed top-0 bottom-0 left-0 right-0 bg-white">
             <span className="inline-flex items-center w-full justify-between">
               <Logo />
               <motion.div whileHover={{ rotate: 90 }}>
-                <Close className="hover:cursor-pointer" onClick={() => setIsOpen(() => false)} />
+                <Close
+                  className="hover:cursor-pointer"
+                  onClick={() => {
+                    setIsOpen(() => false);
+                    setNavProps(() => ({ hamburgerOpen: false }));
+                  }}
+                />
               </motion.div>
             </span>
 
@@ -138,7 +158,9 @@ export default function Navbar() {
       animate="visible"
       initial="hidden"
       variants={navVariants}
-      className="fixed top-0 min-h-[3.75rem] bg-white z-10 w-full h-fit inline-flex items-center justify-between px-[4%] py-3 md:py-7 md:px-[12.5%]"
+      className={`${props.className} ${
+        navProps.searchOffset ? 'hidden' : 'sticky top-0'
+      } min-h-[3.75rem] bg-white z-10 w-full h-fit inline-flex items-center justify-between px-[4%] py-3 md:py-7 md:px-[12.5%]`}
     >
       <Logo />
 

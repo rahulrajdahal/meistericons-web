@@ -206,7 +206,7 @@ const IconModal = ({
 
   return (
     <Transition appear show={isOpen} as={React.Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={closeModal}>
+      <Dialog open={isOpen} as="div" className="relative z-20" onClose={closeModal}>
         <Transition.Child
           as={React.Fragment}
           enter="ease-out duration-300"
@@ -219,18 +219,18 @@ const IconModal = ({
           <div className="fixed inset-0 bg-black bg-opacity-25" />
         </Transition.Child>
 
-        <div className="fixed inset-0 overflow-y-hidden">
+        <div className="fixed inset-0">
           <div className="flex items-center justify-center p-4 text-center absolute top-[25%] left-0 right-0 min-h-screen w-full ">
             <Transition.Child
               as={React.Fragment}
               enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95 translate-y-[70%]"
-              enterTo="opacity-100 scale-100 translate-y-0"
+              enterFrom="translate-y-full"
+              enterTo="translate-y-0"
               leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100 translate-y-0"
-              leaveTo="opacity-0 scale-95 translate-y-[100%]"
+              leaveFrom="translate-y-0"
+              leaveTo="translate-y-full"
             >
-              <Dialog.Panel className="transform w-full max-w-[62.5rem] rounded-[2.5rem] bg-white p-6 text-left align-middle shadow-xl transition-all min-h-[90vh] h-full">
+              <Dialog.Panel className="w-full max-w-[62.5rem] rounded-[2.5rem] bg-white p-6 text-left align-middle shadow-xl transition-all h-[90vh]">
                 <button
                   title="close"
                   className="absolute top-[3.25rem] right-10 text-2xl 
