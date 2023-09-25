@@ -27,7 +27,17 @@ export default function IconContextProvider({ children }: { children: React.Reac
   const [category, setCategory] = React.useState('all icons');
   const [iconType, setIconType] = React.useState<IconType>('all');
 
-  const value = { query, setQuery, iconType, setIconType, category, setCategory };
+  const value = React.useMemo(
+    () => ({
+      query,
+      setQuery,
+      iconType,
+      setIconType,
+      category,
+      setCategory,
+    }),
+    [query, setQuery, iconType, setIconType, category, setCategory],
+  );
 
   return <IconContext.Provider value={value}>{children}</IconContext.Provider>;
 }

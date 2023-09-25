@@ -26,9 +26,7 @@ export default function Search() {
     const { value } = e.target;
 
     setQuery(value);
-    setTimeout(() => {
-      setCategory('all icons');
-    }, 5000);
+    setCategory('all icons');
   };
 
   const categories = [

@@ -20,15 +20,17 @@ export interface Categories {
 }
 
 export const filterIcons = (icons: Icon[], tags: Tags, query: string) => {
-  if (icons.length > 0) {
-    return icons.filter(([name]: Icon) => {
-      if (tags) {
-        const iconTags = tags[name] ? tags[name] : [];
+  setTimeout(() => {
+    if (icons.length > 0) {
+      return icons.filter(([name]: Icon) => {
+        if (tags) {
+          const iconTags = tags[name] ? tags[name] : [];
 
-        return [name, ...iconTags].some((tag: string) => tag.toLowerCase().includes(query));
-      }
-    });
-  }
+          return [name, ...iconTags].some((tag: string) => tag.toLowerCase().includes(query));
+        }
+      });
+    }
+  }, 5000);
 };
 export const filterIconTypes = (icons: Icon[], iconType = 'all') => {
   if (icons.length > 0) {
