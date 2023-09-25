@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function Copy(props: any) {
+function Copy(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 18 18" fill="currentColor" {...props}>
       <path

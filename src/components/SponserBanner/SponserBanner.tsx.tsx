@@ -1,4 +1,3 @@
-import { SponserIllustration } from '@/assets/illustrations';
 import * as React from 'react';
 import Button from '../Button/Button';
 

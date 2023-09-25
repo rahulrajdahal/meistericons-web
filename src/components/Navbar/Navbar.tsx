@@ -5,14 +5,13 @@ import { Close, EllipsisV, GithubFill, Search } from '@/assets/icons';
 import { useWindowSize } from '@/hooks';
 import { motion } from 'framer-motion';
 import { routes } from '@/utils/routes';
-import { useHamburgerOpen } from '@/hooks/useHamburgerOpen';
 import { StyleContext } from '@/contexts/StyleContext';
 
 interface INavbarProps extends React.ComponentPropsWithoutRef<'div'> {
   position?: string;
 }
 
-export default function Navbar({ position, ...props }: INavbarProps) {
+export default function Navbar({ ...props }: INavbarProps) {
   const links = [
     {
       link: (

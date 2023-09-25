@@ -2,7 +2,7 @@ import * as React from 'react';
 
 function DownArrow(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="6" viewBox="0 0 12 6" fill="none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="6" viewBox="0 0 12 6" fill="none" {...props}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
