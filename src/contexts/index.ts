@@ -1,2 +1,2 @@
-export { default as IconContextProvider } from './IconContext';
-export { default as StyleContextProvider } from './StyleContext';
+export { default as IconContextProvider, IconContext } from './IconContext';
+export { default as StyleContextProvider, StyleContext } from './StyleContext';

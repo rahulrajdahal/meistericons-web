@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import SponserBanner from '@/components/SponserBanner/SponserBanner.tsx';
 import { IconContext } from '@/contexts/IconContext';
 import { useCategory, useIconType, useSearch } from '@/hooks';
+import { useInView } from 'react-intersection-observer';
 
 export default function HomePage() {
   const { loading } = useFetchIcons();
@@ -16,6 +17,11 @@ export default function HomePage() {
   const { icons: searchIcons } = useSearch(query);
   const { icons: categoryIcons } = useCategory(category);
   const { icons: iconTypeIcons } = useIconType(iconType);
+
+  const [limit, setLimit] = React.useState(30);
+  const [loadMore, setLoadMore] = React.useState(false);
+
+  const { ref, inView } = useInView({ threshold: 0.5 });
 
   const containerVariants = {
     hidden: {
@@ -58,13 +64,29 @@ export default function HomePage() {
 
     return searchIcons;
   }, [iconType, query, category, searchIcons, iconTypeIcons, categoryIcons, searchIcons]);
+
+  React.useEffect(() => {
+    if (inView) {
+      setLoadMore(true);
+      const updateLimit = setTimeout(() => {
+        setLimit((prev) => prev + 30);
+        setLoadMore(false);
+        window.scrollBy({ top: -300, behavior: 'smooth' });
+      }, 1000);
+
+      return () => {
+        clearTimeout(updateLimit);
+      };
+    }
+  }, [inView]);
+
   return (
     <>
       <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="grid grid-cols-4 gap-20 place-items-center max-w-min my-20 mb-[140px]
+        className="grid grid-cols-4 gap-20 place-items-center max-w-min mt-20 mb-[140px]
       md:gap-x-[8.75rem] md:gap-y-[3.75rem] md:px-[2%]
       lg:grid-cols-10
       2xl:px-[14.79%]"
@@ -73,19 +95,39 @@ export default function HomePage() {
           ? Array(50)
               .fill(null)
               .map((_, i) => (
-                <div key={i} className="w-12 h-12">
+                <div key={i.toPrecision()} className="w-12 h-12">
                   <Skeleton className="w-full h-full rounded-[40px]" />
                 </div>
               ))
-          : icons?.map(([name, iconNode]) => (
-              <IconButton
-                key={name as string}
-                name={name as string}
-                component={createReactComponent(name as string, iconNode as IconNode[])}
-                icons={icons}
-              />
-            ))}
+          : icons
+              ?.slice(0, limit)
+              .map(([name, iconNode]) => (
+                <IconButton
+                  key={name as string}
+                  name={name as string}
+                  component={createReactComponent(name as string, iconNode as IconNode[])}
+                  icons={icons}
+                />
+              ))}
       </motion.div>
+
+      <div ref={ref} className="w-full" />
+      {loadMore ? (
+        <div
+          className="grid grid-cols-4 gap-20 place-items-center mb-20 max-w-min 
+md:gap-x-[8.75rem] md:gap-y-[3.75rem] md:px-[2%]
+lg:grid-cols-10
+2xl:px-[14.79%]"
+        >
+          {Array(20)
+            .fill(null)
+            .map((_, i) => (
+              <div key={i.toPrecision()} className="w-12 h-12 ">
+                <Skeleton className="w-full h-full rounded-[40px]" />
+              </div>
+            ))}
+        </div>
+      ) : null}
 
       <SponserBanner />
     </>

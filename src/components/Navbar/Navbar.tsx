@@ -159,7 +159,7 @@ export default function Navbar({ ...props }: INavbarProps) {
       variants={navVariants}
       className={`${props.className} ${
         navProps.searchOffset ? 'hidden' : 'sticky top-0'
-      } min-h-[3.75rem] bg-white z-10 w-full h-fit inline-flex items-center justify-between px-[4%] py-3 md:py-7 md:px-[12.5%]`}
+      }  max-h-[3.75rem] bg-white z-10 w-full h-full inline-flex items-center justify-between px-[4%] py-3 md:py-7 md:px-[12.5%]`}
     >
       <Logo />
 
