@@ -25,16 +25,9 @@ export default function Search() {
   const handleSearchOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
-<<<<<<< HEAD
     setQuery(value);
 
     setCategory('all icons');
-=======
-    setTimeout(() => {
-      setQuery(value);
-      setCategory('all icons');
-    }, 5000);
->>>>>>> fc58ae4 (fix(hooks): update with bun)
   };
 
   const categories = [
