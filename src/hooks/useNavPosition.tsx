@@ -4,7 +4,6 @@ export const useNavPosition = (stickyRef?: React.RefObject<HTMLSpanElement>) => 
   const [navPosition, setNavPosition] = useState('sticky');
 
   useEffect(() => {
-    console.log('window?.scrollY', window?.scrollY);
     const handleScroll = () => {
       if (stickyRef) {
         const sticky = stickyRef.current;

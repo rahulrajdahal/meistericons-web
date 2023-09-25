@@ -121,9 +121,9 @@ export default function HomePageLayout({ children }: Props) {
             </motion.span>
           ))}
         </motion.div>
+
         <React.Suspense fallback={<Loading />}>
           <Search />
-          <span ref={stickyRef} />
           {children}
         </React.Suspense>
       </div>

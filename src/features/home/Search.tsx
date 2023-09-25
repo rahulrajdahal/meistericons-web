@@ -3,9 +3,7 @@ import { motion } from 'framer-motion';
 import { Listbox, Transition } from '@headlessui/react';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { DownArrow, Search as SearchIcon } from '@/assets/icons';
-import { IconContext } from '@/contexts/IconContext';
-import { StyleContext } from '@/contexts/StyleContext';
-
+import { IconContext, StyleContext } from '@/contexts';
 const searchVariants = {
   hidden: {
     scale: 0,
@@ -94,16 +92,16 @@ export default function Search() {
       variants={searchVariants}
       className={`${
         navProps.hamburgerOpen ? 'hidden' : 'sticky top-0'
-      } w-full border-[1px] border-grey-300 rounded-lg bg-white z-10 min-h-[60px]
+      } w-full border-[1px] border-grey-300 rounded-lg bg-white z-10 max-h-[60px]
        mt-[101px]
        md:px-[12.5%]`}
     >
       <div
-        className="border-[1px] border-grey-300 border-r-0 border-y-0 w-full min-h-[60px] flex items-center
+        className="border-[1px] border-grey-300 border-r-0 border-y-0 w-full max-h-[60px] flex items-center flex-col sm:flex-row
 md:px-5"
         ref={containerRef}
       >
-        <span className="inline-flex items-center gap-2 w-full px-5 md:px-0">
+        <span className="inline-flex h-full items-center gap-2 w-full px-5 md:px-0">
           <SearchIcon className="w-[18px] h-[18px]" />
           <input
             value={query}
@@ -114,96 +112,96 @@ md:px-5"
           />
         </span>
 
-        <ToggleGroup.Root
-          type="single"
-          defaultValue="all"
-          aria-label="Icon Type"
-          className="flex flex-row gap-3 mr-[1.88rem] "
-        >
-          <ToggleGroup.Item
-            className={`${
-              iconType === 'all' ? 'bg-grey-800 px-3 py-2 rounded-xl text-grey-50' : 'text-grey-600'
-            }  text-base font-medium `}
-            value="all"
-            aria-label="All"
-            onClick={() => {
-              setIconType('all');
-            }}
+        <div className="flex items-center">
+          <ToggleGroup.Root
+            type="single"
+            defaultValue="all"
+            aria-label="Icon Type"
+            className="flex flex-row gap-3 mr-[1.88rem] "
           >
-            All
-          </ToggleGroup.Item>
-          <ToggleGroup.Item
-            className={`${
-              iconType === 'linear' ? 'bg-grey-800 px-3 py-2 rounded-xl text-grey-50' : 'text-grey-600'
-            }  text-base font-medium `}
-            value="linear"
-            aria-label="Linear"
-            onClick={() => {
-              setIconType('linear');
-            }}
-          >
-            Linear
-          </ToggleGroup.Item>
-          <ToggleGroup.Item
-            className={`${
-              iconType === 'bold' ? 'bg-grey-800 px-3 py-2 rounded-xl text-grey-50' : 'text-grey-600'
-            }  text-base font-medium `}
-            value="bold"
-            aria-label="Bold aligned"
-            onClick={() => {
-              setIconType('bold');
-            }}
-          >
-            Bold
-          </ToggleGroup.Item>
-        </ToggleGroup.Root>
+            <ToggleGroup.Item
+              className={`${
+                iconType === 'all' ? 'bg-grey-800 px-3 py-2 rounded-xl text-grey-50' : 'text-grey-600'
+              }  text-base font-medium `}
+              value="all"
+              aria-label="All"
+              onClick={() => {
+                setIconType('all');
+              }}
+            >
+              All
+            </ToggleGroup.Item>
+            <ToggleGroup.Item
+              className={`${
+                iconType === 'linear' ? 'bg-grey-800 px-3 py-2 rounded-xl text-grey-50' : 'text-grey-600'
+              }  text-base font-medium `}
+              value="linear"
+              aria-label="Linear"
+              onClick={() => {
+                setIconType('linear');
+              }}
+            >
+              Linear
+            </ToggleGroup.Item>
+            <ToggleGroup.Item
+              className={`${
+                iconType === 'bold' ? 'bg-grey-800 px-3 py-2 rounded-xl text-grey-50' : 'text-grey-600'
+              }  text-base font-medium `}
+              value="bold"
+              aria-label="Bold aligned"
+              onClick={() => {
+                setIconType('bold');
+              }}
+            >
+              Bold
+            </ToggleGroup.Item>
+          </ToggleGroup.Root>
 
-        <Listbox
-          value={selected}
-          onChange={(value) => {
-            setSelected(value);
-            setQuery('');
-
-            // setSelected();
-          }}
-          as={'div'}
-          className="relative border-[1px] border-grey-300 min-h-[60px] flex items-center border-y-0"
-        >
-          <Listbox.Button className="gap-0.5 cursor-default inline-flex items-center bg-white py-5 px-[21px] text-left">
-            <span className="block truncate">{selected.category}</span>
-
-            <DownArrow width={18} height={18} className="w-[18px] h-[18px]" aria-hidden="true" />
-          </Listbox.Button>
-          <Transition
-            as={React.Fragment}
-            leave="transition ease-in duration-100"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+          <Listbox
+            value={selected}
+            onChange={(value) => {
+              setSelected(value);
+              setQuery('');
+            }}
+            as={'div'}
+            className="relative border-[1px] border-grey-300 max-h-[60px] flex items-center border-y-0"
           >
-            <Listbox.Options className="absolute top-[70px] right-0 dropdown-shadow bg-grey-900 rounded-xl py-6 min-w-[260px] max-h-[396px] overflow-y-scroll">
-              {categories.map((category, id) => (
-                <Listbox.Option
-                  key={id}
-                  onClick={() => setCategory(category.category)}
-                  className={({ active }) =>
-                    `font-medium text-lg  px-6 relative cursor-default select-none mb-3
+            <Listbox.Button className="gap-0.5 cursor-default inline-flex items-center bg-white py-4 px-[21px] text-left">
+              <span className="block truncate">{selected.category}</span>
+
+              <DownArrow width={18} height={18} className="w-[18px] h-[18px]" aria-hidden="true" />
+            </Listbox.Button>
+            <Transition
+              as={React.Fragment}
+              leave="transition ease-in duration-100"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Listbox.Options className="absolute top-[70px] right-0 dropdown-shadow bg-grey-900 rounded-xl py-6 min-w-[260px] max-h-[396px] overflow-y-scroll">
+                {categories.map((category, id) => (
+                  <Listbox.Option
+                    key={id}
+                    onClick={() => setCategory(category.category)}
+                    className={({ active }) =>
+                      `font-medium text-lg  px-6 relative cursor-default select-none mb-3
             ${active ? 'bg-grey-50 text-grey-900 hover:cursor-pointer' : 'text-grey-50'}
             `
-                  }
-                  value={category}
-                >
-                  {({ selected }) => (
-                    <>
-                      <span className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>
-                        {category.category}
-                      </span>
-                    </>
-                  )}
-                </Listbox.Option>
-              ))}
-            </Listbox.Options>
-          </Transition>
-        </Listbox>
+                    }
+                    value={category}
+                  >
+                    {({ selected }) => (
+                      <>
+                        <span className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>
+                          {category.category}
+                        </span>
+                      </>
+                    )}
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            </Transition>
+          </Listbox>
+        </div>
       </div>
     </motion.div>
   );
