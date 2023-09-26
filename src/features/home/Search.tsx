@@ -19,12 +19,15 @@ const searchVariants = {
 export default function Search() {
   const { iconType, setQuery, setCategory, setIconType, query } = React.useContext(IconContext);
   const { navProps, setNavStyles, setNavProps } = React.useContext(StyleContext);
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
   const handleSearchOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
     setQuery(value);
+
     setCategory('all icons');
+    window.scrollTo({ top: containerRef.current?.clientTop });
   };
 
   const categories = [
@@ -61,8 +64,6 @@ export default function Search() {
   ];
 
   const [selected, setSelected] = React.useState(categories[0]);
-
-  const containerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -180,8 +181,11 @@ md:px-5"
               <Listbox.Options className="absolute top-[70px] right-0 dropdown-shadow bg-grey-900 rounded-xl py-6 min-w-[260px] max-h-[396px] overflow-y-scroll">
                 {categories.map((category, id) => (
                   <Listbox.Option
-                    key={id}
-                    onClick={() => setCategory(category.category)}
+                    key={id.toPrecision()}
+                    onClick={() => {
+                      setCategory(category.category);
+                      window.scrollTo({ top: containerRef.current?.clientTop, behavior: 'smooth' });
+                    }}
                     className={({ active }) =>
                       `font-medium text-lg  px-6 relative cursor-default select-none mb-3
             ${active ? 'bg-grey-50 text-grey-900 hover:cursor-pointer' : 'text-grey-50'}

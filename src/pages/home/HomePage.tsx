@@ -18,10 +18,10 @@ export default function HomePage() {
   const { icons: categoryIcons } = useCategory(category);
   const { icons: iconTypeIcons } = useIconType(iconType);
 
-  const [limit, setLimit] = React.useState(30);
+  const [limit, setLimit] = React.useState(50);
   const [loadMore, setLoadMore] = React.useState(false);
 
-  const { ref, inView } = useInView({ threshold: 0.5 });
+  const { ref, inView } = useInView({ rootMargin: '-140px' });
 
   const containerVariants = {
     hidden: {
@@ -68,15 +68,8 @@ export default function HomePage() {
   React.useEffect(() => {
     if (inView) {
       setLoadMore(true);
-      const updateLimit = setTimeout(() => {
-        setLimit((prev) => prev + 30);
-        setLoadMore(false);
-        window.scrollBy({ top: -300, behavior: 'smooth' });
-      }, 1000);
-
-      return () => {
-        clearTimeout(updateLimit);
-      };
+      setLimit((prev) => prev + 50);
+      setLoadMore(false);
     }
   }, [inView]);
 
@@ -111,10 +104,10 @@ export default function HomePage() {
               ))}
       </motion.div>
 
-      <div ref={ref} className="w-full" />
-      {loadMore ? (
+      <div ref={ref} className={`w-full`} />
+      {loadMore && icons && icons?.length >= limit ? (
         <div
-          className="grid grid-cols-4 gap-20 place-items-center mb-20 max-w-min 
+          className="grid grid-cols-4 gap-20 place-items-center mb-20 max-w-min -mt-20
 md:gap-x-[8.75rem] md:gap-y-[3.75rem] md:px-[2%]
 lg:grid-cols-10
 2xl:px-[14.79%]"
