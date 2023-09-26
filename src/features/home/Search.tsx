@@ -92,12 +92,12 @@ export default function Search() {
       variants={searchVariants}
       className={`${
         navProps.hamburgerOpen ? 'hidden' : 'sticky top-0'
-      } w-full border-[1px] border-grey-300 rounded-lg bg-white z-10 max-h-[60px]
-       mt-[101px]
+      } w-full border-[1px] border-grey-300 rounded-lg bg-white z-10 
+       mt-[101px] md:max-h-[60px]
        md:px-[12.5%]`}
     >
       <div
-        className="border-[1px] border-grey-300 border-r-0 border-y-0 w-full max-h-[60px] flex items-center flex-col sm:flex-row
+        className="border-[1px] border-grey-300 border-r-0 border-y-0 w-full flex items-center flex-col sm:flex-row
 md:px-5"
         ref={containerRef}
       >
