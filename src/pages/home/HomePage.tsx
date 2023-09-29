@@ -21,7 +21,7 @@ export default function HomePage() {
   const [limit, setLimit] = React.useState(50);
   const [loadMore, setLoadMore] = React.useState(false);
 
-  const { ref, inView } = useInView({ rootMargin: '-140px' });
+  const { ref, inView } = useInView({ rootMargin: '-90px', threshold: [0, 0.25, 0.5, 0.75, 1] });
 
   const containerVariants = {
     hidden: {
@@ -68,7 +68,7 @@ export default function HomePage() {
   React.useEffect(() => {
     if (inView) {
       setLoadMore(true);
-      setLimit((prev) => prev + 50);
+      setLimit((prev) => prev + 80);
       setLoadMore(false);
     }
   }, [inView]);
