@@ -20,6 +20,7 @@ export const useSearch = (query: string) => {
   }, [meisterIcons]);
 
   const searchString = query.toLowerCase();
+
   const filteredIcons = filterIcons(icons, tags as Tags, searchString);
 
   const searchIcons = React.useMemo(() => {

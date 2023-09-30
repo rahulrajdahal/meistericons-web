@@ -13,7 +13,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function HomePageLayout({ children }: Props) {
+export default React.memo(function HomePageLayout({ children }: Props) {
   const iconsAddedVariants = {
     hidden: {
       opacity: 0,
@@ -129,4 +129,4 @@ export default function HomePageLayout({ children }: Props) {
       </div>
     </PageLayout>
   );
-}
+});

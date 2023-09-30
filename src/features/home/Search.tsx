@@ -4,6 +4,8 @@ import { Listbox, Transition } from '@headlessui/react';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { DownArrow, Search as SearchIcon } from '@/assets/icons';
 import { IconContext, StyleContext } from '@/contexts';
+import { useNavigate } from 'react-router-dom';
+import { useDebounce } from '@/hooks';
 const searchVariants = {
   hidden: {
     scale: 0,
@@ -16,19 +18,37 @@ const searchVariants = {
   },
 };
 
+function DebouncedInput({
+  value: initialValue,
+  onChange,
+  debounce = 500,
+  ...props
+}: {
+  value: string | number;
+  onChange: (value: string | number) => void;
+  debounce?: number;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>) {
+  const [value, setValue] = React.useState(initialValue);
+
+  React.useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue]);
+
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      onChange(value);
+    }, debounce);
+
+    return () => clearTimeout(timeout);
+  }, [value]);
+
+  return <input {...props} value={value} onChange={(e) => setValue(e.target.value)} />;
+}
+
 export default function Search() {
-  const { iconType, setQuery, setCategory, setIconType, query } = React.useContext(IconContext);
+  const { iconType, setQuery, setCategory, setIconType, query, category } = React.useContext(IconContext);
   const { navProps, setNavStyles, setNavProps } = React.useContext(StyleContext);
   const containerRef = React.useRef<HTMLDivElement>(null);
-
-  const handleSearchOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-
-    setQuery(value);
-
-    setCategory('all icons');
-    window.scrollTo({ top: containerRef.current?.clientTop });
-  };
 
   const categories = [
     { id: 1, category: 'All Icons' },
@@ -104,11 +124,9 @@ md:px-5"
       >
         <span className="inline-flex h-full items-center gap-2 w-full px-5 md:px-0">
           <SearchIcon className="w-[18px] h-[18px]" />
-          <input
+          <DebouncedInput
             value={query}
-            onChange={handleSearchOnChange}
-            type="search"
-            placeholder="Search for..."
+            onChange={(value) => setQuery(value as string)}
             className=" w-full h-full outline-none"
           />
         </span>
