@@ -202,7 +202,16 @@ md:px-5"
                     key={id.toPrecision()}
                     onClick={() => {
                       setCategory(category.category);
-                      window.scrollTo({ top: containerRef.current?.clientTop, behavior: 'smooth' });
+                      const containerBottom = containerRef.current?.getBoundingClientRect().bottom;
+                      if (
+                        containerBottom &&
+                        (containerBottom > window.scrollY || window.scrollY > window.innerHeight - 100)
+                      ) {
+                        window.scrollTo({
+                          top: containerBottom,
+                          behavior: 'smooth',
+                        });
+                      }
                     }}
                     className={({ active }) =>
                       `font-medium text-lg  px-6 relative cursor-default select-none mb-3

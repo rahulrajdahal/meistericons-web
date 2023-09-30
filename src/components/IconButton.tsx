@@ -220,7 +220,7 @@ const IconModal = ({
         </Transition.Child>
 
         <div className="fixed inset-0">
-          <div className="flex items-center justify-center p-4 text-center absolute top-[25%] left-0 right-0 min-h-screen w-full ">
+          <div className="flex items-center justify-center p-4 text-center absolute top-[10%] left-0 right-0 min-h-screen w-full ">
             <Transition.Child
               as={React.Fragment}
               enter="ease-out duration-300"
@@ -230,7 +230,7 @@ const IconModal = ({
               leaveFrom="translate-y-0"
               leaveTo="translate-y-full"
             >
-              <Dialog.Panel className="w-full max-w-[62.5rem] rounded-[2.5rem] bg-white p-6 text-left align-middle shadow-xl transition-all h-[90vh]">
+              <Dialog.Panel className="w-full max-w-[62.5rem] rounded-[2.5rem] bg-white p-6 text-left align-middle shadow-xl transition-all min-h-[90vh] h-full">
                 <button
                   title="close"
                   className="absolute top-[3.25rem] right-10 text-2xl 

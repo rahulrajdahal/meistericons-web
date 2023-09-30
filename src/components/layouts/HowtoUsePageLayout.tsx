@@ -30,7 +30,7 @@ export default function HowtoUsePageLayout({ children }: { children: React.React
 
   return (
     <PageLayout>
-      <div className="px-60 flex justify-between gap-[10.06rem] py-40 w-full">
+      <div className="px-[12.24%] flex justify-between gap-[0.8%] py-40 w-full">
         <aside className="w-full flex-[0.2]">
           <strong className="text-grey-700 text-[2rem] leading-[3rem] -tracking-[0.04rem] font-bold">How to Use</strong>
           <div className="mt-8 flex flex-col gap-10">
