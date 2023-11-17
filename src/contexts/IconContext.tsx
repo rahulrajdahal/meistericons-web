@@ -1,23 +1,23 @@
 import * as React from 'react';
-import { IconType, Category } from '@/utils/helpers';
+import { IconType, } from '@/utils/helpers';
 
 const defaultValue: {
   query: string;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
   iconType: IconType;
   setIconType: React.Dispatch<React.SetStateAction<IconType>>;
-  category: Category;
-  setCategory: React.Dispatch<React.SetStateAction<Category>>;
+  category: string;
+  setCategory: React.Dispatch<React.SetStateAction<string>>;
 } = {
   query: '',
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setQuery: () => {},
+  setQuery: () => { },
   iconType: 'all',
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setIconType: () => {},
+  setIconType: () => { },
   category: 'all icons',
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setCategory: () => {},
+  setCategory: () => { },
 };
 
 export const IconContext = React.createContext(defaultValue);
