@@ -84,7 +84,7 @@ export default function IconButton({ icons, component: IconComponent, name }: Pr
             title={name}
             onClick={openModal}
             className="p-5 rounded-[20px]
-          hover:bg-grey-100 hover:cursor-pointer"
+          hover:bg-grey-300 hover:cursor-pointer"
           >
             <IconComponent />
             <IconModal
@@ -248,7 +248,7 @@ const IconModal = ({
                     className="p-[4.75rem] rounded-[2rem] bg-grey-100 flex items-center justify-center
                   md:h-60"
                   >
-                    <IconComponent size={width < 768 ? 40 : 168} />
+                    <IconComponent size={width < 768 ? 40 : 162} />
                   </span>
                   <div className="flex flex-col gap-5 w-full">
                     <p

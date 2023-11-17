@@ -77,12 +77,13 @@ export const createReactComponent = (iconName: string, iconNode: IconNode) => {
         {
           key: iconName,
           ref,
-          // ...defaultAttributes,
+          // viewBox: `0 0 ${size} ${size}`,
+          ...defaultAttributes,
           width: size,
           height: size,
           fill: color,
           className: `mni mni-${toKebabCase(iconName)}`,
-          // ...rest,
+          ...rest,
         },
         (iconNode as any)?.map(([tag, attrs]: [string, any], i: number) => {
           delete attrs['fill-rule'];
