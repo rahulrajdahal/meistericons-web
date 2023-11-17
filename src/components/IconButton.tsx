@@ -84,7 +84,7 @@ export default function IconButton({ icons, component: IconComponent, name }: Pr
             title={name}
             onClick={openModal}
             className="p-5 rounded-[20px]
-          hover:bg-grey-300 hover:cursor-pointer"
+          hover:bg-grey-100 hover:cursor-pointer"
           >
             <IconComponent />
             <IconModal
