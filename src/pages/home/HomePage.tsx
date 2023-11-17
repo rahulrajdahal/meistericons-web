@@ -7,7 +7,8 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { motion } from 'framer-motion';
 import SponserBanner from '@/components/SponserBanner/SponserBanner.tsx';
 import { IconContext } from '@/contexts/IconContext';
-import { useCategory, useIconType, useSearch } from '@/hooks';
+import { useCategory, useIconType, useSearch, useWindowSize } from '@/hooks';
+import { useVirtualizer } from '@tanstack/react-virtual';
 
 export default function HomePage() {
   const { loading } = useFetchIcons();
@@ -59,36 +60,49 @@ export default function HomePage() {
     return searchIcons;
   }, [iconType, query, category, searchIcons]);
 
+
+
+
   return (
     <>
       <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="grid grid-cols-4 gap-20 place-items-center max-w-min mt-20 mb-[140px]
-      md:gap-x-[8.75rem] md:gap-y-[3.75rem] md:px-[2%]
-      lg:grid-cols-10
-      2xl:px-[14.79%]"
+        className={`grid grid-cols-4 gap-20 place-items-center max-w-min mt-20 mb-[140px]
+md:gap-x-[8.75rem] md:gap-y-[3.75rem] md:px-[2%]
+lg:grid-cols-10
+2xl:px-[14.79%] `}
+
       >
         {loading
           ? Array(50)
-              .fill(null)
-              .map((_, i) => (
-                <div key={i.toPrecision()} className="w-12 h-12">
-                  <Skeleton className="w-full h-full rounded-[40px]" />
-                </div>
-              ))
+            .fill(null)
+            .map((_, i) => (
+              <div key={i.toPrecision()} className="w-12 h-12">
+                <Skeleton className="w-full h-full rounded-[40px]" />
+              </div>
+            ))
           : icons?.map(([name, iconNode]) => (
-              <IconButton
-                key={name as string}
-                name={name as string}
-                component={createReactComponent(name as string, iconNode as IconNode[])}
-                icons={icons}
-              />
-            ))}
+            < IconButton
+              key={name}
+              name={name}
+              component={createReactComponent(name, iconNode as IconNode[])}
+              icons={icons}
+            />
+          ))}
       </motion.div>
 
       <SponserBanner />
     </>
   );
+}
+
+{
+  /* <IconButton
+key={name}
+name={name}
+component={createReactComponent(name, iconNode as IconNode[])}
+icons={icons}
+/> */
 }

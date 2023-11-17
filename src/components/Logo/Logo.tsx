@@ -11,7 +11,7 @@ type ILogoProps = React.ComponentPropsWithoutRef<'div'>;
 export default function Logo() {
   const [isFirstLoad, setIsFirstLoad] = useLocalStorage('isFirstLoad', 'y');
 
-  const [isOpen, setIsOpen] = React.useState(isFirstLoad === 'y' ? true : false);
+  const [isOpen, setIsOpen] = React.useState(isFirstLoad === 'y');
 
   const version03 = [
     { id: 1, update: 'We’ve added over 999 icons to MeisterIcons for all the categories available.' },
@@ -38,7 +38,7 @@ export default function Logo() {
   };
 
   return (
-    <Link to={routes.landing} data-testid="logo" className="inline-flex items-center gap-2">
+    <Link to={routes.landing} className="inline-flex items-center gap-2">
       <Mni className="w-12 h-12" width={48} height={48} />
       <div className="flex flex-col">
         <strong className="font-medium text-lg text-grey-800">MeisterIcons</strong>

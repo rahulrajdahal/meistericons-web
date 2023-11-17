@@ -25,24 +25,24 @@ export default function IconButton({ icons, component: IconComponent, name }: Pr
     setIsOpen(true);
   }
 
-  const renderRelatedIcons = () => {
-    const relatedIcons = icons?.filter(([iconName, iconNode]) => {
-      const words = (iconName as string).split('-');
+  const relatedIcons = icons?.filter(([iconName, iconNode]) => {
+    const words = (iconName as string).split('-');
 
-      return words.some((word) => {
-        if (word.includes(name.split('-')[0])) {
-          return [iconName, iconNode];
-        }
-      });
-    });
-
-    const allRealtedIcons = React.useMemo(() => {
-      if (relatedIcons && relatedIcons?.length < 30 && icons && icons.length > 0) {
-        return [...relatedIcons, ...icons.slice(relatedIcons?.length, 30)];
+    return words.some((word) => {
+      if (word.includes(name.split('-')[0])) {
+        return [iconName, iconNode];
       }
-      return relatedIcons;
-    }, [relatedIcons, icons]);
+    });
+  });
 
+  const allRealtedIcons = React.useMemo(() => {
+    if (relatedIcons && relatedIcons?.length < 30 && icons && icons.length > 0) {
+      return [...relatedIcons, ...icons.slice(relatedIcons?.length, 30)];
+    }
+    return relatedIcons;
+  }, [relatedIcons, icons]);
+
+  const renderRelatedIcons = () => {
     return allRealtedIcons && allRealtedIcons?.length > 0 ? (
       <>
         <strong className="uppercase  text-grey-700 tracking-[0.12rem] font-semibold mt-10">Related Icons</strong>
@@ -256,7 +256,7 @@ const IconModal = ({
                       className="before:content-[attr(data-title)] before:text-grey-700 before:text-base before:font-semibold before:tracking-[0.12rem] before:uppercase before:block
                        font-bold text-2xl text-grey-800 -tracking-[0.03rem]"
                     >
-                      {name as string}
+                      {name}
                     </p>
                     <span
                       className="flex flex-wrap gap-3 items-center
@@ -370,7 +370,7 @@ const IconModal = ({
                       <span>
                         {'<i'} <span className="text-[#8BA2FF]">class</span> {'=“'}
                         <span className="text-[#FFA83F]">mni&nbsp;</span>
-                        <span className="text-[#77B876]">mni-{name as string}</span> {'”></i>'}
+                        <span className="text-[#77B876]">mni-{name}</span> {'”></i>'}
                       </span>
                       <div className="w-fit">
                         <Toast.Provider swipeDirection="right">

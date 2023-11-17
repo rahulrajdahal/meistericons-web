@@ -1,6 +1,5 @@
 import { Categories, Tags, iconNodeToSvg } from '@/utils/helpers';
 import { queries } from '@/utils/queries';
-import * as React from 'react';
 import { useQueries } from 'react-query';
 
 export interface IconNode {
@@ -59,7 +58,7 @@ export const useFetchIcons = () => {
   if (iconNodes) {
     nodesLoading = true;
     const svgs = Object.keys(iconNodes).reduce((acc: { [key: string]: string }, iconName) => {
-      acc[iconName] = iconNodeToSvg(iconName, iconNodes[iconName]);
+      acc[iconName] = iconNodeToSvg(iconName, iconNodes[iconName].replace);
       return acc;
     }, {});
 
@@ -68,7 +67,7 @@ export const useFetchIcons = () => {
 
     return {
       meisterIcons,
-      loading: nodesLoading && packageJsonLoading && tagsLoading && iconNodesLoading && categoriesLoading,
+      loading: nodesLoading || packageJsonLoading || tagsLoading || iconNodesLoading || categoriesLoading,
     };
   }
   return {

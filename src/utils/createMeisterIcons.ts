@@ -27,7 +27,7 @@ const createMeisterIcons = (iconName: string, iconNode: IconNode): MeisterIcon =
         },
         [
           ...iconNode.map(([tag, attrs]) => React.createElement(tag, attrs)),
-          Array.isArray(children ? children : [children]) || [],
+          Array.isArray(children ?? [children]) ?? [],
         ],
       ),
   );

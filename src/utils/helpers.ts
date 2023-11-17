@@ -3,20 +3,18 @@ import * as PropTypes from 'prop-types';
 import defaultAttributes from './defaultAttributes';
 import { renderToString } from 'react-dom/server';
 
-type IconName = string;
 type Tag = string[];
 export type IconNode = unknown[];
-export type Category = string;
 export type IconType = 'all' | 'linear' | 'bold';
 
-export type Icon = [name: IconName, icon: IconNode];
+export type Icon = [name: string, icon: IconNode];
 
 export interface Tags {
   [key: string]: Tag;
 }
 
 export interface Categories {
-  [key: string]: Category;
+  [key: string]: string;
 }
 
 export const filterIcons = (icons: Icon[], tags: Tags, query: string) => {
@@ -30,6 +28,7 @@ export const filterIcons = (icons: Icon[], tags: Tags, query: string) => {
     });
   }
 };
+
 export const filterIconTypes = (icons: Icon[], iconType = 'all') => {
   if (icons.length > 0) {
     return icons.filter(([name]: Icon) => {
@@ -41,30 +40,30 @@ export const filterIconTypes = (icons: Icon[], iconType = 'all') => {
             return toKebabCase(name);
           }
         });
-      }
-
-      if (iconType === 'bold') {
+      } else if (iconType === 'bold') {
         return [name].some((name: string) => {
           if (lastString === 'b') {
             return toKebabCase(name);
           }
         });
+      } else {
+        return toKebabCase(name);
       }
-
-      return [toKebabCase(name)];
     });
   }
 };
 
 export const filterCategories = (icons: Icon[], categories: Categories, category: string) => {
   if (icons.length > 0) {
-    return icons.filter(([name]: Icon) => {
-      if (categories) {
-        const iconCategories = categories[name] ? categories[name] : [];
+    if (categories) {
+      const iconCategories = categories[category] ? categories[category] : [];
 
-        return [name, ...iconCategories].some((item: string) => item.toLowerCase().includes(category));
-      }
-    });
+      return icons.filter(([name, iconNode]: Icon) => {
+        if ((iconCategories as string[]).includes(name)) {
+          return [name, iconNode];
+        }
+      });
+    }
   }
 };
 
@@ -78,20 +77,25 @@ export const createReactComponent = (iconName: string, iconNode: IconNode) => {
         {
           key: iconName,
           ref,
-          ...defaultAttributes,
+          // ...defaultAttributes,
           width: size,
           height: size,
           fill: color,
           className: `mni mni-${toKebabCase(iconName)}`,
-          rest,
+          // ...rest,
         },
-        (iconNode as any).map(([tag, attrs]: [string, any], i: number) =>
-          React.createElement(tag, {
+        (iconNode as any)?.map(([tag, attrs]: [string, any], i: number) => {
+          delete attrs['fill-rule'];
+          delete attrs['clip-rule'];
+
+          return React.createElement(tag, {
             key: i.toPrecision(),
-            ...attrs,
+            fillRule: 'evenodd',
+            clipRule: 'evenodd',
             className: `${attrs.fill === '#fff' ? '' : 'fill-[#1c2a3a]'}`,
-          }),
-        ),
+            ...attrs,
+          });
+        }),
       ),
   );
 
