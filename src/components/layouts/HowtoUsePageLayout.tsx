@@ -24,6 +24,8 @@ export default function HowtoUsePageLayout({ children }: { children: React.React
       links: [
         { id: 1, link: 'npm', to: `${routes.howToUse}/${routes.npm}` },
         { id: 2, link: 'React', to: `${routes.howToUse}/${routes.react}` },
+        { id: 2, link: 'Vue', to: `${routes.howToUse}/${routes.vue}` },
+        { id: 2, link: 'Vue 3', to: `${routes.howToUse}/${routes.vue3}` },
       ],
     },
   ];
@@ -43,9 +45,8 @@ export default function HowtoUsePageLayout({ children }: { children: React.React
                     <li key={id}>
                       <Link
                         to={to}
-                        className={`w-full ${
-                          activeMenu === link.toLowerCase() ? 'text-grey- ' : 'text-grey-700'
-                        } text-lg font-medium -tracking-[0.0225rem]`}
+                        className={`w-full ${activeMenu === link.toLowerCase() ? 'text-grey- ' : 'text-grey-700'
+                          } text-lg font-medium -tracking-[0.0225rem]`}
                       >
                         {link}
                       </Link>

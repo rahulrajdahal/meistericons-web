@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { HomePageLayout } from '@/components/layouts';
-import { FigmaPage, HomePage, NpmPage, ReactPage } from '@/pages';
+import { FigmaPage, HomePage, NpmPage, ReactPage, Vue3Page, VuePage } from '@/pages';
 import HowtoUsePageLayout from './components/layouts/HowtoUsePageLayout';
 
 export default function App() {
@@ -42,6 +42,21 @@ export default function App() {
               element: (
                 <HowtoUsePageLayout>
                   <NpmPage />
+                </HowtoUsePageLayout>
+              ),
+            }, {
+              path: 'vue',
+              element: (
+                <HowtoUsePageLayout>
+                  <VuePage />
+                </HowtoUsePageLayout>
+              ),
+            },
+            {
+              path: 'vue-3',
+              element: (
+                <HowtoUsePageLayout>
+                  <Vue3Page />
                 </HowtoUsePageLayout>
               ),
             },
