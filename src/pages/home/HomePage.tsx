@@ -60,16 +60,30 @@ export default function HomePage() {
     return searchIcons;
   }, [searchParams, searchIcons]);
 
+  const parentRef = React.useRef<HTMLElement>(null);
+
+  const rowVirtualizer = useVirtualizer({
+    count: icons?.length ?? 100,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 100,
+    overscan: 5,
+  });
   return (
-    <>
+    <section
+      ref={parentRef}
+      className={`w-full`}
+      style={{
+        height: `${rowVirtualizer.getTotalSize()}px`,
+      }}
+    >
       <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
         className={`grid grid-cols-4 gap-20 place-items-center  max-w-min mt-20 mb-[140px]
-md:gap-x-[8.75rem] md:gap-y-[3.75rem] md:px-[2%]
-lg:grid-cols-10
-2xl:px-[14.79%] `}
+    md:gap-x-[8.75rem] md:gap-y-[3.75rem] md:px-[2%]
+    lg:grid-cols-10
+    2xl:px-[14.79%] `}
       >
         {loading
           ? Array(50)
@@ -79,18 +93,34 @@ lg:grid-cols-10
                   <Skeleton className="w-full h-full rounded-[40px]" />
                 </div>
               ))
-          : icons?.map(([name, iconNode]) => (
-              <IconButton
-                key={name}
-                name={name}
-                component={createReactComponent(name, iconNode as IconNode[])}
-                icons={icons}
-              />
-            ))}
+          : icons &&
+            icons.length > 0 &&
+            rowVirtualizer.getVirtualItems()?.map(
+              (virtualRow) => {
+                const icon = icons[virtualRow.index];
+
+                return (
+                  <IconButton
+                    key={virtualRow.index}
+                    name={icon[0]}
+                    component={createReactComponent(icon[0], icon[1] as IconNode[])}
+                    icons={icons}
+                  />
+                );
+              },
+              // <p>{virtualRow.index}</p>
+
+              // <IconButton
+              //   key={name}
+              //   name={name}
+              //   component={createReactComponent(name, iconNode as IconNode[])}
+              //   icons={icons}
+              // />
+            )}
       </motion.div>
 
       <SponserBanner />
-    </>
+    </section>
   );
 }
 
