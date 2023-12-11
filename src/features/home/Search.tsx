@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { Listbox, Transition } from '@headlessui/react';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { DownArrow, Search as SearchIcon } from '@/assets/icons';
-import { IconContext, StyleContext } from '@/contexts';
-import { useNavigate } from 'react-router-dom';
+import { StyleContext } from '@/contexts';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDebounce } from '@/hooks';
 const searchVariants = {
   hidden: {
@@ -46,7 +46,6 @@ function DebouncedInput({
 }
 
 export default function Search() {
-  const { iconType, setQuery, setCategory, setIconType, query, category } = React.useContext(IconContext);
   const { navProps, setNavStyles, setNavProps } = React.useContext(StyleContext);
   const containerRef = React.useRef<HTMLDivElement>(null);
 
@@ -106,6 +105,8 @@ export default function Search() {
     return () => window.removeEventListener('scroll', handleScroll, { capture: true });
   }, []);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   return (
     <motion.div
       initial="hidden"
@@ -125,8 +126,18 @@ md:px-5"
         <span className="inline-flex h-full items-center gap-2 w-full px-5 md:px-0">
           <SearchIcon className="w-[18px] h-[18px]" />
           <DebouncedInput
-            value={query}
-            onChange={(value) => setQuery(value as string)}
+            value={searchParams.get('q') ?? ''}
+            onChange={(value) => {
+              let params = {};
+              const iconType = searchParams.get('type');
+
+              if (iconType) {
+                params = { type: iconType, q: value as string };
+              } else {
+                params = { q: value as string };
+              }
+              setSearchParams(params);
+            }}
             className=" w-full h-full outline-none"
           />
         </span>
@@ -140,36 +151,71 @@ md:px-5"
           >
             <ToggleGroup.Item
               className={`${
-                iconType === 'all' ? 'bg-grey-800 px-3 py-2 rounded-xl text-grey-50' : 'text-grey-600'
+                !searchParams.get('type') ? 'bg-grey-800 px-3 py-2 rounded-xl text-grey-50' : 'text-grey-600'
               }  text-base font-medium `}
               value="all"
               aria-label="All"
               onClick={() => {
-                setIconType('all');
+                let params = {};
+                const query = searchParams.get('q');
+                const category = searchParams.get('category');
+                if (query) {
+                  params = { ...params, q: query };
+                }
+
+                if (category) {
+                  params = { ...params, category };
+                }
+
+                searchParams.set('type', '');
+
+                setSearchParams(params);
               }}
             >
               All
             </ToggleGroup.Item>
             <ToggleGroup.Item
               className={`${
-                iconType === 'linear' ? 'bg-grey-800 px-3 py-2 rounded-xl text-grey-50' : 'text-grey-600'
+                searchParams.get('type') === 'linear'
+                  ? 'bg-grey-800 px-3 py-2 rounded-xl text-grey-50'
+                  : 'text-grey-600'
               }  text-base font-medium `}
               value="linear"
               aria-label="Linear"
               onClick={() => {
-                setIconType('linear');
+                let params = {};
+                const query = searchParams.get('q');
+                const category = searchParams.get('category');
+                if (query) {
+                  params = { ...params, q: query };
+                }
+                if (category) {
+                  params = { ...params, category };
+                }
+                params = { ...params, type: 'linear' };
+                setSearchParams(params);
               }}
             >
               Linear
             </ToggleGroup.Item>
             <ToggleGroup.Item
               className={`${
-                iconType === 'bold' ? 'bg-grey-800 px-3 py-2 rounded-xl text-grey-50' : 'text-grey-600'
+                searchParams.get('type') === 'bold' ? 'bg-grey-800 px-3 py-2 rounded-xl text-grey-50' : 'text-grey-600'
               }  text-base font-medium `}
               value="bold"
               aria-label="Bold aligned"
               onClick={() => {
-                setIconType('bold');
+                let params = {};
+                const query = searchParams.get('q');
+                const category = searchParams.get('category');
+                if (query) {
+                  params = { ...params, q: query };
+                }
+                if (category) {
+                  params = { ...params, category };
+                }
+                params = { ...params, type: 'bold' };
+                setSearchParams(params);
               }}
             >
               Bold
@@ -180,7 +226,6 @@ md:px-5"
             value={selected}
             onChange={(value) => {
               setSelected(value);
-              setQuery('');
             }}
             as={'div'}
             className="relative border-[1px] border-grey-300 max-h-[60px] flex items-center border-y-0"
@@ -201,7 +246,17 @@ md:px-5"
                   <Listbox.Option
                     key={id.toPrecision()}
                     onClick={() => {
-                      setCategory(category.category);
+                      let params = {};
+
+                      const iconType = searchParams.get('type');
+
+                      if (iconType) {
+                        params = { ...params, type: iconType };
+                      }
+
+                      params = { ...params, category: category.category };
+
+                      setSearchParams(params);
                       const containerBottom = containerRef.current?.getBoundingClientRect().bottom;
                       if (
                         containerBottom &&
@@ -221,11 +276,9 @@ md:px-5"
                     value={category}
                   >
                     {({ selected }) => (
-                      <>
-                        <span className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>
-                          {category.category}
-                        </span>
-                      </>
+                      <span className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>
+                        {category.category}
+                      </span>
                     )}
                   </Listbox.Option>
                 ))}
