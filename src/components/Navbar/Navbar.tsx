@@ -11,7 +11,7 @@ interface INavbarProps extends React.ComponentPropsWithoutRef<'div'> {
   position?: string;
 }
 
-export default function Navbar({ ...props }: INavbarProps) {
+export default function Navbar({ ...props }: Readonly<INavbarProps>) {
   const links = [
     {
       link: (
@@ -45,7 +45,7 @@ export default function Navbar({ ...props }: INavbarProps) {
   const { width } = useWindowSize();
 
   const renderLinks = () => (
-    <ul className="inline-flex items-center gap-[74px]">
+    <ul className="inline-flex w-full items-center gap-[74px]">
       {links.map(({ link, id }) => (
         <li key={id}>
           {id !== 4 ? (

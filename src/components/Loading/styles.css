@@ -22,6 +22,7 @@
   border-radius: 50%;
   box-shadow: 0 4px 0 0 #3e64ff;
   transform-origin: 80px 82px;
+  box-sizing: content-box;
 }
 
 .loading {
@@ -40,8 +41,4 @@
   backface-visibility: hidden;
   transform-origin: 0 0;
   /* see note above */
-}
-
-.loader div {
-  box-sizing: content-box;
 }

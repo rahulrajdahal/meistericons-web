@@ -53,7 +53,7 @@ export default function Footer() {
       initial="hidden"
       animate="visible"
       variants={footerVariants}
-      className="px-[12.5%] py-10 bg-grey-900 flex justify-between"
+      className="px-[12.5%] py-10 bg-grey-900 flex w-full justify-between"
     >
       <section>
         <div className="flex flex-col gap-2 ">
