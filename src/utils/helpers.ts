@@ -77,7 +77,6 @@ export const createReactComponent = (iconName: string, iconNode: IconNode) => {
         {
           key: iconName,
           ref,
-          // viewBox: `0 0 ${size} ${size}`,
           ...defaultAttributes,
           width: size,
           height: size,

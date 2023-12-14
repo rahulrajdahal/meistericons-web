@@ -2,8 +2,6 @@ import { IconType, filterIconTypes } from '@/utils/helpers';
 import { useFetchIcons } from './useFetchIcons';
 import * as React from 'react';
 
-// export const useIconType = (icons: Icon[], type: IconType) => filterIconTypes(icons, type);
-
 export const useIconType = (iconType: IconType) => {
   const { meisterIcons } = useFetchIcons();
 

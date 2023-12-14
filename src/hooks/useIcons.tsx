@@ -9,7 +9,7 @@ export default function useIcons() {
   const [searchParams] = useSearchParams();
 
   const { icons: searchIcons } = useSearch(searchParams.get('q') ?? '');
-  const { icons: categoryIcons } = useCategory(searchParams.get('category') ?? 'all icons');
+  const { icons: categoryIcons } = useCategory(searchParams.get('category')?.replaceAll('-', ' ') ?? 'all icons');
   const { icons: iconTypeIcons } = useIconType((searchParams.get('type') as IconType) ?? 'all');
 
   const icons = React.useMemo(() => {

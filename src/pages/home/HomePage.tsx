@@ -5,9 +5,9 @@ import IconButton from '@/components/IconButton';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { motion } from 'framer-motion';
-import SponserBanner from '@/components/SponserBanner/SponserBanner.tsx';
 import useIcons from '@/hooks/useIcons';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import SponserBanner from '@/components/SponserBanner/SponserBanner';
 
 export default function HomePage() {
   const { icons } = useIcons();
@@ -25,7 +25,11 @@ export default function HomePage() {
     },
   };
 
-  if (!icons || loading) {
+  if (!icons) {
+    return <strong className="py-8">No Icons found!</strong>;
+  }
+
+  if (loading) {
     return (
       <motion.div
         initial="hidden"
