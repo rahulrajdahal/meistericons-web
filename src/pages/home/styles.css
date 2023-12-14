@@ -46,3 +46,7 @@
 .dropdown-shadow {
   box-shadow: 0px 15px 40px rgba(13, 24, 41, 0.3);
 }
+
+.infinite-scroll-component__outerdiv {
+  width: 100% !important;
+}

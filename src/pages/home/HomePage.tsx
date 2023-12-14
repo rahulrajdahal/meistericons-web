@@ -1,22 +1,17 @@
 import * as React from 'react';
 import { useFetchIcons } from '@/hooks/useFetchIcons';
-import { Icon, IconNode, IconType, createReactComponent, filterIconTypes } from '@/utils/helpers';
+import { IconNode, createReactComponent, fetchIcon } from '@/utils/helpers';
 import IconButton from '@/components/IconButton';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { motion } from 'framer-motion';
 import SponserBanner from '@/components/SponserBanner/SponserBanner.tsx';
-import { useCategory, useIconType, useSearch, useWindowSize } from '@/hooks';
-import { useVirtualizer } from '@tanstack/react-virtual';
-import { useSearchParams } from 'react-router-dom';
+import useIcons from '@/hooks/useIcons';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function HomePage() {
+  const { icons } = useIcons();
   const { loading } = useFetchIcons();
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const { icons: searchIcons } = useSearch(searchParams.get('q') ?? '');
-  const { icons: categoryIcons } = useCategory(searchParams.get('category') ?? 'all icons');
-  const { icons: iconTypeIcons } = useIconType((searchParams.get('type') as IconType) ?? 'all');
 
   const containerVariants = {
     hidden: {
@@ -30,105 +25,56 @@ export default function HomePage() {
     },
   };
 
-  const icons = React.useMemo(() => {
-    if (searchParams.get('q')) {
-      if (searchParams.get('type') !== 'all') {
-        return filterIconTypes(searchIcons as Icon[], searchParams.get('type') ?? 'all');
-      }
-      return searchIcons;
-    }
-
-    if (searchParams.get('category') !== 'all icons') {
-      if (searchParams.get('type') !== 'all') {
-        return filterIconTypes(categoryIcons as Icon[], searchParams.get('type') ?? 'all');
-      }
-      return categoryIcons;
-    }
-
-    if (searchParams.get('q')) {
-      return searchIcons;
-    }
-
-    if (searchParams.get('category') !== 'all icons') {
-      return categoryIcons;
-    }
-
-    if (searchParams.get('type') !== 'all') {
-      return iconTypeIcons;
-    }
-
-    return searchIcons;
-  }, [searchParams, searchIcons]);
-
-  const parentRef = React.useRef<HTMLElement>(null);
-
-  const rowVirtualizer = useVirtualizer({
-    count: icons?.length ?? 100,
-    getScrollElement: () => parentRef.current,
-    estimateSize: () => 100,
-    overscan: 5,
-  });
-  return (
-    <section
-      ref={parentRef}
-      className={`w-full`}
-      style={{
-        height: `${rowVirtualizer.getTotalSize()}px`,
-      }}
-    >
+  if (!icons || loading) {
+    return (
       <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
         className={`grid grid-cols-4 gap-20 place-items-center  max-w-min mt-20 mb-[140px]
-    md:gap-x-[8.75rem] md:gap-y-[3.75rem] md:px-[2%]
-    lg:grid-cols-10
-    2xl:px-[14.79%] `}
+md:gap-x-[8.75rem] md:gap-y-[3.75rem] md:px-[2%]
+lg:grid-cols-10
+2xl:px-[14.79%] `}
       >
-        {loading
-          ? Array(50)
-              .fill(null)
-              .map((_, i) => (
-                <div key={i.toPrecision()} className="w-12 h-12">
-                  <Skeleton className="w-full h-full rounded-[40px]" />
-                </div>
-              ))
-          : icons &&
-            icons.length > 0 &&
-            rowVirtualizer.getVirtualItems()?.map(
-              (virtualRow) => {
-                const icon = icons[virtualRow.index];
+        {Array(50)
+          .fill(null)
+          .map((_, i) => (
+            <div key={i.toPrecision()} className="w-12 h-12">
+              <Skeleton className="w-full h-full rounded-[40px]" />
+            </div>
+          ))}
+      </motion.div>
+    );
+  }
 
-                return (
-                  <IconButton
-                    key={virtualRow.index}
-                    name={icon[0]}
-                    component={createReactComponent(icon[0], icon[1] as IconNode[])}
-                    icons={icons}
-                  />
-                );
-              },
-              // <p>{virtualRow.index}</p>
-
-              // <IconButton
-              //   key={name}
-              //   name={name}
-              //   component={createReactComponent(name, iconNode as IconNode[])}
-              //   icons={icons}
-              // />
-            )}
+  return (
+    <InfiniteScroll
+      dataLength={icons.length}
+      hasMore={false}
+      next={async () => await fetchIcon(icons, 10, 0)}
+      loader={<h4>Loading...</h4>}
+      className={`w-full`}
+    >
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className={`grid grid-cols-4 gap-20 place-items-center  mt-20 mb-[140px]
+md:gap-x-[8.75rem] md:gap-y-[3.75rem] md:px-[2%]
+lg:grid-cols-10
+2xl:px-[14.79%] `}
+      >
+        {icons?.map(([name, iconNode]) => (
+          <IconButton
+            key={name}
+            name={name}
+            component={createReactComponent(name, iconNode as IconNode[])}
+            icons={icons}
+          />
+        ))}
       </motion.div>
 
       <SponserBanner />
-    </section>
+    </InfiniteScroll>
   );
-}
-
-{
-  /* <IconButton
-key={name}
-name={name}
-component={createReactComponent(name, iconNode as IconNode[])}
-icons={icons}
-/> */
 }

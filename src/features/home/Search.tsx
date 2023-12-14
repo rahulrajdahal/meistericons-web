@@ -81,8 +81,11 @@ export default function Search() {
     { id: 29, category: 'Users' },
     { id: 30, category: 'Weather' },
   ];
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [selected, setSelected] = React.useState(categories[0]);
+  const [selected, setSelected] = React.useState(
+    searchParams.get('category') ? { category: searchParams.get('category'), id: 0 } : categories[0],
+  );
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -104,8 +107,6 @@ export default function Search() {
 
     return () => window.removeEventListener('scroll', handleScroll, { capture: true });
   }, []);
-
-  const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <motion.div
@@ -130,11 +131,18 @@ md:px-5"
             onChange={(value) => {
               let params = {};
               const iconType = searchParams.get('type');
+              const category = searchParams.get('category');
 
               if (iconType) {
-                params = { type: iconType, q: value as string };
-              } else {
-                params = { q: value as string };
+                params = { ...params, type: iconType };
+              }
+
+              if (category) {
+                params = { ...params, category };
+              }
+
+              if (value) {
+                params = { ...params, q: value as string };
               }
               setSearchParams(params);
             }}
@@ -254,7 +262,11 @@ md:px-5"
                         params = { ...params, type: iconType };
                       }
 
-                      params = { ...params, category: category.category };
+                      if (category.category === 'All Icons') {
+                        searchParams.set('category', '');
+                      } else {
+                        params = { ...params, category: category.category.toLowerCase().replaceAll(' ', '-') };
+                      }
 
                       setSearchParams(params);
                       const containerBottom = containerRef.current?.getBoundingClientRect().bottom;

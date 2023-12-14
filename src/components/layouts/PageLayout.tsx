@@ -2,7 +2,8 @@ import * as React from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 
-export default React.memo(function PageLayout({ children }: { children: React.ReactNode }) {
+type IPageLayout = { children: React.ReactNode };
+export default function PageLayout({ children }: Readonly<IPageLayout>) {
   return (
     <>
       <Navbar />
@@ -10,4 +11,4 @@ export default React.memo(function PageLayout({ children }: { children: React.Re
       <Footer />
     </>
   );
-});
+}

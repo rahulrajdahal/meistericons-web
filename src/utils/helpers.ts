@@ -30,8 +30,8 @@ export const filterIcons = (icons: Icon[], tags: Tags, query: string) => {
 };
 
 export const filterIconTypes = (icons: Icon[], iconType = 'all') => {
-  if (icons.length > 0) {
-    return icons.filter(([name]: Icon) => {
+  if (icons?.length > 0) {
+    return icons?.filter(([name]: Icon) => {
       const lastString = name.toLowerCase().split('').at(-1);
 
       if (iconType === 'linear') {
@@ -113,4 +113,14 @@ export const createReactComponent = (iconName: string, iconNode: IconNode) => {
 export const iconNodeToSvg = (iconName: string, iconNode: IconNode) => {
   const IconComponent = createReactComponent(iconName, iconNode);
   return renderToString(React.createElement(IconComponent));
+};
+
+export const fetchIcon = async (icons: IconNode[], limit: number, offset: number) => {
+  if (icons.length >= offset) {
+    const fetchedIcons = icons.slice(offset, limit);
+   
+    await new Promise((r) => setTimeout(r, 500))
+    return { icons: fetchedIcons, nextOffset: icons.length > fetchedIcons.length ? fetchedIcons.length + 10 : null };
+  }
+  return {icons, nextOffset:null}
 };

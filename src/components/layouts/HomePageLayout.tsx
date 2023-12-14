@@ -94,12 +94,10 @@ export default React.memo(function HomePageLayout({ children }: Props) {
           initial="hidden"
           animate="visible"
           variants={headingVariants}
-          className="font-normal text-[36px] leading-[60px] text-center text-grey-800 mt-8 w-[80%]
+          className="font-normal text-[36px] h-full leading-[60px] text-center text-grey-800 mt-8 w-[80%]
         md:text-[3.75rem] md:leading-[4.5rem] md:w-[45%]"
         >
-          Over
-          <span className="text-gradient font-extrabold"> 1500+ </span>
-          Open-Source Icons for your next BIG project
+          Over <span className="text-gradient font-extrabold">1500+</span> Open-Source Icons for your next BIG project
         </motion.h1>
         <motion.div
           initial="hidden"
@@ -116,7 +114,7 @@ export default React.memo(function HomePageLayout({ children }: Props) {
               className="hover:cursor-pointer"
             >
               <Link to={to} target="_blank" rel="noreferrer">
-                <Icon height={32} className="min-w-[2.5rem] h-8" />
+                <Icon width={32} height={32} className="min-w-[2.5rem] h-8" />
               </Link>
             </motion.span>
           ))}
