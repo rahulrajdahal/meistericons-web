@@ -48,7 +48,15 @@ lg:grid-cols-10
   }
 
   if (!icons) {
-    return <strong>Icons not found :(.</strong>;
+    return (
+      <div
+        className={`flex gap-20   max-w-fit mt-20 mb-[140px]
+md:gap-[8.75rem] md:px-[2%]
+2xl:px-[14.79%] `}
+      >
+        <strong>Icons not found :(.</strong>
+      </div>
+    );
   }
 
   return (
