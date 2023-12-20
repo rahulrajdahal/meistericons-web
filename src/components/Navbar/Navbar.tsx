@@ -45,7 +45,7 @@ export default function Navbar({ ...props }: Readonly<INavbarProps>) {
   const { width } = useWindowSize();
 
   const renderLinks = () => (
-    <ul className="inline-flex w-full items-center gap-[74px]">
+    <ul className="inline-flex w-full items-center justify-end gap-[74px]">
       {links.map(({ link, id }) => (
         <li key={id}>
           {id !== 4 ? (

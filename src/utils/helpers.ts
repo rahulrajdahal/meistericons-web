@@ -116,10 +116,9 @@ export const iconNodeToSvg = (iconName: string, iconNode: IconNode) => {
 
 export const fetchIcon = async (icons: IconNode[], limit: number, offset: number) => {
   if (icons.length >= offset) {
-    const fetchedIcons = icons.slice(offset, limit);
-   
-    await new Promise((r) => setTimeout(r, 500))
-    return { icons: fetchedIcons, nextOffset: icons.length > fetchedIcons.length ? fetchedIcons.length + 10 : null };
+    const fetchedIcons = icons.slice(0, limit * offset);
+
+    await new Promise((r) => setTimeout(r, 500));
+    return { icons: fetchedIcons, nextOffset: offset + 1 };
   }
-  return {icons, nextOffset:null}
 };
