@@ -63,7 +63,7 @@ lg:grid-cols-10
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className={`grid grid-cols-4 gap-20 place-items-center  mt-20 mb-[140px]
+        className={`grid grid-cols-5 gap-20 place-items-center  mt-20 mb-[140px]
 md:gap-x-[8.75rem] md:gap-y-[3.75rem] md:px-[2%]
 lg:grid-cols-10
 2xl:px-[14.79%] `}
