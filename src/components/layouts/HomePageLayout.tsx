@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Loading from '../Loading/Loading';
-import { Css, Figma, Github, Npm, Svg } from '@/assets/icons';
+import { css, figma, github, npm, svg } from '@/assets/svgs';
 
 import { motion } from 'framer-motion';
 import { Search } from '@/features/home';
@@ -72,13 +72,13 @@ export default React.memo(function HomePageLayout({ children }: Props) {
     {
       id: 1,
       title: 'figma',
-      icon: Figma,
+      icon: figma,
       to: 'https://www.figma.com/community/plugin/1065974489689844727/MeisterIcons',
     },
-    { id: 2, title: 'svg', icon: Svg, to: 'https://github.com/rahulrajdahal/meistericons' },
-    { id: 3, title: 'css', icon: Css, to: 'https://github.com/rahulrajdahal/meistericons' },
-    { id: 4, title: 'npm', icon: Npm, to: 'https://www.npmjs.com/package/meistericons' },
-    { id: 5, title: 'github', icon: Github, to: 'https://github.com/rahulrajdahal/meistericons' },
+    { id: 2, title: 'svg', icon: svg, to: 'https://github.com/rahulrajdahal/meistericons' },
+    { id: 3, title: 'css', icon: css, to: 'https://github.com/rahulrajdahal/meistericons' },
+    { id: 4, title: 'npm', icon: npm, to: 'https://www.npmjs.com/package/meistericons' },
+    { id: 5, title: 'github', icon: github, to: 'https://github.com/rahulrajdahal/meistericons' },
   ];
 
   const stickyRef = React.useRef<HTMLSpanElement>(null);
@@ -113,7 +113,7 @@ export default React.memo(function HomePageLayout({ children }: Props) {
           variants={iconsVariants}
           className="flex items-center gap-10 mt-12 md:gap-[50px]"
         >
-          {icons?.map(({ icon: Icon, id, to, title }) => (
+          {icons?.map(({ icon, id, to, title }) => (
             <motion.span
               initial="hidden"
               animate="visible"
@@ -127,7 +127,7 @@ export default React.memo(function HomePageLayout({ children }: Props) {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Icon width={32} height={32} className="min-w-[2.5rem] h-8" />
+                <img width={32} height={32} src={icon} alt={title} className="min-w-[2.5rem] h-8" />
               </Link>
             </motion.span>
           ))}

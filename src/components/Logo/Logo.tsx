@@ -103,7 +103,7 @@ export default function Logo() {
                     <ul className="mt-3 flex flex-col gap-3 mb-6">
                       {version03.map(({ id, update }) => (
                         <li key={id} className="flex items-center gap-3">
-                          <img src={addSquare} alt="add-square" className="w-6 h-6 text-grey-600" />
+                          <img src={addSquare} alt="add-square" width={24} height={24} className="w-6 h-6 text-grey-600" />
                           {update}
                         </li>
                       ))}
