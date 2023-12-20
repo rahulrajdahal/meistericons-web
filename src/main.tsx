@@ -6,7 +6,7 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { StyleContextProvider } from '@/contexts';
 import { initialize } from 'react-ga';
 
-const TRACKING_ID = 'G-R2NWSCJRJZ'; // OUR_TRACKING_ID
+const TRACKING_ID = 'UA-G-R2NWSCJRJZ';
 initialize(TRACKING_ID);
 
 const queryClient = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFocus: false } } });

@@ -68,7 +68,7 @@ md:gap-x-[8.75rem] md:gap-y-[3.75rem] md:px-[2%]
 lg:grid-cols-10
 2xl:px-[14.79%] `}
       >
-        {icons?.map(([name, iconNode]) => (
+        {icons?.map(([name, iconNode]: [string, IconNode]) => (
           <IconButton
             key={name}
             name={name}
