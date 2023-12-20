@@ -3,3 +3,4 @@ export { useCategory } from './useCategory';
 export { useSearch } from './useSearch';
 export { useIconType } from './useIconType';
 export { useDebounce } from './useDebounce';
+export { default as useAnalyticsEvent } from './useAnalyticsEvent';

@@ -4,8 +4,8 @@ import { Listbox, Transition } from '@headlessui/react';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { DownArrow, Search as SearchIcon } from '@/assets/icons';
 import { StyleContext } from '@/contexts';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useDebounce } from '@/hooks';
+import { useSearchParams } from 'react-router-dom';
+import { useAnalyticsEvent } from '@/hooks';
 const searchVariants = {
   hidden: {
     scale: 0,
@@ -48,6 +48,7 @@ function DebouncedInput({
 export default function Search() {
   const { navProps, setNavStyles, setNavProps } = React.useContext(StyleContext);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const gaEventTrack = useAnalyticsEvent('Search');
 
   const categories = [
     { id: 1, category: 'All Icons' },
@@ -143,6 +144,7 @@ md:px-5"
 
               if (value) {
                 params = { ...params, q: value as string };
+                gaEventTrack(`${value} searched.`, 'Search');
               }
               setSearchParams(params);
             }}
@@ -177,6 +179,8 @@ md:px-5"
 
                 searchParams.set('type', '');
 
+                gaEventTrack(`All icon type.`, 'Icon type');
+
                 setSearchParams(params);
               }}
             >
@@ -201,6 +205,8 @@ md:px-5"
                   params = { ...params, category };
                 }
                 params = { ...params, type: 'linear' };
+                gaEventTrack(`Linear icon type.`, 'Icon type');
+
                 setSearchParams(params);
               }}
             >
@@ -223,6 +229,8 @@ md:px-5"
                   params = { ...params, category };
                 }
                 params = { ...params, type: 'bold' };
+                gaEventTrack(`Bold icon type.`, 'Icon type');
+
                 setSearchParams(params);
               }}
             >
@@ -266,6 +274,7 @@ md:px-5"
                         searchParams.set('category', '');
                       } else {
                         params = { ...params, category: category.category.toLowerCase().replaceAll(' ', '-') };
+                        gaEventTrack(`${category} clicked!`, 'Category');
                       }
 
                       setSearchParams(params);

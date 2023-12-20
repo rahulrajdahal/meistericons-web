@@ -25,7 +25,7 @@ export default function HomePage() {
     },
   };
 
-  if (loading || !icons) {
+  if (loading) {
     return (
       <motion.div
         initial="hidden"
@@ -45,6 +45,10 @@ lg:grid-cols-10
           ))}
       </motion.div>
     );
+  }
+
+  if (!icons) {
+    return <strong>Icons not found :(.</strong>;
   }
 
   return (

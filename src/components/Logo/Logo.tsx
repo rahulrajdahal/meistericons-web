@@ -4,6 +4,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Link } from 'react-router-dom';
 import { routes } from '@/utils/routes';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useAnalyticsEvent } from '@/hooks';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type ILogoProps = React.ComponentPropsWithoutRef<'div'>;
@@ -37,13 +38,18 @@ export default function Logo() {
     setIsOpen(false);
   };
 
+  const gaEventTrack = useAnalyticsEvent('Changelog');
+
   return (
     <Link to={routes.landing} className="inline-flex items-center gap-2">
       <Mni className="w-12 h-12" width={48} height={48} />
       <div className="flex flex-col">
         <strong className="font-medium text-lg text-grey-800">MeisterIcons</strong>
         <button
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            setIsOpen(true);
+            gaEventTrack(`Changelog viewed.`, 'Changelog');
+          }}
           className="font-normal text-sm leading-[14px] text-grey-600 px-[0.5625rem] py-1 bg-grey-200 rounded-[1.625rem] w-fit"
         >
           v 1.0.0

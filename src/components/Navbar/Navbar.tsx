@@ -2,7 +2,7 @@ import * as React from 'react';
 import Logo from '../Logo/Logo';
 import { Link } from 'react-router-dom';
 import { Close, EllipsisV, GithubFill, Search } from '@/assets/icons';
-import { useWindowSize } from '@/hooks';
+import { useAnalyticsEvent, useWindowSize } from '@/hooks';
 import { motion } from 'framer-motion';
 import { routes } from '@/utils/routes';
 import { StyleContext } from '@/contexts/StyleContext';
@@ -15,14 +15,35 @@ export default function Navbar({ ...props }: Readonly<INavbarProps>) {
   const links = [
     {
       link: (
-        <Link to={routes.landing} className="flex items-center gap-[0.31rem]">
+        <Link
+          onClick={() => gaEventTrack(`Icons clicked.`, 'Icons')}
+          to={routes.landing}
+          className="flex items-center gap-[0.31rem]"
+        >
           <Search /> Icons
         </Link>
       ),
       id: 1,
     },
-    { link: <Link to={`${routes.howToUse}/${routes.figma}`}>How to Use?</Link>, id: 2 },
-    { link: <Link to={routes.landing}>Sponsor</Link>, id: 3 },
+    {
+      link: (
+        <Link
+          onClick={() => gaEventTrack(`How to use clicked.`, 'How to use')}
+          to={`${routes.howToUse}/${routes.figma}`}
+        >
+          How to Use?
+        </Link>
+      ),
+      id: 2,
+    },
+    {
+      link: (
+        <Link onClick={() => gaEventTrack(`Sponsor clicked.`, 'Sponsor')} to={routes.landing}>
+          Sponsor
+        </Link>
+      ),
+      id: 3,
+    },
     {
       link: (
         <Link
@@ -43,6 +64,7 @@ export default function Navbar({ ...props }: Readonly<INavbarProps>) {
   ];
 
   const { width } = useWindowSize();
+  const gaEventTrack = useAnalyticsEvent('Sponsor');
 
   const renderLinks = () => (
     <ul className="inline-flex w-full items-center justify-end gap-[74px]">

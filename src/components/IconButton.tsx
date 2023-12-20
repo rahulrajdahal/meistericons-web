@@ -3,7 +3,7 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { Dialog, Transition } from '@headlessui/react';
 import { Copy, DownArrow, download } from '@/assets/icons';
-import { useWindowSize } from '@/hooks';
+import { useAnalyticsEvent, useWindowSize } from '@/hooks';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { IconNode, createReactComponent } from '@/utils/helpers';
 import * as Toast from '@radix-ui/react-toast';
@@ -21,8 +21,12 @@ export default function IconButton({ icons, component: IconComponent, name }: Pr
     setIsOpen(false);
   }
 
-  function openModal() {
+  const gaEventTrack = useAnalyticsEvent('Icon');
+  function openModal(iconName?: string) {
     setIsOpen(true);
+    if (iconName) {
+      gaEventTrack(`${iconName} clicked.`, `Icon ${iconName}`);
+    }
   }
 
   const relatedIcons = icons?.filter(([iconName, iconNode]) => {
@@ -82,7 +86,7 @@ export default function IconButton({ icons, component: IconComponent, name }: Pr
         <Tooltip.Trigger asChild>
           <button
             title={name}
-            onClick={openModal}
+            onClick={() => openModal(name)}
             className="p-5 rounded-[20px]
           hover:bg-grey-100 hover:cursor-pointer"
           >
@@ -124,8 +128,11 @@ const IconModal = ({
   closeModal: () => void;
   renderRelatedIcons?: any;
 }) => {
+  const gaEventTrack = useAnalyticsEvent();
+
   const getCssCode = () => {
     navigator.clipboard.writeText(`<i class="min mni-${name}"></i>`);
+    gaEventTrack(`${name} code copied`, 'Code Copy');
 
     setOpen(false);
     window.clearTimeout(timerRef.current);
@@ -139,7 +146,9 @@ const IconModal = ({
     navigator.clipboard.writeText(svg);
 
     setOpen(false);
+    gaEventTrack(`${name} Copied`, 'Copy');
     window.clearTimeout(timerRef.current);
+
     timerRef.current = window.setTimeout(() => {
       setOpen(true);
     }, 100);
@@ -155,7 +164,7 @@ const IconModal = ({
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-
+    gaEventTrack(`${name} Download`, 'Download');
     setTimeout(() => URL.revokeObjectURL(blobUrl), 5000);
   };
 
