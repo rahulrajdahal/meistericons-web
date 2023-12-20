@@ -4,10 +4,10 @@ import App from './App';
 import './index.css';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { StyleContextProvider } from '@/contexts';
-import { initialize } from 'react-ga';
+import ReactGA from 'react-ga4';
 
-const TRACKING_ID = 'UA-G-R2NWSCJRJZ';
-initialize(TRACKING_ID);
+const TRACKING_ID = 'G-R2NWSCJRJZ';
+ReactGA.initialize(TRACKING_ID);
 
 const queryClient = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFocus: false } } });
 
