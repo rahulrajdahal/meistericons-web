@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import PageLayout from './PageLayout';
 import './styles.css';
 import { useNavPosition } from '@/hooks/useNavPosition';
+import { useAnalyticsEvent } from '@/hooks';
 
 interface Props {
   children: React.ReactNode;
@@ -68,16 +69,23 @@ export default React.memo(function HomePageLayout({ children }: Props) {
   };
 
   const icons = [
-    { id: 1, icon: Figma, to: 'https://www.figma.com/community/plugin/1065974489689844727/MeisterIcons' },
-    { id: 2, icon: Svg, to: 'https://github.com/rahulrajdahal/meistericons' },
-    { id: 3, icon: Css, to: 'https://github.com/rahulrajdahal/meistericons' },
-    { id: 4, icon: Npm, to: 'https://www.npmjs.com/package/meistericons' },
-    { id: 5, icon: Github, to: 'https://github.com/rahulrajdahal/meistericons' },
+    {
+      id: 1,
+      title: 'figma',
+      icon: Figma,
+      to: 'https://www.figma.com/community/plugin/1065974489689844727/MeisterIcons',
+    },
+    { id: 2, title: 'svg', icon: Svg, to: 'https://github.com/rahulrajdahal/meistericons' },
+    { id: 3, title: 'css', icon: Css, to: 'https://github.com/rahulrajdahal/meistericons' },
+    { id: 4, title: 'npm', icon: Npm, to: 'https://www.npmjs.com/package/meistericons' },
+    { id: 5, title: 'github', icon: Github, to: 'https://github.com/rahulrajdahal/meistericons' },
   ];
 
   const stickyRef = React.useRef<HTMLSpanElement>(null);
 
   useNavPosition(stickyRef);
+
+  const gaEventTrack = useAnalyticsEvent('Services');
 
   return (
     <PageLayout>
@@ -105,7 +113,7 @@ export default React.memo(function HomePageLayout({ children }: Props) {
           variants={iconsVariants}
           className="flex items-center gap-10 mt-12 md:gap-[50px]"
         >
-          {icons?.map(({ icon: Icon, id, to }) => (
+          {icons?.map(({ icon: Icon, id, to, title }) => (
             <motion.span
               initial="hidden"
               animate="visible"
@@ -113,7 +121,12 @@ export default React.memo(function HomePageLayout({ children }: Props) {
               key={id}
               className="hover:cursor-pointer"
             >
-              <Link to={to} target="_blank" rel="noreferrer">
+              <Link
+                to={to}
+                onClick={() => gaEventTrack(`${title} clicked!`, `${title}`)}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Icon width={32} height={32} className="min-w-[2.5rem] h-8" />
               </Link>
             </motion.span>

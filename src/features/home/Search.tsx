@@ -125,8 +125,9 @@ export default function Search() {
 md:px-5"
         ref={containerRef}
       >
-        <span className="inline-flex h-full items-center gap-2 w-full px-5 md:px-0">
+        <span className="inline-flex h-10 sm:h-full items-center gap-2 w-full px-5 md:px-0 border-b-grey-300 border-b sm:border-none">
           <SearchIcon className="w-[18px] h-[18px]" />
+
           <DebouncedInput
             value={searchParams.get('q') ?? ''}
             onChange={(value) => {
