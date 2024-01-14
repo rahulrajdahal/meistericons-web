@@ -1,16 +1,15 @@
 import * as React from 'react';
 import { useFetchIcons } from '@/hooks/useFetchIcons';
-import { IconNode, createReactComponent, fetchIcon } from '@/utils/helpers';
+import { IconNode, createReactComponent } from '@/utils/helpers';
 import IconButton from '@/components/IconButton';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { motion } from 'framer-motion';
 import useIcons from '@/hooks/useIcons';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import { SponserBanner } from '@/components';
 
 export default function HomePage() {
-  const { icons } = useIcons();
+  const { icons, ref } = useIcons();
   const { loading } = useFetchIcons();
 
   const containerVariants = {
@@ -47,26 +46,8 @@ lg:grid-cols-10
     );
   }
 
-  if (!icons) {
-    return (
-      <div
-        className={`flex gap-20   max-w-fit mt-20 mb-[140px]
-md:gap-[8.75rem] md:px-[2%]
-2xl:px-[14.79%] `}
-      >
-        <strong>Icons not found :(.</strong>
-      </div>
-    );
-  }
-
   return (
-    <InfiniteScroll
-      dataLength={icons.length}
-      hasMore={false}
-      next={async () => await fetchIcon(icons, 10, 0)}
-      loader={<h4>Loading...</h4>}
-      className={`w-full`}
-    >
+    <>
       <motion.div
         initial="hidden"
         animate="visible"
@@ -84,9 +65,10 @@ lg:grid-cols-10
             icons={icons}
           />
         ))}
+        <span ref={ref} />
       </motion.div>
 
       <SponserBanner />
-    </InfiniteScroll>
+    </>
   );
 }
