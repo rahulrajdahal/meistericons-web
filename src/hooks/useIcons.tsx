@@ -8,7 +8,7 @@ import { useInView } from 'react-intersection-observer';
 
 export default function useIcons() {
   const [searchParams] = useSearchParams();
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ threshold: [0, 0.25, 0.5, 0.75] });
 
   const [limit, setLimit] = React.useState(30);
 
@@ -49,8 +49,8 @@ export default function useIcons() {
   React.useEffect(() => {
     if (inView) {
       if (icons) {
-        if (limit <= icons?.length) {
-          setLimit((prev) => prev + 30);
+        if (limit < icons?.length) {
+          setLimit((prev) => prev + 100);
         } else if (limit === icons?.length) {
           setLimit((prev) => prev + (icons.length - prev));
         }
