@@ -48,10 +48,12 @@ export default function useIcons() {
 
   React.useEffect(() => {
     if (inView) {
-      if (icons && limit <= icons?.length) {
-        setLimit((prev) => prev + 30);
-      } else {
-        setLimit(30);
+      if (icons) {
+        if (limit <= icons?.length) {
+          setLimit((prev) => prev + 30);
+        } else if (limit === icons?.length) {
+          setLimit((prev) => prev + (icons.length - prev));
+        }
       }
     }
   }, [icons, inView]);
@@ -61,7 +63,7 @@ export default function useIcons() {
       return icons?.slice(0, limit);
     }
     return [];
-  }, [icons]);
+  }, [icons, limit]);
 
   return { icons: moreIcons, ref };
 }

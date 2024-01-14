@@ -6,7 +6,7 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { StyleContextProvider } from '@/contexts';
 import ReactGA from 'react-ga4';
 
-const TRACKING_ID = String(process.env.GA_ID);
+const TRACKING_ID = import.meta.env.VITE_GA_ID;
 ReactGA.initialize(TRACKING_ID);
 
 const queryClient = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFocus: false } } });
