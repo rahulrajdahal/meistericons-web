@@ -28,28 +28,28 @@ export const useFetchIcons = () => {
     {
       queryKey: queries.FETCH_PACKAGE_JSON,
       queryFn: () =>
-        fetch('https://unpkg.com/meistericons@latest/package.json')
+        fetch('https://unpkg.com/@meistericons/static@latest/package.json')
           .then((res) => res.json())
           .catch((error) => console.error(error)),
     },
     {
       queryKey: queries.FETCH_ICON_NODES_JSON,
       queryFn: () =>
-        fetch('https://unpkg.com/meistericons@latest/icon-nodes.json')
+        fetch('https://unpkg.com/@meistericons/static@latest/icon-nodes.json')
           .then((res) => res.json())
           .catch((error) => console.error(error)),
     },
     {
       queryKey: queries.FETCH_TAGS_JSON,
       queryFn: () =>
-        fetch('https://unpkg.com/meistericons@latest/tags.json')
+        fetch('https://unpkg.com/@meistericons/static@latest/tags.json')
           .then((res) => res.json())
           .catch((error) => console.error(error)),
     },
     {
       queryKey: queries.FETCH_CATEGORIES_JSON,
       queryFn: () =>
-        fetch('https://unpkg.com/meistericons@latest/categories.json')
+        fetch('https://unpkg.com/@meistericons/static@latest/categories.json')
           .then((res) => res.json())
           .catch((error) => console.error(error)),
     },
